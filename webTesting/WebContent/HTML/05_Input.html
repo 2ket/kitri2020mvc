@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Input Tag</title>
+</head>
+<body>
+	<h3>INPUT - TYPE</h3>
+	<span>TEXT TYPE </span>
+	<input type="text" name="id" size="20" placeholder="아이디를 입력하세요"/>	<!-- 나중에 name으로 지정된 id로 속성을 뽑아오는것 -->
+	<br/>
+	<br/>
+	
+	<span>PASSWORD</span>
+	<input type="password" name="pw" placeholder="비밀번호를 입력하세요"/>
+	<br/>
+	
+	<span>RADIO TYPE</span>
+	<input type="radio" name="gender" value="man"/>
+	<span>남자</span>		<!-- 보여주는 타이틀. input태그 안에 value값을 넣어줘야한다. -->
+	<input type="radio" name="gender" value="woman"/>
+	<span>여자</span>	
+	<br/>
+	<br/>
+	
+	<span>CHECK BOX : 좋아하는 과목</span>
+	<!-- 두가지 이상이 넘어가기 때문에 배열로 넘어감. 뷰단에서 0~2번지까지 있는데 그중에 1번지, 2번지가 넘어가면 java단에선 0번지 1번지가 된다. -->
+	<input type="checkbox" name="subject" value="java"/>
+	<span>자바</span>
+	<input type="checkbox" name="subject" value="iphone"/>
+	<span>iPhone</span>
+	<input type="checkbox" name="subject" value="jsp"/>
+	<span>JSP</span>
+	<br/>
+	<br/>
+	
+	<span>TYPE FILE</span>
+	<input type="file" name="downLoad"/>
+	<br/>
+	<br/>
+	
+	<span>TYPE DATE</span>
+	<input type="date" name="mydate"/>
+	<br/>
+	
+	<span>TYPE COLOR</span>
+	<input type="color" name="mycolor"/>
+	<br/>
+	
+	<span>각종 버튼들</span>
+	<input type="button" value="버튼 클릭" />
+	<input type="submit" value="전송"/>
+	<input type="reset" value="취소"/>
+	<br/><br/>
+	
+	<span>HIDDEN TYPE</span>
+	<input type="hidden" name="myhidden" value="1234"/>
+	
+	<!-- DB단에서 데이터를 서버에 받아서 가지고 있어야 하는 경우 hidden 처리. 엄청 많이 씀 -->
+	
+</body>
+</html>

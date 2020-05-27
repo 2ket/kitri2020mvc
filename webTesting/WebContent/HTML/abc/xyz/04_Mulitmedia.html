@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 상대경로
+		./ : 현재폴더
+		../ : 상위폴더
+	
+	, 절대경로 -->
+	<!-- 상대경로 -->
+	<img src="./펭수.jpg" width="300" alt="이미지 없을때 나오는 메시지"/>
+	<br/>
+	<img src="../img/펭수.jpg"/>
+	
+	
+	<!-- 상대경로 -->
+	<img src="./../../펭수.jpg" width="300" alt="이미지 없을때 나오는 메시지"/>
+	<br/>
+	<img src="./../../../img/펭수.jpg"/>
+	<!-- 절대경로 -->
+	
+	<!-- WebContent/HTML/abc/xyz폴더 안에 있는 html파일에서 WebContent/img/test폴더 안에 있는 이미지 불러오기 -->
+	<img src="./../../../img/test/펭수.jpg"/><br/>
+	
+</body>
+</html>

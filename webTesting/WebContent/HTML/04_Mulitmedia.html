@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 상대경로
+		./ : 현재폴더 - 생략가능
+		../ : 상위폴더
+	
+	, 절대경로 -->
+	<!-- 상대경로 -->
+	<img src="./펭수.jpg" width="300" alt="이미지 없을때 나오는 메시지"/>
+	<br/>
+	<img src="../img/펭수.jpg"/>
+	
+	
+	<img src="../img/test/펭수.jpg"/>
+	<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"/>
+	
+	
+	<h3>오디오</h3>
+	<audio controls autoplay loop>
+		<source src="./../img/Sleep Away.mp3" type="audio/mpeg"/>
+	</audio>
+	
+	<h3>비디오</h3>
+	<video src="./../img/penguins.mp4" autoplay="autoplay" controls="controls" width=200>
+		<source type="video/mp4"/>
+	</video>
+</body>
+</html>
