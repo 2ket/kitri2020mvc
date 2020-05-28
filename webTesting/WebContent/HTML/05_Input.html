@@ -2,6 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+	textarea{resize:none;}
+</style>
 <title>Input Tag</title>
 </head>
 <body>
@@ -58,5 +61,25 @@
 	
 	<!-- DB단에서 데이터를 서버에 받아서 가지고 있어야 하는 경우 hidden 처리. 엄청 많이 씀 -->
 	
+	
+	<h3>그 외 태그들</h3>
+	<span>SELECT</span>
+	<select name="fruit">
+		<option value="apple">사과 </option>
+		<option value="banana">바나나</option>
+		<option value="pineapple" selected>파인애플</option>
+	</select>
+	
+	<br/><br/>
+	<select name="fruit2" multiple="multiple" size=3>
+		<option value="apple">사과</option>
+		<option value="banana">바나나</option>
+		<option value="pineapple" selected>파인애플</option>
+		<option value="melon">메론</option>
+	</select>
+	<br/><br/>
+	
+	<span>TEXT AREA</span><br/>
+	<textarea rows="10" cols="50" name="msg" ></textarea>
 </body>
 </html>
