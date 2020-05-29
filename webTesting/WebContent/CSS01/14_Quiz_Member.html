@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quiz_회원관리</title>
+<style type="text/css">
+	#container{
+		margin: 100px auto;
+		width : 600px;
+	}
+	#container>span{
+		display:block;
+		text-align: center;
+		font-weight: bold;
+	}
+	
+	#table_form{
+		margin: auto;
+	}
+	#table_form div{
+		margin-top : -2px;
+		border: solid 2px black;
+		height: 30px;
+		line-height: 30px;
+	}
+	#table_form label{
+		display: block;
+		width : 120px;
+		float : left;
+		margin-left: 5px;
+		border-right: solid 2px black;
+	}
+	#table_form input{
+		margin : 0px 3px;
+	}
+	#table_form input[name^="jumin"]{
+		width: 120px;
+	}
+	#table_form select{
+		margin : 0px 3px;
+		width: 120px;
+	}
+	#form_button{
+		text-align: center;
+	}
+</style>
+
+</head>
+<body>
+	<div id="container">
+		<span>회원가입(*필수입력사항입니다.)</span>
+		<div id="table_form">	<!-- 테두리 -->
+			<form action="#" method="post">
+				<div>
+					<label>아이디</label>
+					<span>*<input type="text">
+					<input type="button" value="아이디중복"></span>
+				</div>
+				<div>
+					<label>비밀번호</label>
+					*<input type="password">
+				</div>
+				<div>
+					<label>비밀번호 확인</label>
+					*<input type="password">
+				</div>
+				<div>
+					<label>이름</label>
+					*<input type="text">
+				</div>
+				<div>
+					<label>주민번호</label>
+					*<input type="text" name="jumin1">-<input type="text" name="jumin2">
+				</div>
+				<div>
+					<label>이메일</label>
+					<input type="text">
+				</div>
+				<div>
+					<label>우편번호</label>
+					<input type="text">
+					<input type="button" value="우편번호 검색">
+				</div>
+				<div>
+					<label>주소</label>
+					<input type="text">
+				</div>
+				<div>
+					<label>직업</label>
+					<select>
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+				</div>
+				<div>
+					<label>메일수신</label>
+					<input type="radio" name="yes"><span>yes</span>
+					<input type="radio" name="no"><span>no</span>
+				</div>
+				<div>
+					<label>관심분야</label>
+					<input type="checkbox" name="habbit" value="economic"><span>경제</span>
+					<input type="checkbox" name="habbit" value="IT"><span>IT</span>
+					<input type="checkbox" name="habbit" value="music"><span>음악</span>
+					<input type="checkbox" name="habbit" value="art"><span>미술</span>
+				</div>
+				<div id="form_button">
+					<input type="submit" value="가입">
+					<input type="reset" value="취소">
+				</div>
+			</form>
+		
+		</div>
+	</div>
+</body>
+</html>

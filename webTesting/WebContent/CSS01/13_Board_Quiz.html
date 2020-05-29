@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quiz_게시판</title>
+<style type="text/css">
+	#board{
+		border : solid 0px blue;
+		width: 600px;
+		margin: 200px auto;
+	}
+	#board div>div{
+		border : solid 1px black;
+		margin-top : -1px;
+	}
+	#board #contents{
+	}
+	#contents textarea{
+		width: 450px;
+		height: 190px;
+	}
+	#board div>label{
+		width: 100px;
+		height:30px;
+		text-align: center;
+		display: block;
+		float: left;
+		line-height: 30px;
+		border-right : solid 1px black;
+	}
+	#board #contents>label{
+		height:209px;
+	}
+	label+input, label+textarea{
+		margin : 4px 0px;
+		margin-left: 5px;
+	}
+</style>
+</head>
+<body>
+	<div id="board"><!-- 전체 폼 -->
+		<form action="서버주소" method="post">
+			
+			<div style="text-align:right;">
+				<span><a href="#">글목록</a></span>
+			</div>
+			
+			<div><!-- 테두리용 -->
+				<div>
+					<label>작성자</label>
+					<input type="text" />
+				</div>
+				<div>
+					<label>제목</label>
+					<input type="text" style="width:400px;">
+				</div>
+				<div>
+					<label>이메일</label>
+					<input type="text" style="width:400px;">
+				</div>
+				<div id="contents">
+					<label>내용</label>
+					<textarea rows="" cols=""></textarea>
+				</div>
+				<div>
+					<label>비밀번호</label>
+					<input type="password">
+				</div>
+				<div style="text-align:center;"><!-- 버튼부분 -->
+					<input type="submit" value="글쓰기">
+					<input type="reset" value="다시작성">
+					<input type="button" value="목록보기">
+				</div>
+			</div><!-- //테두리용 -->
+		</form>
+	</div>
+</body>
+</html>

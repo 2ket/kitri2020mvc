@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선 그리기</title>
+<style type="text/css">
+	#menu > div{
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		width: 120px;
+		height: 30px;
+		
+		float: left;
+		text-align: center;
+		line-height: 30px;
+		border-right-width: 0px;
+	}
+	#alphabet > span{
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		width: 120px;
+		height: 30px;
+		display:block;
+		text-align: center;
+		line-height: 30px;
+		/*float:left;*/
+		
+	}
+	#num > font{
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		width: 120px;
+		height: 30px;
+		display:block;
+		text-align: center;
+		line-height: 30px;
+		float: right;
+		border-right-width: 0px;
+	}
+	#site > a{
+		border: solid #000000 1px;
+		display: block;
+		width: 120px;
+		height: 30px;
+		text-align: center;
+		line-height: 30px;
+		float: left;
+		border-right-width: 0px;
+	}
+	a:link{
+		/*아직 방문을 하지 않는 경우*/
+		color: blue;
+	}
+	a:hover{
+		/*마우스를 올려놓았을때*/
+		color: yellow;
+	}
+	a:visited{
+		/*한번이상 방문했을때*/
+		color: red;
+	}
+	a:active{
+		/*마우스를 클릭하는 순간*/
+		
+	}
+	
+</style>
+</head>
+<body>
+	<div id=menu>
+	<div>뉴스</div>
+	<div>까페</div>
+	<div>블로그</div>
+	<div style="border-right-width: 1px;">메일</div>
+	<br/><br/><br/><br/>
+	</div>
+	
+	<div id="alphabet">
+	<span>A</span>
+	<span style="border-top-width: 0px;">B</span>
+	</div>
+	<br/><br/><br/><br/>
+	
+	<div id="num">
+	<font style="border-right-width: 1px;">1</font>
+	<font>2</font>
+	<font>3</font>
+	</div>
+	<br/><br/><br/><br/>
+	
+	<div id="site">
+	<a href="http://www.naver.com">네이버</a>
+	<a href="http://www.google.co.kr">구글</a>
+	<a href="http://www.daum.net" style="border-right-width: 1px;">다음</a>
+	</div>
+</body>
+</html>

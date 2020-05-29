@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+	#createform{
+		border: solid 0px red;
+		width: 410px;
+		height: 250px;
+		
+		margin : 200px auto;
+	}
+	#createform .title{
+		border : solid 0px blue;
+		width: 400; height: 30px;
+		margin: 2px 0px;
+		text-align: center;
+		line-height: 30px;
+	}
+	
+	#createform .content{
+		border: solid 0px green;
+		width : 400px; height: 170px;
+		margin: 2px auto;
+		text-align: center;
+	}
+	.content textarea{
+		resize: none;
+	}
+	.title button{
+		margin-right: 5px;
+	}

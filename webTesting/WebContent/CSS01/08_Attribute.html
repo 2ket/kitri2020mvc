@@ -3,6 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <title>속성 선택자</title>
+<style type="text/css">
+/*	[attribute] : attribute 속성명이 있는 태그를 선택
+	선택자 [attribute = value] : attribute 값과 value 일치하는 태그 선택
+	선택자 [attribute != value] : attribute 값과 value 일치하지 않는 선택, Jquery 가능
+	
+	선택자 [attribute $= value] : attribute 속성값과 value에 해당하는 문자가 끝나는 태그를 선택
+	선택자 [attribute ^= value] : attribute 속성값과 value에 해당하는 문자가 시작하는 태그를 선택
+	선택자 [attribute *= value] : attribute 속성값과 value에 해당하는 문자가 포함하는 태그를 선택
+	
+	아래 두개는 버전업되면서 사라지는 추세
+	선택자 [attribute |= value] : [attribute ^= value] 해당문자 시작하는 태그
+	선택자 [attribute ~= value] : [attribute *= value] 해당문자 포함하고 있는 태그
+
+	
+	
+	항상 선택자에 기준점이 있는게 좋다.
+*/
+	form > input[type="text"]{
+		color:red;
+	}	
+	form > input[type]{
+		font-size:20px;
+	}
+	form > input[type="password"]{
+		color:blue;
+	}
+	
+	span[id ^= "complex"]{
+		color:blue;
+	}
+	span[id $="text1"]{
+		font-size: 20px;
+	}
+	span[id *= "t"]{
+		background-color: yellow;
+	}
+</style>
 </head>
 <body>
 	<form>
