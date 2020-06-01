@@ -3,10 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>OverFlow</title>
+<style type="text/css">
+	#wrap{
+		width: 800px; margin : 0px auto;
+		border: 1px solid #CCCCCC;
+		overflow: hidden;	/* height을 다 계산해서 설정하긴 힘들다. 그럴땐 상위객체 틀에 overflow: hidden을 해준다. */
+	}
+	#wrap > img{
+		float: left; margin: 10px;
+	}
+	#wrap > p{
+		float: left; width: 350px; height: 200px;
+	}
+</style>
 </head>
 <body>
     <div id="wrap">
-        <img src="Tulips.jpg" width="350" height="200" />
+        <img src="./../img/펭수.jpg" width="350" height="200" />
         <p>
         	빌 게이츠, 스티브 잡스로부터 마크 저커버그, 마윈, 레이쥔까지 뉴밀레니엄 이후 21세기를 장식하고 있는
         	신흥 부호이자 현시대를 살고 있는 지구촌 젊은이의 롤모델이다. <br/>
