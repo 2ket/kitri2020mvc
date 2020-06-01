@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>POSITION</title>
+<style type="text/css">
+/* position : static, absolute, fixed, relative */
+	div{
+		width: 100px; height: 100px;
+		margin-left: 10px; margin-top: 10px;
+	}
+	body > div:nth-child(1){
+		background-color: red;
+		position: static;	/*기본값, 순차적으로 쌓인다.*/
+	}
+	body > div:nth-child(2){
+		background-color: olive;
+		position: static;	/*기본값, 순차적으로 쌓인다.*/
+	}
+	body > div:nth-child(3){
+		background-color: blue;
+		position: static;	/*기본값, 순차적으로 쌓인다.*/
+	}
+</style>
 </head>
 <body>
   	<div></div>
