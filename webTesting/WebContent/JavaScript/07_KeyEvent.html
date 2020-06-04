@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function myFun1(obj){
+		obj.style.Color="red";
+		
+	}
+	function myFun2(){
+		alert("keyUp");
+	}
+	function myFun3(){
+		alert("keyDown")
+	}
+	
+</script>
+
+</head>
+<body>
+	<!-- 키 이벤트 : keypress(keydown, keyup) -->
+	
+	<input type="text" onkeypress="myFun1(this)"/> <br><br>
+	
+	<input type="text" onkeyup="myFun2()"/> <br><br>
+</body>
+	<input type="text" onkeydown="myFun3()"/> <br><br>
+</html>
