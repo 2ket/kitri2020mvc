@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//var를 보면 자바에서 object같이 다 커버 가능한 걸로 이해하면 좋다..
+	function sub(){
+		document.write("<h3>"+"sub Function입니다."+"</h3>");
+		
+	}	
+	function hap(a,b){
+		document.write("<h3>"+a+", "+b+"</h3>");
+		
+	}
+	function apple(){
+		return "apple"
+	}
+	
+	function banana(a,b){
+		return a-b;
+	}
+	
+	sub();
+	hap(10,20);
+	var str=apple();
+	document.write("<h3>"+str+"</h3>");
+	
+	var su=banana(20, 30);
+	document.write("<h3>"+su+"</h3>");
+
+//이벤트핸들러 : 이벤트 발생했을때 내부적으로 함수 찾아가는것. 클릭했을때, 접속했을때,  
+</script>
+</head>
+<body>
+
+</body>
+</html>
