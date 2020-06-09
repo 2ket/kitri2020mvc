@@ -60,7 +60,7 @@ li{list-style-type: none;}
 	border: 0px solid red;
 }
 .wrap{
-	width:90%;
+	width:80%;
 	margin: 0px auto;
 }
 #content>div{
@@ -164,10 +164,10 @@ li{list-style-type: none;}
 	width: 32%;
 }
 #list>.board:nth-child(1){
-	margin-left: 0px;
+	margin-left: 2px;
 }
 #list>.board:nth-child(3){
-	margin-right: 0px;
+	margin-right: 2px;
 }
 
 #section1>h1{
@@ -292,7 +292,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aa087c', end
 }
 #footer>div{
 	overflow: hidden;
-	width: 90%;
+	width: 80%;
 	margin: 50px;
 }
 #footer section{
