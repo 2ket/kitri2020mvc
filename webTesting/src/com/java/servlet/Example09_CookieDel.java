@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Example09_CookieGet
+ * Servlet implementation class Example09_CookieDel
  */
-public class Example09_CookieGet extends HttpServlet {
+public class Example09_CookieDel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Example09_CookieGet() {
+    public Example09_CookieDel() {
         super();
     }
 
@@ -27,32 +27,27 @@ public class Example09_CookieGet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		Cookie[] cookies=request.getCookies();
-//		System.out.println(cookies.length);
+		
+		if(cookies!=null) {
+			for(int i=0; i<cookies.length; i++) {
+				cookies[i].setMaxAge(0);			//쿠키의 저장기간을 0으로 만들어줌
+				response.addCookie(cookies[i]);		//설정한 쿠키값을 저장하여 적용시킴
+			}
+		}
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		out.print("<html>");
-		out.print("<head><title>Cookie</title>");
+		out.print("<head><title>Cookie Del</title>");
+		out.print("<script type='text/javascript'>");
+		out.print("alert('장바구니를 비웠습니다..');");
+		out.print("location.href='http://localhost:8181/webTesting/Servlet/09_example.html';");
+		out.print("</script>");
 		out.print("</head>");
 		out.print("<body>");
 		
-		String contextPath=request.getContextPath();
-		if(cookies!=null) {
-			for(int i=0; i<cookies.length; i++) {
-				out.print("<h3>"+cookies[i].getName()+"</h3>");
-				out.print("<h3>"+cookies[i].getValue()+"</h3>");
-				
-				String imgStr=contextPath+"/img/"+cookies[i].getValue()+".jpg";
-				System.out.println(imgStr);
-				out.print("<img src='"+imgStr+"' width='150px' height='100px'/>");
-//				out.print("<img src='"+request.getContextPath()+"/img/"+cookies[i].getValue()+".jpg'>");
-						
-			}
-		}else {
-			out.print("<h3>장바구니 비워짐</h3>");
-		}
+		
 		out.print("</body>");
 		out.print("</html>");
 	}
