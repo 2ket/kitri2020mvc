@@ -92,4 +92,23 @@
 		<url-pattern>/com/java/servlet/Example07_Fail</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>Example08</servlet-name>
+		<servlet-class>com.java.servlet.Example08</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example08</servlet-name>
+		<url-pattern>/com/java/servlet/Example08</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Example08_Sub</servlet-name>
+		<servlet-class>com.java.servlet.Example08_Sub</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example08_Sub</servlet-name>
+		<url-pattern>/com/java/servlet/Example08_Sub</url-pattern>
+	</servlet-mapping>
+	
+	
 </web-app>
