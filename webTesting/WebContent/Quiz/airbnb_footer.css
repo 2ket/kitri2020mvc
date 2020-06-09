@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+
+/*footer*/
+#footer{
+	width: 100%;
+	border-top: 1px solid #CCCCCC;
+	font-size: 14px;
+}
+#footer>div{
+	overflow: hidden;
+	width: 80%;
+	margin: 50px auto;
+}
+#footer section{
+	width: 25%;
+	float: left;
+}
+#footer section>h4, #footer section li{
+	margin: 15px;
+}
+
+
+#foot_bar{
+	border-top: 1px solid #CCCCCC;
+	height: 100px;
+	clear: both;
+}
+#foot_bar>#copyright{
+	float: left;
+}
+#foot_bar>#foot_right, #foot_bar>#foot_right>#sns>div{
+	float: right;
+}
