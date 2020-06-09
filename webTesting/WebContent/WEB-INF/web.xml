@@ -133,5 +133,37 @@
 		<servlet-name>Example09_CookieGet</servlet-name>
 		<url-pattern>/com/java/servlet/Example09_CookieGet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example09_CookieDel</servlet-name>
+		<servlet-class>com.java.servlet.Example09_CookieDel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example09_CookieDel</servlet-name>
+		<url-pattern>/com/java/servlet/Example09_CookieDel</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example10_SessionSet</servlet-name>
+		<servlet-class>com.java.servlet.Example10_SessionSet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example10_SessionSet</servlet-name>
+		<url-pattern>/com/java/servlet/Example10_SessionSet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example10_SessionGet</servlet-name>
+		<servlet-class>com.java.servlet.Example10_SessionGet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example10_SessionGet</servlet-name>
+		<url-pattern>/com/java/servlet/Example10_SessionGet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example10_SessionDel</servlet-name>
+		<servlet-class>com.java.servlet.Example10_SessionDel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example10_SessionDel</servlet-name>
+		<url-pattern>/com/java/servlet/Example10_SessionDel</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

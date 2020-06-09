@@ -43,7 +43,9 @@ public class Example01 extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("수정한 서블릿 내용 doGet 함수입니다.");
 		Cookie[] cookies=request.getCookies();
-		System.out.println("cookie 갯수 : "+cookies.length);
+		if(cookies.length!=0) {
+			System.out.println("cookie 갯수 : "+cookies.length);
+		}
 	}
 	 public void destroy() {
 		 //소멸
