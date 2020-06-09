@@ -1,5 +1,6 @@
 package com.java.servlet;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,8 @@ public class Example01 extends HttpServlet{
 	//HttpRequest??
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("수정한 서블릿 내용 doGet 함수입니다.");
+		Cookie[] cookies=request.getCookies();
+		System.out.println("cookie 갯수 : "+cookies.length);
 	}
 	 public void destroy() {
 		 //소멸

@@ -1,6 +1,8 @@
 package com.java.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -40,11 +42,24 @@ public class Example09_CookieSet extends HttpServlet {
 				
 				Cookie cookie=new Cookie(key, value);
 				//쿠키는 쿠키폴더, 세션은 서버단에 저장 (장바구니같이 덜중요한것은 쿠키, 아이디 패스워드 같이 중요한건 서버단에 저장하기 위해 세션을 이용)
-				cookie.setMaxAge(60*10);	//초*분*시*일	(60*60*24*365) 사용자가 쿠키폴더 삭제하면 끝
+				cookie.setMaxAge(60*60*1);	//초*분*시*일	(60*60*24*365) 사용자가 쿠키폴더 삭제하면 끝
 				//설정한 쿠키 유지시간 동안, 사용자가 쿠키폴더 지우기 전까지 데이터를 공유할 수 있다.
 				response.addCookie(cookie);
-				
 			}
+				
+				response.setContentType("text/html;charset=utf-8;");
+				PrintWriter out=response.getWriter();
+				out.print("<html>");
+				out.print("<head><title>Cookie</title>");
+				out.print("<script type='text/javascript'>");
+				out.print("alert('장바구니에 담겼습니다.');");
+				out.print("location.href='http://localhost:8181/webTesting/Servlet/09_example.html';");
+				out.print("</script>");
+				out.print("</head>");
+				out.print("<body>");
+				
+				out.print("</body>");
+				out.print("</html>");
 		}
 	}
 

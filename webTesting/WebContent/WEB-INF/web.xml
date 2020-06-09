@@ -125,5 +125,13 @@
 		<servlet-name>Example09_CookieSet</servlet-name>
 		<url-pattern>/com/java/servlet/Example09_CookieSet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example09_CookieGet</servlet-name>
+		<servlet-class>com.java.servlet.Example09_CookieGet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example09_CookieGet</servlet-name>
+		<url-pattern>/com/java/servlet/Example09_CookieGet</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

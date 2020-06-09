@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,10 @@ public class Example04 extends HttpServlet{
 		
 		System.out.println(name+"\t"+phone+"\t"+addr);
 		// html, js, css 단으로 출력되는 속성들 = 컴포넌트 Component
+		
+		/** 쿠키 */
+		Cookie[] cookies=req.getCookies();
+		System.out.println("cookie 갯수 : "+cookies.length);
 		
 //PrintWriter(출력을 위한 보조스트림) - BufferedWriter(char 문자) - OutputStreamWriter(char->byte 변환) - socket.getOutputStream() (byte binary)
 		
