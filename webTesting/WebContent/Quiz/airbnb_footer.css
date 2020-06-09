@@ -27,8 +27,25 @@
 	clear: both;
 }
 #foot_bar>#copyright{
+	margin-top: 20px;	
 	float: left;
+}
+#foot_bar>#foot_right{
+	margin-top: 20px;	
+}
+#foot_bar span{
+	display: inline-block;
+}
+#nation span{
+	float : left;
+	margin-right: 5px;
 }
 #foot_bar>#foot_right, #foot_bar>#foot_right>#sns>div{
 	float: right;
+}
+
+#foot_bar>#foot_right>#sns img{
+	width:18px;
+	height: 18px;
+	margin-right: 20px;
 }

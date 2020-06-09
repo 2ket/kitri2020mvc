@@ -22,7 +22,7 @@ li{list-style-type: none;}
 	text-decoration: underline;
 }
 #nav{
-	width: 90%;
+	width: 80%;
 	border: 0px solid red;
 	overflow:hidden;
 	margin: 0px auto;
@@ -45,7 +45,9 @@ li{list-style-type: none;}
 	margin-left: 10px;
 	text-align:center;
 }
-
+#menu li svg{
+	padding-top: 17px;
+}
 #menu li a{
 	border: 0px solid pink;
 	line-height: 50px;

@@ -93,6 +93,8 @@
     
 	}
 	.board>.board_content{
+		padding-top: 10px;
+/*    		min-height: 50px; */
 		margin: 0px 20px 20px 20px;
 	}
 	.board>.board_content>span:first-child{
