@@ -109,6 +109,21 @@
 		<servlet-name>Example08_Sub</servlet-name>
 		<url-pattern>/com/java/servlet/Example08_Sub</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>Example09</servlet-name>
+		<servlet-class>com.java.servlet.Example09</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example09</servlet-name>
+		<url-pattern>/com/java/servlet/Example09</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example09_CookieSet</servlet-name>
+		<servlet-class>com.java.servlet.Example09_CookieSet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example09_CookieSet</servlet-name>
+		<url-pattern>/com/java/servlet/Example09_CookieSet</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
