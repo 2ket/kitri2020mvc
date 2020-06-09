@@ -63,6 +63,8 @@ public class Example06 extends HttpServlet {
 		String contextPath=request.getContextPath();	// /webTesting : 프로젝트 명
 		String servletPath=request.getServletPath();	// /com/java/servlet/Example06 : 서블릿이 포함된 풀 패키지부터 서블릿 명까지
 		
+		/** 4개 암기 - URL, URI, ContextPath, ServletPath*/
+		
 		//별로 안씀
 		System.out.println("서버 이름: "+request.getServerName());
 		System.out.println("서버 포트: "+request.getServerPort());
