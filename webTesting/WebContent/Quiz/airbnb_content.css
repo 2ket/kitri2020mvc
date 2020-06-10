@@ -44,7 +44,16 @@
 #search>form>div>div{
 	width: 30%;
 	float: left;
+}
+#search>form>div>div:first-child{
 	border-right: 1px solid #F5F5F5;
+}
+#search>form>div>div:nth-child(2){
+	border-right: 1px solid #F5F5F5;
+}
+#search>form>div>div:last-child{
+	width: 8%;
+	float: left;
 }
 /*
 #search>form>div>div:hover{
