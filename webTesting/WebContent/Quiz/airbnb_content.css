@@ -7,7 +7,7 @@
 	border: 0px solid red;
 }
 .wrap{
-	width:80%;
+	width:1240px;
 	margin: 0px auto;
 }
 #content>div{
@@ -44,6 +44,8 @@
 #search>form>div>div{
 	width: 30%;
 	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 #search>form>div>div:first-child{
 	border-right: 1px solid #F5F5F5;
@@ -52,7 +54,7 @@
 	border-right: 1px solid #F5F5F5;
 }
 #search>form>div>div:last-child{
-	width: 8%;
+	width: 5%;
 	float: left;
 }
 /*
