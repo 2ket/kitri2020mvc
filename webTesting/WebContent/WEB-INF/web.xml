@@ -9,6 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <listener>
+  	<listener-class>com.java.contextLifeCycle.ContextListener</listener-class>
+  </listener>
+  
   
   <servlet>
   	<servlet-name>Example01</servlet-name>
@@ -164,6 +168,14 @@
 	<servlet-mapping>
 		<servlet-name>Example10_SessionDel</servlet-name>
 		<url-pattern>/com/java/servlet/Example10_SessionDel</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Example11</servlet-name>
+		<servlet-class>com.java.servlet.Example11</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Example11</servlet-name>
+		<url-pattern>/com/java/servlet/Example11</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
