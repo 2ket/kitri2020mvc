@@ -58,6 +58,6 @@
 	<h3>문자열을 날짜 변환</h3>
 	<c:set var="nowdate" value="2019-12-25 12:00:21"/>
 	<fmt:parseDate var="now" value="${nowdate }" pattern="yyyy-MM-dd HH:mm:ss"/>
-	<%-- <fmt:formatDate value="${now }" pattern="date"/> --%>
+	<fmt:formatDate value="${now }" type="date"/>
 </body>
 </html>
