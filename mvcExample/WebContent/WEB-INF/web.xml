@@ -9,4 +9,25 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+  <servlet>
+  	<servlet-name>Directory</servlet-name>
+  	<servlet-class>com.java.mvc01.Directory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Directory</servlet-name>
+  	<!-- <url-pattern>/com/java/mvc01/Directory</url-pattern> -->
+  	<!-- <url-pattern>/aa/bb/cc/ABC</url-pattern> -->
+  	<url-pattern>*.nhn</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Controller</servlet-name>
+  	<servlet-class>com.java.mvc02.Controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>*.kitri</url-pattern>
+  </servlet-mapping>
 </web-app>
