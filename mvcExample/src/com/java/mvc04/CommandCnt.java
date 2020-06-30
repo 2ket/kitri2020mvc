@@ -33,15 +33,13 @@ public class CommandCnt extends HttpServlet {
 		System.out.println(cmd);
 		
 		String view=null;
-		
+		CommandAction commandAction=null;
 		if(cmd.equals("/write.act")) {
-			WriteAction write=new WriteAction();
-			view=write.DoWrite(request, response);
+			commandAction=new WriteAction();
 		}else if(cmd.equals("/list.act")) {
-			ListAction list=new ListAction();
-			view=list.DoList(request, response);
+			commandAction=new ListAction();
 		}
-		
+		view=commandAction.actionDo(request, response);	//Interface를 사용하여 한번에 view설정
 		if(view!=null) {
 			RequestDispatcher rd=request.getRequestDispatcher(view);
 			rd.forward(request, response);
