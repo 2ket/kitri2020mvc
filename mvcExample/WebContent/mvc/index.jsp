@@ -15,6 +15,10 @@
 	<a href="http://localhost:8181/mvcExample/list.do">SampleCnt - 글목록</a>
 	<br><br>
 	
+	<a href="http://localhost:8181/mvcExample/write.act">CommandCnt - 글쓰기</a>
+	<a href="http://localhost:8181/mvcExample/list.act">CommandCnt - 글목록</a>
+	<br><br>
+	
 	
 </body>
 </html>

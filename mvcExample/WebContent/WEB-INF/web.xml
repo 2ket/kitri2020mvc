@@ -39,4 +39,14 @@
   	<servlet-name>SampleCnt</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>CommandCnt</servlet-name>
+  	<servlet-class>com.java.mvc04.CommandCnt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CommandCnt</servlet-name>
+  	<url-pattern>*.act</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
