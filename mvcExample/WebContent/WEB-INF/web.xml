@@ -49,4 +49,16 @@
   	<url-pattern>*.act</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<servlet-class>com.java.mvc05.FrontController</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>C:\Kitri2020\mvc\workspace\mvcExample\WebContent\WEB-INF\commandURI.properties</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FrontController</servlet-name>
+  	<url-pattern>*.happy</url-pattern>
+  </servlet-mapping>
 </web-app>
