@@ -1,6 +1,8 @@
 package com.java.mvc02;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +45,19 @@ public class Controller extends HttpServlet {
 		String cmd=uri.substring(request.getContextPath().length());
 		System.out.println(cmd);
 		
+		String view=null;
 		if(cmd.equals("/write.kitri")) {
 			// 클래스 Write w=new Write();	--> DTO, DAO --> DB --> DTO, DAO --> Controller -->write.jsp
+			request.setAttribute("message", "글쓰기");
+			view="/mbc/write.jsp";	//resultView
 		}else if(cmd.equals("/list.kitri")) {
 			// 클래스 List i=new List(); --> DTO, DAO --> DB --> DTO, DAO --> Controller --> list.jsp
+			request.setAttribute("message", "글목록");
+			view="/mvc/list.jsp";
+		}
+		if(view!=null) {
+			RequestDispatcher rd=request.getRequestDispatcher(view);	//절대 잊으면 안됨!!!!RD!!!
+			rd.forward(request, response);	//resultView로 넘어가면서 데이터도 같이 넘김. 다시 돌아올필요 없는 forward
 		}
 	}
 	
