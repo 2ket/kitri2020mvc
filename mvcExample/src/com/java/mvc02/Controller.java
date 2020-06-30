@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Controller
  */
+
+// FrontController Pattern : 사용자의 모든 요청을 단 하나의 서블릿 파일에서 처리하는 형태 - 요청주소가 확장자 패턴이야 가능
+
 //@WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -49,7 +52,7 @@ public class Controller extends HttpServlet {
 		if(cmd.equals("/write.kitri")) {
 			// 클래스 Write w=new Write();	--> DTO, DAO --> DB --> DTO, DAO --> Controller -->write.jsp
 			request.setAttribute("message", "글쓰기");
-			view="/mbc/write.jsp";	//resultView
+			view="/mvc/write.jsp";	//resultView
 		}else if(cmd.equals("/list.kitri")) {
 			// 클래스 List i=new List(); --> DTO, DAO --> DB --> DTO, DAO --> Controller --> list.jsp
 			request.setAttribute("message", "글목록");

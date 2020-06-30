@@ -30,4 +30,13 @@
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>*.kitri</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>SampleCnt</servlet-name>
+  	<servlet-class>com.java.mvc03.SampleCnt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SampleCnt</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
 </web-app>
