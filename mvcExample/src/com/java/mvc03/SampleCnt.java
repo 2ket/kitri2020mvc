@@ -33,11 +33,12 @@ public class SampleCnt extends HttpServlet {
 		
 		String view=null;
 		if(cmd.equals("/write.do")) {
-			request.setAttribute("message", "sample 글쓰기");
-			view="/mvc/write.jsp";
+			WriteAction write=new WriteAction();
+			view=write.actionDo(request, response);
+			
 		}else if(cmd.equals("/list.do")) {
-			request.setAttribute("message", "sample 목록보기");
-			view="/mvc/list.jsp";
+			ListAction list = new ListAction();
+			view=list.actionDo(request, response);
 		}
 		
 		if(view!=null) {
