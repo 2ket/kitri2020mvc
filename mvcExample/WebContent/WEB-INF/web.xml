@@ -61,4 +61,18 @@
   	<servlet-name>FrontCnt</servlet-name>
   	<url-pattern>*.happy</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<servlet-class>com.java.mvc06.FrontController</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>/WEB-INF/cmdURI.properties</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>FrontController</servlet-name>  
+	<url-pattern>*.stu</url-pattern>
+  </servlet-mapping>
 </web-app>
