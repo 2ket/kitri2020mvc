@@ -31,6 +31,9 @@ public class RegisterOkCommand implements Command {
 		
 		logger.info(logMsg+memberDto.toString());
 		
+		// DAO --> DB --> DAO(DTO) --> Command
+		
+		
 		return null;
 	}
 
