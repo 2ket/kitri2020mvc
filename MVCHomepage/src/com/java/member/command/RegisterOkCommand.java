@@ -2,8 +2,10 @@ package com.java.member.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 import com.java.command.Command;
+import com.java.member.model.MemberDto;
 
 public class RegisterOkCommand implements Command {
 
@@ -11,22 +13,23 @@ public class RegisterOkCommand implements Command {
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("UTF-8");
 		
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
-		String name=request.getParameter("name");
-		String jumin1=request.getParameter("jumin1");
-		String jumin2=request.getParameter("jumin2");
-		String email=request.getParameter("email");
-		String zipCode=request.getParameter("zipCode");
-		String addr=request.getParameter("addr");
+		MemberDto memberDto=new MemberDto();
+		memberDto.setId(request.getParameter("id"));
+		memberDto.setPw(request.getParameter("pw"));
+		memberDto.setName(request.getParameter("name"));
+		memberDto.setJumin1(request.getParameter("jumin1"));
+		memberDto.setJumin2(request.getParameter("jumin2"));
+		memberDto.setEmail(request.getParameter("email"));
+		memberDto.setZipCode(request.getParameter("zipCode"));
+		memberDto.setAddr(request.getParameter("addr"));
+		memberDto.setJob(request.getParameter("job"));
+		memberDto.setMailing(request.getParameter("mailing"));
+		memberDto.setInterest(Arrays.deepToString(request.getParameterValues("interest")));
+//		memberDto.setInterest(request.getParameter("interest"));
 		
-		String job=request.getParameter("job");
-		String mailing=request.getParameter("mailing");
-		String[] interest=request.getParameterValues("interest");
+		memberDto.setMemberLevel("BB");	//회원등급은 자바로 넣어주는것이 좋다. 가입날짜는 DB에서 sysdate가 낫다.
 		
-		logger.info(logMsg+id+"\t"+pw+"\t"+name+"\t"+jumin1+"-"+jumin2+"\t"+email+"\t"+zipCode+"\t"+addr+"\t"+job+"\t"+mailing+"\t["+interest+"]");
-		
-		
+		logger.info(logMsg+memberDto.toString());
 		
 		return null;
 	}
