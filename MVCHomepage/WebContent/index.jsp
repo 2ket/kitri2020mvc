@@ -10,6 +10,6 @@
 <body>
  	<c:set var="root" value="${pageContext.request.contextPath }"/> 
 	<h3>${root }</h3>
-	<a href="${root }/memeber/register.do">회원가입</a>
+	<a href="${root }/member/register.do">회원가입</a>
 </body>
 </html>
