@@ -50,15 +50,15 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>FrontController</servlet-name>
-  	<servlet-class>com.java.mvc05.FrontController</servlet-class>
+  	<servlet-name>FrontCnt</servlet-name>
+  	<servlet-class>com.java.mvc05.FrontCnt</servlet-class>
   	<init-param>
   		<param-name>configFile</param-name>
   		<param-value>C:\Kitri2020\mvc\workspace\mvcExample\WebContent\WEB-INF\commandURI.properties</param-value>
   	</init-param>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>FrontController</servlet-name>
+  	<servlet-name>FrontCnt</servlet-name>
   	<url-pattern>*.happy</url-pattern>
   </servlet-mapping>
 </web-app>

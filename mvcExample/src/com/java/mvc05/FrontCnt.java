@@ -20,15 +20,15 @@ import java.util.logging.Logger;
  * Servlet implementation class FrontController
  */
 //@WebServlet("/FrontController")
-public class FrontController extends HttpServlet {
+public class FrontCnt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final Logger logger=Logger.getLogger(FrontController.class.getName());	//class 이름 반환String
+	public static final Logger logger=Logger.getLogger(FrontCnt.class.getName());	//class 이름 반환String
 	public static String logMsg="logMsg >>>>> ";
     private HashMap<String, Object> commandMap=new HashMap<String, Object>();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FrontController() {
+    public FrontCnt() {
         super();
         // TODO Auto-generated constructor stub
     }
