@@ -30,3 +30,10 @@ function idCheck(obj, root){
 	
 	window.open(url,"","width=400, height=300");
 }
+
+
+function zipcodeReader(root){
+	var url=root+"/member/zipcode.do";
+	alert(url);
+	
+}
