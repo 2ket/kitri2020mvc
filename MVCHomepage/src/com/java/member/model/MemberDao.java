@@ -2,6 +2,7 @@ package com.java.member.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.java.database.ConnectionProvider;
@@ -46,5 +47,30 @@ public class MemberDao {	// Data Access Object
 			JdbcUtil.close(conn);
 		}
 		return check;
+	}
+	
+	public int idCheck(String id) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int value=0;
+		
+		try {
+			String sql="select id from member where id=?";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) value=1;
+		}catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);;
+			JdbcUtil.close(pstmt);;
+			JdbcUtil.close(conn);;
+		}
+		
+		return value;
 	}
 }

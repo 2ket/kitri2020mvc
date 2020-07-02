@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.command.Command;
+import com.java.member.model.MemberDao;
 
 public class IdCheckCommand implements Command {
 
@@ -13,7 +14,11 @@ public class IdCheckCommand implements Command {
 		String id=request.getParameter("id");
 		logger.info(logMsg+"id="+id);
 		
-		return null;
+		int check=MemberDao.getInstance().idCheck(id);
+		logger.info(logMsg+"check="+check);
+		
+		request.setAttribute("check", check);
+		return "/WEB-INF/views/member/idCheck.jsp";
 	}
 
 }

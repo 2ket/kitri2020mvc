@@ -19,12 +19,14 @@ function idCheck(obj, root){
 //	alert(obj.id.value);
 	
 	if(obj.id.value==""){
-		alert("아이디를 반드시 검색하세요.");
+		alert("아이디를 반드시 입력하세요.");
 		obj.id.value.focus();
 		return false;
 	}
 	
 	var url=root+"/member/idCheck.do?id="+obj.id.value;
-	alert(url);
-	location.href=url;
+//	alert(url);
+//	location.href=url;
+	
+	window.open(url,"","width=400, height=300");
 }
