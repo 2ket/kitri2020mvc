@@ -36,4 +36,6 @@ function zipcodeReader(root){
 	var url=root+"/member/zipcode.do";
 	alert(url);
 	
+	window.open(url, "", "width=400, height=500, scrollbars=yes");
+	
 }
