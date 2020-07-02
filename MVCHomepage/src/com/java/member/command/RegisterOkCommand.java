@@ -26,7 +26,7 @@ public class RegisterOkCommand implements Command {
 		memberDto.setJob(request.getParameter("job"));
 		memberDto.setMailing(request.getParameter("mailing"));
 //		memberDto.setInterest(Arrays.deepToString(request.getParameterValues("interest")));
-		memberDto.setInterest(request.getParameter("interest"));
+		memberDto.setInterest(request.getParameter("resultInterest"));
 		
 		memberDto.setMemberLevel("BB");	//회원등급은 자바로 넣어주는것이 좋다. 가입날짜는 DB에서 sysdate가 낫다.
 		
@@ -36,7 +36,10 @@ public class RegisterOkCommand implements Command {
 		
 		int check=MemberDao.getInstance().insert(memberDto);
 		logger.info(logMsg+"check : "+check);
-		return null;
+		
+		request.setAttribute("check", check);
+		
+		return "/WEB-INF/views/member/registerOk.jsp";
 	}
 
 }

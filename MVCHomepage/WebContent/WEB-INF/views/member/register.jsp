@@ -2,22 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+	<c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>회원가입</title>
-	<link rel="stylesheet" href="../CSS/member/joinStyle.css">
+	<link rel="stylesheet" href="${root }/CSS/member/joinStyle.css">
+	<script type="text/javascript" src="${root }/javaScript/member/register.js"></script>
 </head>
 <body>
-	<c:set var="root" value="${pageContext.request.contextPath }"/>
 	<div id="container">
 		<span>회원가입(*필수입력사항입니다.)</span>
 		<div id="table_form">	<!-- 테두리 -->
-			<form action="${root }/member/registerOk.do" method="post">
+			<form name="createForm" action="${root }/member/registerOk.do" method="post" onsubmit="return createForm(this)">
 				<div>
 					<label>아이디</label>
 					<span>*<input type="text" name="id">
-					<input type="button" value="아이디중복"></span>
+					<input type="button" value="아이디중복" onclick="return idCheck(createForm, '${root}')"></span>
 				</div>
 				<div>
 					<label>비밀번호</label>
@@ -67,6 +68,7 @@
 					<input type="checkbox" value="IT" name="interest"><span>IT</span>
 					<input type="checkbox" value="music" name="interest"><span>음악</span>
 					<input type="checkbox" value="art" name="interest"><span>미술</span>
+					<input type="hidden" name="resultInterest">
 				</div>
 				<div id="form_button">
 					<input type="submit" value="가입">
