@@ -22,6 +22,15 @@
 		<div align="center">
 			사용 가능한 id입니다.
 		</div>
+		<div align="center">
+			<a href="javascript:self.close()">닫기</a>
+		</div>
+	<script type="text/javascript">
+		opener.createForm1.id.value="${id}";
+		
+	</script>
 	</c:if>
+	
+	
 </body>
 </html>

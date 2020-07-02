@@ -18,6 +18,7 @@ public class IdCheckCommand implements Command {
 		logger.info(logMsg+"check="+check);
 		
 		request.setAttribute("check", check);
+		request.setAttribute("id", id);
 		return "/WEB-INF/views/member/idCheck.jsp";
 	}
 
