@@ -14,11 +14,11 @@
 	<div id="container">
 		<span>회원가입(*필수입력사항입니다.)</span>
 		<div id="table_form">	<!-- 테두리 -->
-			<form name="createForm" action="${root }/member/registerOk.do" method="post" onsubmit="return createForm(this)">
+			<form name="createForm1" action="${root }/member/registerOk.do" method="post" onsubmit="return createForm(this)">
 				<div>
 					<label>아이디</label>
 					<span>*<input type="text" name="id">
-					<input type="button" value="아이디중복" onclick="return idCheck(createForm, '${root}')"></span>
+					<input type="button" value="아이디중복" onclick="return idCheck(createForm1, '${root}')"></span>
 				</div>
 				<div>
 					<label>비밀번호</label>

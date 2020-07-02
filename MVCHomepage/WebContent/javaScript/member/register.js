@@ -26,5 +26,5 @@ function idCheck(obj, root){
 	
 	var url=root+"/member/idCheck.do?id="+obj.id.value;
 	alert(url);
-
+	location.href=url;
 }
