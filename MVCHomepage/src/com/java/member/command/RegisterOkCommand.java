@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
 import com.java.command.Command;
+import com.java.member.model.MemberDao;
 import com.java.member.model.MemberDto;
 
 public class RegisterOkCommand implements Command {
@@ -24,8 +25,8 @@ public class RegisterOkCommand implements Command {
 		memberDto.setAddr(request.getParameter("addr"));
 		memberDto.setJob(request.getParameter("job"));
 		memberDto.setMailing(request.getParameter("mailing"));
-		memberDto.setInterest(Arrays.deepToString(request.getParameterValues("interest")));
-//		memberDto.setInterest(request.getParameter("interest"));
+//		memberDto.setInterest(Arrays.deepToString(request.getParameterValues("interest")));
+		memberDto.setInterest(request.getParameter("interest"));
 		
 		memberDto.setMemberLevel("BB");	//회원등급은 자바로 넣어주는것이 좋다. 가입날짜는 DB에서 sysdate가 낫다.
 		
@@ -33,7 +34,8 @@ public class RegisterOkCommand implements Command {
 		
 		// DAO --> DB --> DAO(DTO) --> Command
 		
-		
+		int check=MemberDao.getInstance().insert(memberDto);
+		logger.info(logMsg+"check : "+check);
 		return null;
 	}
 
