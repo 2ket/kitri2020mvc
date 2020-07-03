@@ -38,11 +38,11 @@
 				</div>
 				<div>
 					<label>이메일</label>
-					<input type="text" name="email">
+					<input type="email" name="email">
 				</div>
 				<div>
 					<label>우편번호</label>
-					<input type="text" name="zipCode">
+					<input type="text" name="zipCode" readonly>
 					<input type="button" onclick="zipcodeReader('${root}')" value="우편번호 검색">
 				</div>
 				<div>
@@ -52,6 +52,7 @@
 				<div>
 					<label>직업</label>
 					<select name="job" id="job">
+						<option value="">직업을 선택하세요</option>
 						<option value="개발자">개발자</option>
 						<option value="기획자">기획자</option>
 						<option value="DBadmin">DBadmin</option>

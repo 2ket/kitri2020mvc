@@ -6,7 +6,7 @@
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>우편번호 검색</title>
 	<script type="text/javascript" src="${root }/javaScript/member/register.js"></script>
 </head>
 <body>
