@@ -21,5 +21,10 @@
 		<a href="${root }/member/withdrawal.do">회원탈퇴</a>
 		<a href="${root }/member/logout.do">로그아웃</a>
 	</c:if>
+	
+	<c:if test="${memberLevel=='MA' }">
+		<h3>관리자 페이지</h3>
+		<a href="">회원관리..</a>
+	</c:if>
 </body>
 </html>
