@@ -11,5 +11,6 @@
  	<c:set var="root" value="${pageContext.request.contextPath }"/> 
 	<h3>${root }</h3>
 	<a href="${root }/member/register.do">회원가입</a>
+	<a href="${root }/member/login.do">로그인</a>
 </body>
 </html>
