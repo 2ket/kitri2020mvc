@@ -114,4 +114,29 @@ public class MemberDao {	// Data Access Object
 		
 		return arrayList;
 	}
+
+	public String loginCheck(String id, String pw) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String value=null;
+		
+		try {
+			String sql="select member_level from member where id=? and pw=?";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rs=pstmt.executeQuery();
+			if(rs.next()) value=rs.getString("member_level");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		return value;
+	}
 }
