@@ -26,7 +26,7 @@
 				</div>
 				<div>
 					<label>비밀번호 확인</label>
-					*<input type="password">
+					*<input type="password" name="pwCheck">
 				</div>
 				<div>
 					<label>이름</label>

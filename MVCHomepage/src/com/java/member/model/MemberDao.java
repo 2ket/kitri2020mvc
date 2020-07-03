@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.java.database.ConnectionProvider;
 import com.java.database.JdbcUtil;
@@ -49,6 +50,10 @@ public class MemberDao {	// Data Access Object
 		return check;
 	}
 	
+	//SELECT문은 함수 return이 다양하다.
+	//자료형 하나를 보내주는 경우, 두개를 가져오는경우(배열), 레코드 한행이 다 넘어와야 하는경우(Dto로 받기), 여러개의 행이 넘어와야 하는경우
+	
+	//아이디 중복확인
 	public int idCheck(String id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -72,5 +77,41 @@ public class MemberDao {	// Data Access Object
 		}
 		
 		return value;
+	}
+	
+	//우편번호 검색
+	public ArrayList<ZipcodeDto> zipcodeReader(String checkDong) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ArrayList<ZipcodeDto> arrayList=null;
+		
+		try {
+			String sql="select * from zipcode where dong=?";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, checkDong);
+			rs=pstmt.executeQuery();
+			
+			arrayList=new ArrayList<ZipcodeDto>();
+			while(rs.next()) {
+				ZipcodeDto address=new ZipcodeDto();
+				address.setZipcode(rs.getString("zipcode"));
+				address.setSido(rs.getString("sido"));
+				address.setGugun(rs.getString("gugun"));
+				address.setDong(rs.getString("dong"));
+				address.setRi(rs.getString("ri"));
+				address.setBunji(rs.getString("bunji"));
+				arrayList.add(address);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		return arrayList;
 	}
 }
