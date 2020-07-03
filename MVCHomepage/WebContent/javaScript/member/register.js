@@ -11,101 +11,99 @@ function createForm(obj){
 	}
 //미입력시 뜨는 문구
 	//아이디 미입력시 출력문구
-	if(obj.id.value==""){
-		alert("아이디를 반드시 입력하세요.");
-		obj.id.focus();
-		return false;
-	}
-	//비밀번호 미입력시
-	if(obj.pw.value==""){
-		alert("비밀번호를 반드시 입력하세요.");
-		obj.pw.focus();
-		return false;
-	}
-	//이름 미입력시
-	if(obj.name.value==""){
-		alert("이름을 반드시 입력하세요.");
-		obj.name.focus();
-		return false;
-	}
-	//주민번호 미입력시
-	if(obj.jumin1.value==""){
-		alert("주민번호를 입력하세요");
-		obj.jumin1.focus();
-		return false;
-	}
-	if(obj.jumin2.value==""){
-		alert("주민번호를 입력하세요");
-		obj.jumin2.focus();
-		return false;
-	}
-	//이메일 미입력시
-	if(obj.email.value==""){
-		alert("이메일을 반드시 입력하세요.");
-		obj.email.focus();
-		return false;
-	}
-	//우편번호 미입력시
-	if(obj.zipCode.value==""){
-		alert("우편번호를 반드시 입력하세요.");
-		obj.zipCode.focus();
-		return false;
-	}
-	//주소 미입력시
-	if(obj.addr.value==""){
-		alert("주소를 반드시 입력하세요.");
-		obj.addr.focus();
-		return false;
-	}
-	//직업 미선택시
-	if(obj.job.value==""){
-		alert("직업을 반드시 선택하세요.");
-		obj.job.focus();
-		return false;
-	}
-	//메일링 미선택시
-	if(obj.mailing.value==""){
-		alert("메일 수신 동의에 답해주세요.");
-		obj.mailing[0].focus();
-		return false;
-	}
-	//관심분야 미선택시
-	if(str==""){
-		alert("관심분야를 최소 1개를 선택해주세요.");
-		obj.interest[0].focus();
-		return false;
-	}
-	
-	
-	
-//그 외 유효성 검사
-	//비밀번호 확인 틀릴시
-	if(obj.pw.value!=obj.pwCheck.value){
-		alert("비밀번호를 확인하세요.");
-		obj.pw.focus();
-		return false;
-	}
-	//비밀번호 7글자 이상
-	if(obj.pw.value.length<7){
-		alert("비밀번호는 7자 이상이어야 합니다..");
-		obj.pw.focus();
-		return false;
-	}
-	//주민번호 앞6자리 확인
-	if(obj.jumin1.value.length!=6){
-		alert("주민번호 앞자리는 6자여야 합니다.");
-		obj.jumin1.focus();
-		return false;
-	}
-	//주민번호 앞7자리 확인
-	if(obj.jumin2.value.length!=7){
-		alert("주민번호 뒷자리는 7자여야 합니다.");
-		obj.jumin2.focus();
-		return false;
-	}
-	
-	
-//	alert(str);
+//	if(obj.id.value==""){
+//		alert("아이디를 반드시 입력하세요.");
+//		obj.id.focus();
+//		return false;
+//	}
+//	//비밀번호 미입력시
+//	if(obj.pw.value==""){
+//		alert("비밀번호를 반드시 입력하세요.");
+//		obj.pw.focus();
+//		return false;
+//	}
+//	//이름 미입력시
+//	if(obj.name.value==""){
+//		alert("이름을 반드시 입력하세요.");
+//		obj.name.focus();
+//		return false;
+//	}
+//	//주민번호 미입력시
+//	if(obj.jumin1.value==""){
+//		alert("주민번호를 입력하세요");
+//		obj.jumin1.focus();
+//		return false;
+//	}
+//	if(obj.jumin2.value==""){
+//		alert("주민번호를 입력하세요");
+//		obj.jumin2.focus();
+//		return false;
+//	}
+//	//이메일 미입력시
+//	if(obj.email.value==""){
+//		alert("이메일을 반드시 입력하세요.");
+//		obj.email.focus();
+//		return false;
+//	}
+//	//우편번호 미입력시
+//	if(obj.zipCode.value==""){
+//		alert("우편번호를 반드시 입력하세요.");
+//		obj.zipCode.focus();
+//		return false;
+//	}
+//	//주소 미입력시
+//	if(obj.addr.value==""){
+//		alert("주소를 반드시 입력하세요.");
+//		obj.addr.focus();
+//		return false;
+//	}
+//	//직업 미선택시
+//	if(obj.job.value==""){
+//		alert("직업을 반드시 선택하세요.");
+//		obj.job.focus();
+//		return false;
+//	}
+//	//메일링 미선택시
+//	if(obj.mailing.value==""){
+//		alert("메일 수신 동의에 답해주세요.");
+//		obj.mailing[0].focus();
+//		return false;
+//	}
+//	//관심분야 미선택시
+//	if(str==""){
+//		alert("관심분야를 최소 1개를 선택해주세요.");
+//		obj.interest[0].focus();
+//		return false;
+//	}
+//	
+//	
+//	
+////그 외 유효성 검사
+//	//비밀번호 확인 틀릴시
+//	if(obj.pw.value!=obj.pwCheck.value){
+//		alert("비밀번호를 확인하세요.");
+//		obj.pw.focus();
+//		return false;
+//	}
+//	//비밀번호 7글자 이상
+//	if(obj.pw.value.length<7){
+//		alert("비밀번호는 7자 이상이어야 합니다..");
+//		obj.pw.focus();
+//		return false;
+//	}
+//	//주민번호 앞6자리 확인
+//	if(obj.jumin1.value.length!=6){
+//		alert("주민번호 앞자리는 6자여야 합니다.");
+//		obj.jumin1.focus();
+//		return false;
+//	}
+//	//주민번호 앞7자리 확인
+//	if(obj.jumin2.value.length!=7){
+//		alert("주민번호 뒷자리는 7자여야 합니다.");
+//		obj.jumin2.focus();
+//		return false;
+//	}
+//	
 	obj.resultInterest.value=str;
 	// Spring에서는 JSP파일에서의 name과 Dto.java 파일내 필드명과 DB 테이블의 필드명 세개가 전부 동일해야 값을 주고받을 수 있다.
 }
