@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.java.command.Command;
 
-public class LogoutOkCommand implements Command {
+public class MainCommand implements Command {
 
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-		return null;
+		return "/WEB-INF/views/member/main.jsp";
 	}
 
 }

@@ -15,9 +15,8 @@
 		
 		<script type="text/javascript">
 		alert("로그인 성공");
-		location.href="${root}/index.jsp";
+		location.href="${root}/member/main.do";
 		</script>
-		<h3>${id } 님 환영합니다.</h3>
 	</c:if>
 	
 	<c:if test="${memberLevel == null }">
@@ -25,7 +24,6 @@
 		alert("로그인 실패. 아이디와 비밀번호를 확인하세요.");
 		location.href="${root}/member/login.do";
 		</script>
-	
 	</c:if>
 </body>
 </html>
