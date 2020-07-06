@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.java.database.ConnectionProvider;
 import com.java.database.JdbcUtil;
@@ -139,4 +141,56 @@ public class MemberDao {	// Data Access Object
 		
 		return value;
 	}
+	public MemberDto updateId(String id) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		MemberDto memberDto=null;
+		
+		try {
+			String sql="select * from member where id=?";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberDto=new MemberDto();
+				memberDto.setNum(rs.getInt("num"));
+				memberDto.setId(rs.getString("id"));
+				memberDto.setPw(rs.getString("pw"));
+				memberDto.setName(rs.getString("name"));
+				memberDto.setJumin1(rs.getString("jumin1"));
+				memberDto.setJumin2(rs.getString("jumin2"));
+				memberDto.setEmail(rs.getString("email"));
+				memberDto.setZipCode(rs.getString("zipcode"));
+				memberDto.setAddr(rs.getString("addr"));
+				memberDto.setJob(rs.getString("job"));
+				memberDto.setMailing(rs.getString("mailing"));
+				memberDto.setInterest(rs.getString("interest"));
+				memberDto.setMemberLevel(rs.getString("member_level"));
+				
+				//DB와 자바 사이에서 날짜를 주고 받을 때는 시간형태(숫자형태)로 변환해서 주고 받아야 한다.
+				//시간은 long형태로 변환하면 날짜나 계산하기 위한 캘린더형식으로 변환하기 좋다.
+				/*
+				Timestamp ts=rs.getTimestamp("register_date");
+				long time=ts.getTime();
+				Date date=new Date(time);
+				memberDto.setRegisterDate(date);*/
+				
+				
+				memberDto.setRegisterDate(new Date(rs.getTimestamp("register_date").getTime()));
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		return memberDto;
+	}
+	
 }
