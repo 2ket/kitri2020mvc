@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -193,4 +192,25 @@ public class MemberDao {	// Data Access Object
 		return memberDto;
 	}
 	
+	public int update(MemberDto memberDto) {
+		int value=0;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			String sql="";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "");
+			value=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		
+		return value;
+	}
 }

@@ -17,6 +17,7 @@
 		<span>회원수정(*필수입력사항입니다.)</span>
 		<div id="table_form">	<!-- 테두리 -->
 			<form name="createForm1" action="${root }/member/updateOk.do" method="post" onsubmit="return createForm(this)">
+			<input type="hidden" name="num" value="${memberDto.num }">
 				<div>
 					<label>아이디</label>
 					<span>*<input type="text" name="id" value="${memberDto.id }" disabled="disabled">
@@ -45,7 +46,7 @@
 				</div>
 				<div>
 					<label>우편번호</label>
-					<input type="text" name="zipCode" readonly value="${memberDto.zipCode }">
+					<input type="text" name="zipCode" value="${memberDto.zipCode }" readonly="readonly">
 					<input type="button" onclick="zipcodeReader('${root}')" value="우편번호 검색">
 				</div>
 				<div>
@@ -60,13 +61,23 @@
 						<option value="기획자">기획자</option>
 						<option value="DBadmin">DBadmin</option>
 					</select>
-					${memberDto.job }
+					${memberDto.job}
+					<script type="text/javascript">
+						createForm1.job.value="${memberDto.job}"
+					</script>
 				</div>
 				<div>
 					<label>메일수신</label>
 					<input type="radio" name="mailing" value="yes"><span>yes</span>
 					<input type="radio" name="mailing" value="no"><span>no</span>
-					${memberDto.mailing }
+					${memberDto.mailing}
+					<script type="text/javascript">
+						for(var i=0; i<createForm1.mailing.length;i++){
+							if(createForm1.mailing[i].value=="${memberDto.mailing}"){
+								createForm1.mailing[i].checked=true;
+							}
+						}
+					</script>
 				</div>
 				<div>
 					<label>관심분야</label>
@@ -76,7 +87,31 @@
 					<input type="checkbox" value="art" name="interest"><span>미술</span>
 					<input type="hidden" name="resultInterest">
 					${memberDto.interest }
+				 
+					<c:forTokens var="interest" items="${memberDto.interest }" delims=",">
+						<script type="text/javascript">
+							for(var i=0; i<createForm1.interest.length; i++){
+								if(createForm1.interest[i].value=="${interest}"){
+									createForm1.interest[i].checked=true;
+								}
+							}
+						</script>
+					</c:forTokens>
+				 <!-- 
+					<script type="text/javascript">
+						var text="${memberDto.interest}";
+						var token=text.split(",");
+						for(var i=0; i<createForm1.interest.length; i++){
+							for(var j=0; j<token.length; j++){
+								if(createForm1.interest[i].value==token[j]){
+									createForm1.interest[i].checked=true;
+								}
+							}
+						}
+					</script>
+					-->
 				</div>
+				
 				<div id="form_button">
 					<input type="submit" value="수정">
 					<input type="reset" value="취소">
