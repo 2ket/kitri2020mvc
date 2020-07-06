@@ -198,10 +198,17 @@ public class MemberDao {	// Data Access Object
 		PreparedStatement pstmt=null;
 		
 		try {
-			String sql="";
+			String sql="update member set pw=?, email=?, zipcode=?, address=?, job=?, mailing=?, interest=? where num=?";
 			conn=ConnectionProvider.getConnection();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, "");
+			pstmt.setString(1, memberDto.getPw());
+			pstmt.setString(2, memberDto.getEmail());
+			pstmt.setString(3, memberDto.getZipCode());
+			pstmt.setString(4, memberDto.getAddr());
+			pstmt.setString(5, memberDto.getJob());
+			pstmt.setString(6, memberDto.getMailing());
+			pstmt.setString(7, memberDto.getInterest());
+			pstmt.setInt(8, memberDto.getNum());
 			value=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
