@@ -17,6 +17,7 @@
 		<span>회원가입(*필수입력사항입니다.)</span>
 		<div id="table_form">	<!-- 테두리 -->
 			<form name="createForm1" action="${root }/member/registerOk.do" method="post" onsubmit="return createForm(this)">
+			<input type="hidden" name="registerForm" value="">
 				<div>
 					<label>아이디</label>
 					<span>*<input type="text" name="id">
