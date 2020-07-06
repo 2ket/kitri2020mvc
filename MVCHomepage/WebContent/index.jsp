@@ -17,7 +17,7 @@
 	
 	<c:if test="${memberLevel!=null }">
 		${id }님 환영합니다.<br>
-		<a href="${root }/member/memberEdit.do">회원수정</a>
+		<a href="${root }/member/update.do">회원수정</a>
 		<a href="${root }/member/withdrawal.do">회원탈퇴</a>
 		<a href="${root }/member/logout.do">로그아웃</a>
 	</c:if>

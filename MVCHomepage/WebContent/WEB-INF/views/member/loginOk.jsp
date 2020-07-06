@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:if test="${memberLevel != null }">
-		<c:set var="id" value="${id }" scope="session"/>
+		<c:set var="id" value="${id }" scope="session"/>	<!-- 동일 context(프로젝트) 내에서 계속 사용가능 -->
 		<c:set var="memberLevel" value="${memberLevel }" scope="session"/>
 		
 		<script type="text/javascript">
