@@ -32,9 +32,10 @@ public class UpdateOkCommand implements Command {
 		logger.info(logMsg+"수정 후 데이터 : "+memberDto.toString());
 		
 		int check=MemberDao.getInstance().update(memberDto);
-		logger.info(logMsg+check);
+		logger.info(logMsg+"수정완료 확인:"+check);
 		
-		return null;
+		request.setAttribute("check", check);
+		return "/WEB-INF/views/member/updateOk.jsp";
 	}
 
 }

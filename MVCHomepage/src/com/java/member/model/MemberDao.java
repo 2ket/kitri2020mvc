@@ -198,7 +198,7 @@ public class MemberDao {	// Data Access Object
 		PreparedStatement pstmt=null;
 		
 		try {
-			String sql="update member set pw=?, email=?, zipcode=?, address=?, job=?, mailing=?, interest=? where num=?";
+			String sql="update member set pw=?, email=?, zipcode=?, addr=?, job=?, mailing=?, interest=? where num=?";
 			conn=ConnectionProvider.getConnection();
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, memberDto.getPw());
