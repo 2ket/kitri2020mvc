@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.java.database.ConnectionProvider;
@@ -103,5 +104,52 @@ public class BoardDao {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(conn);
 		}
+	}
+	
+	public int getCount() {
+		int value=0;
+		
+		try {
+			sql="select count(*) from board";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				value=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		return value;
+	}
+
+	public ArrayList<BoardDto> getBoardList(int startRow, int endRow) {
+		ArrayList<BoardDto> boardList=null;
+		
+		try {
+			sql="";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		return boardList;
 	}
 }
