@@ -10,7 +10,7 @@ public class BoardDto {
 	private String content;
 	private String password;
 	
-	private Date wirteDate;
+	private Date writeDate;
 	private int readCount;
 	private int groupNumber;
 	private int sequenceNumber;
@@ -19,7 +19,7 @@ public class BoardDto {
 	public BoardDto() {}
 
 	public BoardDto(int boardNumber, String writer, String subject, String email, String content, String password,
-			Date wirteDate, int readCount, int groupNumber, int sequenceNumber, int sequenceLevel) {
+			Date writeDate, int readCount, int groupNumber, int sequenceNumber, int sequenceLevel) {
 		super();
 		this.boardNumber = boardNumber;
 		this.writer = writer;
@@ -27,7 +27,7 @@ public class BoardDto {
 		this.email = email;
 		this.content = content;
 		this.password = password;
-		this.wirteDate = wirteDate;
+		this.writeDate = writeDate;
 		this.readCount = readCount;
 		this.groupNumber = groupNumber;
 		this.sequenceNumber = sequenceNumber;
@@ -82,12 +82,12 @@ public class BoardDto {
 		this.password = password;
 	}
 
-	public Date getWirteDate() {
-		return wirteDate;
+	public Date getWriteDate() {
+		return writeDate;
 	}
 
-	public void setWirteDate(Date wirteDate) {
-		this.wirteDate = wirteDate;
+	public void setWriteDate(Date writeDate) {
+		this.writeDate = writeDate;
 	}
 
 	public int getReadCount() {
@@ -125,7 +125,7 @@ public class BoardDto {
 	@Override
 	public String toString() {
 		return "BoardDto [boardNumber=" + boardNumber + ", writer=" + writer + ", subject=" + subject + ", email="
-				+ email + ", content=" + content + ", password=" + password + ", wirteDate=" + wirteDate
+				+ email + ", content=" + content + ", password=" + password + ", writeDate=" + writeDate
 				+ ", readCount=" + readCount + ", groupNumber=" + groupNumber + ", sequenceNumber=" + sequenceNumber
 				+ ", sequenceLevel=" + sequenceLevel + "]";
 	}
