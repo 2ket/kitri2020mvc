@@ -132,15 +132,25 @@ public class BoardDao {
 		ArrayList<BoardDto> boardList=null;
 		
 		try {
-			sql="";
+			sql="select b.* From "
+					+ "(select rownum rnum, a.* From "
+						+ "(select * from board order by group_number desc, sequence_number asc) a) b "
+				+ "where b.rnum>=? and b.rnum<=?";
 			conn=ConnectionProvider.getConnection();
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			rs=pstmt.executeQuery();
 			
-			if(rs.next()) {
+			boardList=new ArrayList<BoardDto>();
+			while(rs.next()) {
+				BoardDto boardDto= new BoardDto();
+				boardDto.setBoardNumber(rs.getInt("board_number"));
+				boardDto.setSubject(rs.getString("subject"));
+				boardDto.setWriteDate(rs.getDate("write_date"));
+				boardDto.setWriter(rs.getString("writer"));
 				
+				boardList.add(boardDto);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

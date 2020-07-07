@@ -18,7 +18,7 @@
 			<input type="hidden" name="sequenceNumber" value="${sequenceNumber }">
 			<input type="hidden" name="sequenceLevel" value="${sequenceLevel }">
 			<div style="text-align:right;">
-				<span><a href="#">글목록</a></span>
+				<span><a href="${root }/board/list.do">글목록</a></span>
 			</div>
 			
 			<div><!-- 테두리용 -->
@@ -45,7 +45,7 @@
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기">
+					<%-- <input type="button" value="목록보기"> --%>
 				</div>
 			</div><!-- //테두리용 -->
 		</form>

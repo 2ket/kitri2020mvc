@@ -31,7 +31,7 @@ public class ListCommand implements Command {
 		if(count>0) {
 			//startRow, endRow
 			ArrayList<BoardDto> boardList=BoardDao.getInstance().getBoardList(startRow, endRow);
-			logger.info(logMsg+boardList.size());
+			logger.info(logMsg+"boardList.size():"+boardList.size());
 		}
 		return null;
 	}
