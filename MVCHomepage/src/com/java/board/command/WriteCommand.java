@@ -28,6 +28,7 @@ public class WriteCommand implements Command {
 		request.setAttribute("groupNumber", groupNumber);
 		request.setAttribute("sequenceNumber", sequenceNumber);
 		request.setAttribute("sequenceLevel", sequenceLevel);
+		
 		return "/WEB-INF/views/board/write.jsp";
 	}
 

@@ -40,7 +40,7 @@
 				</div>
 				<div>
 					<label>비밀번호</label>
-					<input type="password" name="pw">
+					<input type="password" name="password">
 				</div>
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="submit" value="글쓰기">
