@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
  	<c:set var="root" value="${pageContext.request.contextPath }"/> 
@@ -26,5 +27,9 @@
 		<h3>관리자 페이지</h3>
 		<a href="">회원관리..</a>
 	</c:if>
+	
+	<br><br>
+	
+	<a href="${root }/board/write.do">게시판 글쓰기</a>
 </body>
 </html>
