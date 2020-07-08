@@ -19,7 +19,7 @@ public class ListCommand implements Command {
 		
 		int currentPage=Integer.parseInt(pageNumber);	//요청한 페이지
 		
-		int boardSize=1;	//[1] start:1, end:10 [2] s:11, e:20
+		int boardSize=10;	//[1] start:1, end:10 [2] s:11, e:20
 		
 		int startRow=(currentPage-1)*boardSize+1;		// 시작번호 1 (1~10)
 		int endRow=currentPage*boardSize;				// 끝번호 10

@@ -41,7 +41,7 @@
 			<tr>
 				<td width="50">${boardDto.boardNumber}</td>
 				<td width="250">
-					<a href="">${boardDto.subject}</a>
+					<a href="${root }/board/read.do?boardNumber=${boardDto.boardNumber}&pageNumber=${currentPage}">${boardDto.subject}</a>
 				</td>
 				<td width="70">${boardDto.writer}</td>
 				<td width="150">

@@ -146,8 +146,16 @@ public class BoardDao {
 			while(rs.next()) {
 				BoardDto boardDto= new BoardDto();
 				boardDto.setBoardNumber(rs.getInt("board_number"));
-				boardDto.setWriter(rs.getNString("writer"));
-				boardDto.setSubject(rs.getString("subject"));
+				boardDto.setWriter(rs.getString("writer"));
+				if(rs.getInt("sequence_level")==0) {
+					boardDto.setSubject(rs.getString("subject"));
+				}else if(rs.getInt("sequence_level")==1) {
+					boardDto.setSubject("[답글]"+rs.getString("subject"));
+				}else if(rs.getInt("sequence_level")==2) {
+					boardDto.setSubject("[답글][답글]"+rs.getString("subject"));
+				}else{
+					boardDto.setSubject("[답글][답글][답글]"+rs.getString("subject"));
+				}
 				boardDto.setEmail(rs.getString("email"));
 				boardDto.setContent(rs.getString("content"));
 				
@@ -172,5 +180,52 @@ public class BoardDao {
 		}
 		
 		return boardList;
+	}
+
+	public BoardDto read(int boardNumber) {
+		String sqlUpdate=null;
+		BoardDto boardDto=new BoardDto();
+		
+		try {
+			conn=ConnectionProvider.getConnection();
+			//DML query문이 2개이상일 경우 autoCommit 해제해서 둘 중 하나가 실패하면 둘 다 실행 안되게 해야한다.
+			conn.setAutoCommit(false);
+			sqlUpdate="update board set read_count=read_count+1 where board_number=?";
+			pstmt=conn.prepareStatement(sqlUpdate);
+			pstmt.setInt(1, boardNumber);
+			int value=pstmt.executeUpdate();
+			if(value>0) JdbcUtil.close(pstmt);
+			
+			sql="select * from board where board_number=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNumber);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				boardDto.setBoardNumber(boardNumber);
+				boardDto.setWriter(rs.getString("writer"));
+				boardDto.setSubject(rs.getString("subject"));
+				boardDto.setEmail(rs.getString("email"));
+				boardDto.setContent(rs.getString("content"));
+				boardDto.setPassword(rs.getString("password"));
+				
+				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
+				boardDto.setReadCount(rs.getInt("read_count"));
+				boardDto.setGroupNumber(rs.getInt("group_number"));
+				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
+				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
+			}
+			//여기까지 오류가 없었다면 Commit한다
+			conn.commit();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			JdbcUtil.rollBack(conn);
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		return boardDto;
 	}
 }

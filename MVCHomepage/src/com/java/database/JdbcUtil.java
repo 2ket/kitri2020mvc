@@ -33,4 +33,13 @@ public class JdbcUtil {
 			}
 		}
 	}
+	public static void rollBack(Connection conn) {
+		if(conn!=null) {
+			try {
+				conn.rollback();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

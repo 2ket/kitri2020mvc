@@ -18,6 +18,10 @@ public class WriteCommand implements Command {
 		//답글일때 boardNumber=> ROOT의 글번호, 그룹번호, 글순서, 글레벨
 		if(request.getParameter("boardNumber")!=null) {
 			//나중에
+			boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
+			groupNumber=Integer.parseInt(request.getParameter("groupNumber"));
+			sequenceNumber=Integer.parseInt(request.getParameter("sequenceNumber"));
+			sequenceLevel=Integer.parseInt(request.getParameter("sequenceLevel"));
 		}
 		
 		

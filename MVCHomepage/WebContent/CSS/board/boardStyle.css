@@ -32,7 +32,7 @@
 	height: 209px;
 }
 
-label+input, label+textarea {
+label+input, label+textarea{
 	margin: 4px 0px;
 	margin-left: 5px;
 }

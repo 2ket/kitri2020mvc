@@ -1,0 +1,95 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<c:set var="root" value="${pageContext.request.contextPath }"/>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="${root }/CSS/board/boardStyle.css">
+<style type="text/css">
+	label+span{
+	margin: 4px 0px;
+	margin-left: 5px;
+	line-height: 4px;
+	}
+	
+	#contents {
+	height: 190px;
+}
+#board div>div {
+	overflow: hidden;
+}
+</style>
+
+<script type="text/javascript">
+	function replyFunc(root, boardNumber, groupNumber, sequenceNumber, sequenceLevel){
+		var url=root+"/board/write.do?boardNumber="+boardNumber;
+		url+="&groupNumber="+groupNumber+"&sequenceNumber="+sequenceNumber+"&sequenceLevel="+sequenceLevel;
+		location.href=url;
+	}
+
+</script>
+</head>
+<body>
+	<div id="board"><!-- 전체 폼 -->
+		
+			<input type="hidden" name="boardNumber" value="${boardNumber }">
+			<input type="hidden" name="groupNumber" value="${groupNumber }">
+			<input type="hidden" name="sequenceNumber" value="${sequenceNumber }">
+			<input type="hidden" name="sequenceLevel" value="${sequenceLevel }">
+			<div style="text-align:right;">
+				<span><a href="${root }/board/list.do">글목록</a></span>
+			</div>
+			
+			<div><!-- 테두리용 -->
+				<div>
+					<label>글번호</label>
+					<span>${boardDto.writer }</span>
+				</div>
+				<div>
+					<label>제목</label>
+					<span>${boardDto.subject }</span>
+				</div>
+				<div>
+					<label>작성자</label>
+					<span>${boardDto.writer }</span>
+				</div>
+				<div>
+					<label>조회수</label>
+					<span>${boardDto.readCount }</span>
+					</div>
+				<div>
+					<label>작성일</label>
+					<span>
+						<fmt:formatDate value="${boardDto.writeDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+					</span>
+				</div>
+				<div>
+					<label>이메일</label>
+					<span>${boardDto.email }</span>
+				</div>
+				<div id="contents">
+					<label>내용</label>
+					<span>${boardDto.content }</span>
+				</div>
+				<%-- <div>
+					<label>비밀번호</label>
+					<span>${boardDto.writer }</span>
+				</div> --%>
+				
+				
+				<div style="text-align:center;"><!-- 버튼부분 -->
+					<input type="button" value="글수정" onclick=""/>
+					<input type="button" value="글삭제" onclick=""/>
+					<input type="button" value="답글" onclick="replyFunc('${root}', '${boardDto.boardNumber }', '${boardDto.groupNumber }', '${boardDto.sequenceNumber }', '${boardDto.sequenceLevel }')"/>
+					<input type="button" value="글목록" onclick=""/>
+					<%-- <input type="button" value="목록보기"> --%>
+				</div>
+			</div><!-- //테두리용 -->
+		
+	</div>
+</body>
+</html>
