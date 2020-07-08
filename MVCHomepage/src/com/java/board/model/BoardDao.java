@@ -146,9 +146,20 @@ public class BoardDao {
 			while(rs.next()) {
 				BoardDto boardDto= new BoardDto();
 				boardDto.setBoardNumber(rs.getInt("board_number"));
+				boardDto.setWriter(rs.getNString("writer"));
 				boardDto.setSubject(rs.getString("subject"));
-				boardDto.setWriteDate(rs.getDate("write_date"));
-				boardDto.setWriter(rs.getString("writer"));
+				boardDto.setEmail(rs.getString("email"));
+				boardDto.setContent(rs.getString("content"));
+				
+				boardDto.setPassword(rs.getString("password"));
+				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
+				//memberDao에서도 날짜->시간 했던 것처럼 하나로 합쳐줌
+				boardDto.setReadCount(rs.getInt("read_Count"));
+				boardDto.setGroupNumber(rs.getInt("group_number"));
+				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
+				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
+				
+				System.out.println(boardDto); //logger관련해서 프론트컨트롤러에서 static으로 안해놔서 그냥 프린트로 찍어봄
 				
 				boardList.add(boardDto);
 			}
