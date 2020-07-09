@@ -17,7 +17,7 @@ public class DeleteCommand implements Command {
 		
 		request.setAttribute("boardNumber",	boardNumber);
 		request.setAttribute("pageNumber",	pageNumber);
-		return "/WEB-INF/views/board/delete.jsp";
+		return "/WEB-INF/views/fileBoard/delete.jsp";
 	}
 
 }

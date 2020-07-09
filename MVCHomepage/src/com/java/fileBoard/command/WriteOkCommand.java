@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.java.board.model.BoardDao;
-import com.java.board.model.BoardDto;
+import com.java.fileBoard.model.BoardDao;
+import com.java.fileBoard.model.BoardDto;
 import com.java.command.Command;
 
 public class WriteOkCommand implements Command {
@@ -35,7 +35,7 @@ public class WriteOkCommand implements Command {
 		logger.info(logMsg+check);
 		
 		request.setAttribute("check", check);
-		return "/WEB-INF/views/board/writeOk.jsp";
+		return "/WEB-INF/views/fileBoard/writeOk.jsp";
 	}
 
 }

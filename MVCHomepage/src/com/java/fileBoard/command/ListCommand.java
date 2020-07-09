@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.java.board.model.BoardDao;
-import com.java.board.model.BoardDto;
+import com.java.fileBoard.model.BoardDao;
+import com.java.fileBoard.model.BoardDto;
 import com.java.command.Command;
 
 public class ListCommand implements Command {
@@ -40,7 +40,7 @@ public class ListCommand implements Command {
 		request.setAttribute("count", count);
 		
 		
-		return "/WEB-INF/views/board/list.jsp";
+		return "/WEB-INF/views/fileBoard/list.jsp";
 	}
 
 }

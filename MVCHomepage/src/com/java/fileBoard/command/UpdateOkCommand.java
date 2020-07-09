@@ -3,8 +3,8 @@ package com.java.fileBoard.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.java.board.model.BoardDao;
-import com.java.board.model.BoardDto;
+import com.java.fileBoard.model.BoardDao;
+import com.java.fileBoard.model.BoardDto;
 import com.java.command.Command;
 
 public class UpdateOkCommand implements Command {
@@ -26,7 +26,7 @@ public class UpdateOkCommand implements Command {
 		request.setAttribute("pageNumber", request.getParameter("pageNumber"));
 		request.setAttribute("boardNumber", request.getParameter("boardNumber"));
 		request.setAttribute("check", check);
-		return "/WEB-INF/views/board/updateOk.jsp";
+		return "/WEB-INF/views/fileBoard/updateOk.jsp";
 	}
 
 }

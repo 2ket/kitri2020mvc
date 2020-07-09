@@ -3,7 +3,7 @@ package com.java.fileBoard.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.java.board.model.BoardDao;
+import com.java.fileBoard.model.BoardDao;
 import com.java.command.Command;
 
 public class DeleteOkCommand implements Command {
@@ -22,7 +22,7 @@ public class DeleteOkCommand implements Command {
 		request.setAttribute("check", check);
 		request.setAttribute("pageNumber", pageNumber);
 		request.setAttribute("boardNumber", boardNumber);
-		return "/WEB-INF/views/board/deleteOk.jsp";
+		return "/WEB-INF/views/fileBoard/deleteOk.jsp";
 	}
 
 }

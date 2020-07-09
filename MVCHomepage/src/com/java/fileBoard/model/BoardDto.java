@@ -16,10 +16,15 @@ public class BoardDto {
 	private int sequenceNumber;
 	private int sequenceLevel;
 	
+	private String fileName;
+	private String path;
+	private int fileSize;
+	
 	public BoardDto() {}
 
 	public BoardDto(int boardNumber, String writer, String subject, String email, String content, String password,
-			Date writeDate, int readCount, int groupNumber, int sequenceNumber, int sequenceLevel) {
+			Date writeDate, int readCount, int groupNumber, int sequenceNumber, int sequenceLevel, String fileName,
+			String path, int fileSize) {
 		super();
 		this.boardNumber = boardNumber;
 		this.writer = writer;
@@ -32,6 +37,33 @@ public class BoardDto {
 		this.groupNumber = groupNumber;
 		this.sequenceNumber = sequenceNumber;
 		this.sequenceLevel = sequenceLevel;
+		this.fileName = fileName;
+		this.path = path;
+		this.fileSize = fileSize;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public int getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
 	}
 
 	public int getBoardNumber() {
@@ -127,7 +159,10 @@ public class BoardDto {
 		return "BoardDto [boardNumber=" + boardNumber + ", writer=" + writer + ", subject=" + subject + ", email="
 				+ email + ", content=" + content + ", password=" + password + ", writeDate=" + writeDate
 				+ ", readCount=" + readCount + ", groupNumber=" + groupNumber + ", sequenceNumber=" + sequenceNumber
-				+ ", sequenceLevel=" + sequenceLevel + "]";
+				+ ", sequenceLevel=" + sequenceLevel + ", fileName=" + fileName + ", path=" + path + ", fileSize="
+				+ fileSize + "]";
 	}
+
+	
 	
 }

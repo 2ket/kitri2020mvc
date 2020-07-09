@@ -3,8 +3,8 @@ package com.java.fileBoard.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.java.board.model.BoardDao;
-import com.java.board.model.BoardDto;
+import com.java.fileBoard.model.BoardDao;
+import com.java.fileBoard.model.BoardDto;
 import com.java.command.Command;
 
 public class ReadCommand implements Command {
@@ -21,7 +21,7 @@ public class ReadCommand implements Command {
 		
 		request.setAttribute("pageNumber", pageNumber);
 		request.setAttribute("boardDto", boardDto);
-		return "/WEB-INF/views/board/read.jsp";
+		return "/WEB-INF/views/fileBoard/read.jsp";
 	}
 
 }

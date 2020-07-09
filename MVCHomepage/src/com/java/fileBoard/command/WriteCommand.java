@@ -33,7 +33,7 @@ public class WriteCommand implements Command {
 		request.setAttribute("sequenceNumber", sequenceNumber);
 		request.setAttribute("sequenceLevel", sequenceLevel);
 		
-		return "/WEB-INF/views/board/write.jsp";
+		return "/WEB-INF/views/fileBoard/write.jsp";
 	}
 
 }
