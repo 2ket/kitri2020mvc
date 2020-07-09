@@ -37,7 +37,7 @@ public class BoardDao {
 			pstmt.setString(1, boardDto.getWriter());
 			pstmt.setString(2, boardDto.getSubject());
 			pstmt.setString(3, boardDto.getEmail());
-			pstmt.setString(4, boardDto.getContent());
+			pstmt.setString(4, boardDto.getContent().replace("\r\n", "<br/>"));
 			pstmt.setString(5, boardDto.getPassword());
 			
 			/* Date date=boardDto.getWriteDate();
@@ -147,15 +147,9 @@ public class BoardDao {
 				BoardDto boardDto= new BoardDto();
 				boardDto.setBoardNumber(rs.getInt("board_number"));
 				boardDto.setWriter(rs.getString("writer"));
-				if(rs.getInt("sequence_level")==0) {
-					boardDto.setSubject(rs.getString("subject"));
-				}else if(rs.getInt("sequence_level")==1) {
-					boardDto.setSubject("[답글]"+rs.getString("subject"));
-				}else if(rs.getInt("sequence_level")==2) {
-					boardDto.setSubject("[답글][답글]"+rs.getString("subject"));
-				}else{
-					boardDto.setSubject("[답글][답글][답글]"+rs.getString("subject"));
-				}
+				
+				boardDto.setSubject(rs.getString("subject"));
+				
 				boardDto.setEmail(rs.getString("email"));
 				boardDto.setContent(rs.getString("content"));
 				
@@ -227,5 +221,26 @@ public class BoardDao {
 		}
 		
 		return boardDto;
+	}
+
+	public int delete(int boardNumber, String password) {
+		int value=0;
+		//root글을 삭제할경우 답글이 붕 떠버리기때문에 이에 대한 해결책이 필요함. 혼자서 고민해볼것
+		try {
+			sql="delete from board where board_number=? and password=?";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNumber);
+			pstmt.setString(2, password);
+			value=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		
+		return value;
 	}
 }

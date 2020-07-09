@@ -41,6 +41,12 @@
 			<tr>
 				<td width="50">${boardDto.boardNumber}</td>
 				<td width="250">
+					<c:if test="${boardDto.sequenceLevel > 0 }">
+						<c:forEach begin="0" end="${boardDto.sequenceLevel}">
+							&nbsp;
+						</c:forEach>
+						[답글]
+					</c:if>
 					<a href="${root }/board/read.do?boardNumber=${boardDto.boardNumber}&pageNumber=${currentPage}">${boardDto.subject}</a>
 				</td>
 				<td width="70">${boardDto.writer}</td>
@@ -86,7 +92,7 @@
 		 <!-- 3항식으로 표현함 count=전체 게시글 개수 boardSize=내가 정한 개수에서 두개 나눴을 때 나머지 0이면0, 나머지 0아니면 +1해줌
 		  -->
 		  <!-- 여기서 ${pageCount}찍어주면 1.3처럼 나옴 처리 나중에 해주면 됨 -->
-		  <c:set var="pageBlock" value="${2}"/>		<%-- 페이징 넘버 표시할 갯수 --%>
+		  <c:set var="pageBlock" value="${5}"/>		<%-- 페이징 넘버 표시할 갯수 --%>
 		  
 		  <fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
 		  <c:set var="startPage" value="${result*pageBlock +1}"/>

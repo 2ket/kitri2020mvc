@@ -45,7 +45,7 @@
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
-					<%-- <input type="button" value="목록보기"> --%>
+					<input type="button" value="목록보기" onclick="location.href='${root}/board/list.do'">
 				</div>
 			</div><!-- //테두리용 -->
 		</form>

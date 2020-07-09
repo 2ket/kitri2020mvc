@@ -30,6 +30,27 @@
 		url+="&groupNumber="+groupNumber+"&sequenceNumber="+sequenceNumber+"&sequenceLevel="+sequenceLevel;
 		location.href=url;
 	}
+	
+	function delFun(root, boardNumber, pageNumber){
+		var url=root+"/board/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		location.href=url;
+		/* 
+		var value=confirm("정말 삭제하시겠습니까?");
+		if(value==true){
+			var url=root+"/board/deleteOk.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+			location.href=url;
+		}else{
+			alert("취소되었습니다.");
+			return false;
+		}
+		 */
+	}
+	
+	function updateFunc(root, boardNumber, pageNumber){
+		var url=root+"/board/delete.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		location.href=url;
+		
+	}
 
 </script>
 </head>
@@ -47,7 +68,7 @@
 			<div><!-- 테두리용 -->
 				<div>
 					<label>글번호</label>
-					<span>${boardDto.writer }</span>
+					<span>${boardDto.boardNumber }</span>
 				</div>
 				<div>
 					<label>제목</label>
@@ -82,11 +103,10 @@
 				
 				
 				<div style="text-align:center;"><!-- 버튼부분 -->
-					<input type="button" value="글수정" onclick=""/>
-					<input type="button" value="글삭제" onclick=""/>
+					<input type="button" value="글수정" onclick="updateFunc('${root}', '${boardDto.boardNumber }', '${pageNumber }')"/>
+					<input type="button" value="글삭제" onclick="delFun('${root}', '${boardDto.boardNumber }', '${pageNumber }')"/>
 					<input type="button" value="답글" onclick="replyFunc('${root}', '${boardDto.boardNumber }', '${boardDto.groupNumber }', '${boardDto.sequenceNumber }', '${boardDto.sequenceLevel }')"/>
-					<input type="button" value="글목록" onclick=""/>
-					<%-- <input type="button" value="목록보기"> --%>
+					<input type="button" value="글목록" onclick="location.href='${root}/board/list.do?pageNumber=${pageNumber }'"/>
 				</div>
 			</div><!-- //테두리용 -->
 		
