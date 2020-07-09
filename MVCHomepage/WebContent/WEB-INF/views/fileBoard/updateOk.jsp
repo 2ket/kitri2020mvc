@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>파일 게시판</title>
 </head>
 <body>
 	<c:if test="${check>0 }">

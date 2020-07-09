@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="${root }/javaScript/fileBoard/board.js"></script>
-<link type="text/css" rel="stylesheet" href="${root }/CSS/fileBoard/boardStyle.css">
+<title>파일 게시판</title>
+<script type="text/javascript" src="${root }/javaScript/board/board.js"></script>
+<link type="text/css" rel="stylesheet" href="${root }/CSS/board/boardStyle.css">
 <script type="text/javascript">
 	function pwCheckFunc(obj){
 		if(obj.pwCheck.value!=obj.password.value){

@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="${root }/CSS/fileBoard/boardStyle.css">
+<title>파일 게시판</title>
+<link type="text/css" rel="stylesheet" href="${root }/CSS/board/boardStyle.css">
 <style type="text/css">
 	label+span{
 	margin: 4px 0px;
@@ -32,7 +32,7 @@
 	}
 	
 	function delFun(root, boardNumber, pageNumber){
-		var url=root+"/fileBoard/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		var url=root+"/fileBoard/delete.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
 		location.href=url;
 		/* 
 		var value=confirm("정말 삭제하시겠습니까?");

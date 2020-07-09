@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>파일 게시판</title>
 </head>
 <body>
 	<div align="center"> <!-- style="margin-top: 100px" 줘도 됨 -->
