@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${root }/javaScript/board/board.js"></script>
-<link type="text/css" rel="stylesheet" href="${root }/CSS/board/boardStyle.css">
+<script type="text/javascript" src="${root }/javaScript/fileBoard/board.js"></script>
+<link type="text/css" rel="stylesheet" href="${root }/CSS/fileBoard/boardStyle.css">
 <script type="text/javascript">
 	function pwCheckFunc(obj){
 		if(obj.pwCheck.value!=obj.password.value){
@@ -20,12 +20,12 @@
 </head>
 <body>
 	<div id="board"><!-- 전체 폼 -->
-		<form action="${root }/board/updateOk.do" method="post" onsubmit="return pwCheckFunc(this)">
+		<form action="${root }/fileBoard/updateOk.do" method="post" onsubmit="return pwCheckFunc(this)">
 			<input type="hidden" name="pageNumber" value="${pageNumber }">
 			<input type="hidden" name="boardNumber" value="${boardNumber }">
 			<input type="hidden" name="password" value="${boardDto.password }">
 			<div style="text-align:right;">
-				<span><a href="${root }/board/list.do?pageNumber=${pageNumber}">글목록</a></span>
+				<span><a href="${root }/fileBoard/list.do?pageNumber=${pageNumber}">글목록</a></span>
 			</div>
 			
 			<div><!-- 테두리용 -->
@@ -52,7 +52,7 @@
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="submit" value="수정하기">
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="location.href='${root}/board/list.do'">
+					<input type="button" value="목록보기" onclick="location.href='${root}/fileBoard/list.do'">
 				</div>
 			</div><!-- //테두리용 -->
 		</form>

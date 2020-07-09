@@ -7,18 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${root }/javaScript/board/board.js"></script>
-<link type="text/css" rel="stylesheet" href="${root }/CSS/board/boardStyle.css">
+<script type="text/javascript" src="${root }/javaScript/fileBoard/board.js"></script>
+<link type="text/css" rel="stylesheet" href="${root }/CSS/fileBoard/boardStyle.css">
 </head>
 <body>
 	<div id="board"><!-- 전체 폼 -->
-		<form action="${root }/board/writeOk.do" method="post" onsubmit="return boardCheck(this)">
+		<form action="${root }/fileBoard/writeOk.do" method="post" onsubmit="return boardCheck(this)">
 			<input type="hidden" name="boardNumber" value="${boardNumber }">
 			<input type="hidden" name="groupNumber" value="${groupNumber }">
 			<input type="hidden" name="sequenceNumber" value="${sequenceNumber }">
 			<input type="hidden" name="sequenceLevel" value="${sequenceLevel }">
 			<div style="text-align:right;">
-				<span><a href="${root }/board/list.do">글목록</a></span>
+				<span><a href="${root }/fileBoard/list.do">글목록</a></span>
 			</div>
 			
 			<div><!-- 테두리용 -->
@@ -45,7 +45,7 @@
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="submit" value="글쓰기">
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="location.href='${root}/board/list.do'">
+					<input type="button" value="목록보기" onclick="location.href='${root}/fileBoard/list.do'">
 				</div>
 			</div><!-- //테두리용 -->
 		</form>

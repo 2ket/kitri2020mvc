@@ -12,13 +12,13 @@
 	<c:if test="${check>0 }">
 		<script type="text/javascript">
 			alert("삭제되었습니다.")
-			location.href="${root}/board/list.do?pageNumber=${pageNumber}";
+			location.href="${root}/fileBoard/list.do?pageNumber=${pageNumber}";
 		</script>
 	</c:if>
 	<c:if test="${check==0 }">
 		<script type="text/javascript">
 			alert("삭제되지 않았습니다.")
-			location.href="${root}/board/read.do?boardNumber=${boardNumber}&pageNumber=${pageNumber}";
+			location.href="${root}/fileBoard/read.do?boardNumber=${boardNumber}&pageNumber=${pageNumber}";
 		</script>
 	</c:if>
 </body>

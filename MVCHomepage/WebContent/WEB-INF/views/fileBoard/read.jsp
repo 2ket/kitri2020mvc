@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="${root }/CSS/board/boardStyle.css">
+<link type="text/css" rel="stylesheet" href="${root }/CSS/fileBoard/boardStyle.css">
 <style type="text/css">
 	label+span{
 	margin: 4px 0px;
@@ -26,18 +26,18 @@
 
 <script type="text/javascript">
 	function replyFunc(root, boardNumber, groupNumber, sequenceNumber, sequenceLevel){
-		var url=root+"/board/write.do?boardNumber="+boardNumber;
+		var url=root+"/fileBoard/write.do?boardNumber="+boardNumber;
 		url+="&groupNumber="+groupNumber+"&sequenceNumber="+sequenceNumber+"&sequenceLevel="+sequenceLevel;
 		location.href=url;
 	}
 	
 	function delFun(root, boardNumber, pageNumber){
-		var url=root+"/board/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		var url=root+"/fileBoard/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
 		location.href=url;
 		/* 
 		var value=confirm("정말 삭제하시겠습니까?");
 		if(value==true){
-			var url=root+"/board/deleteOk.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+			var url=root+"/fileBoard/deleteOk.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
 			location.href=url;
 		}else{
 			alert("취소되었습니다.");
@@ -47,7 +47,7 @@
 	}
 	
 	function updateFunc(root, boardNumber, pageNumber){
-		var url=root+"/board/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		var url=root+"/fileBoard/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
 		location.href=url;
 		
 	}
@@ -62,7 +62,7 @@
 			<input type="hidden" name="sequenceNumber" value="${sequenceNumber }">
 			<input type="hidden" name="sequenceLevel" value="${sequenceLevel }">
 			<div style="text-align:right;">
-				<span><a href="${root }/board/list.do">글목록</a></span>
+				<span><a href="${root }/fileBoard/list.do">글목록</a></span>
 			</div>
 			
 			<div><!-- 테두리용 -->
@@ -106,7 +106,7 @@
 					<input type="button" value="글수정" onclick="updateFunc('${root}', '${boardDto.boardNumber }', '${pageNumber }')"/>
 					<input type="button" value="글삭제" onclick="delFun('${root}', '${boardDto.boardNumber }', '${pageNumber }')"/>
 					<input type="button" value="답글" onclick="replyFunc('${root}', '${boardDto.boardNumber }', '${boardDto.groupNumber }', '${boardDto.sequenceNumber }', '${boardDto.sequenceLevel }')"/>
-					<input type="button" value="글목록" onclick="location.href='${root}/board/list.do?pageNumber=${pageNumber }'"/>
+					<input type="button" value="글목록" onclick="location.href='${root}/fileBoard/list.do?pageNumber=${pageNumber }'"/>
 				</div>
 			</div><!-- //테두리용 -->
 		

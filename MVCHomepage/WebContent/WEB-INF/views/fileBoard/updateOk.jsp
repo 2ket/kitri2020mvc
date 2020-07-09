@@ -12,13 +12,13 @@
 	<c:if test="${check>0 }">
 		<script type="text/javascript">
 			alert("수정완료");
-			location.href="${root}/board/read.do?boardNumber=${boardNumber}&pageNumber=${pageNumber}"
+			location.href="${root}/fileBoard/read.do?boardNumber=${boardNumber}&pageNumber=${pageNumber}"
 		</script>
 	</c:if>
 	<c:if test="${check==0 }">
 		<script type="text/javascript">
 			alert("수정실패");
-			location.href="${root}/board/update.do?boardNumber=${boardNumber}"
+			location.href="${root}/fileBoard/update.do?boardNumber=${boardNumber}"
 		</script>
 	</c:if>
 </body>

@@ -12,13 +12,13 @@
 	<c:if test="${check > 0 }">
 		<script type="text/javascript">
 			alert("글쓰기를 성공하셨습니다.");
-			location.href="${root}/board/list.do";
+			location.href="${root}/fileBoard/list.do";
 		</script>
 	</c:if>
 	<c:if test="${check==0 }">
 		<script type="text/javascript">
 			alert("글쓰기를 실패");
-			location.href="${root}/board/write.do"
+			location.href="${root}/fileBoard/write.do"
 		</script>
 	</c:if>
 </body>

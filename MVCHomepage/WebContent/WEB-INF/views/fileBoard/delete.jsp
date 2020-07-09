@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="center">
-		<form action="${root }/board/deleteOk.do" method="post">
+		<form action="${root }/fileBoard/deleteOk.do" method="post">
 			<input type="hidden" name="boardNumber" value="${boardNumber }">
 			<input type="hidden" name="pageNumber" value="${pageNumber }">
 		
@@ -20,7 +20,7 @@
 			</div>
 			<div>
 				<input type="submit" value="삭제">
-				<input type="button" value="목록보기" onclick="location.href='${root}/board/list.do?pageNumber=${pageNumber }'">
+				<input type="button" value="목록보기" onclick="location.href='${root}/fileBoard/list.do?pageNumber=${pageNumber }'">
 			</div>
 		</form>
 	</div>

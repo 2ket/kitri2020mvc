@@ -14,7 +14,7 @@
 		<table>
 			<tr>
 				<td width="530" align="right">
-				<a href="${root}/board/write.do">글쓰기</a>
+				<a href="${root}/fileBoard/write.do">글쓰기</a>
 				</td>
 			</tr>
 		</table>
@@ -47,7 +47,7 @@
 						</c:forEach>
 						[답글]
 					</c:if>
-					<a href="${root }/board/read.do?boardNumber=${boardDto.boardNumber}&pageNumber=${currentPage}">${boardDto.subject}</a>
+					<a href="${root }/fileBoard/read.do?boardNumber=${boardDto.boardNumber}&pageNumber=${currentPage}">${boardDto.subject}</a>
 				</td>
 				<td width="70">${boardDto.writer}</td>
 				<td width="150">
@@ -106,15 +106,15 @@
 	<%--${startPage}, ${endPage} --%>
 	
 	<c:if test="${startPage > pageBlock }">
-		<a href="${root }/board/list.do?pageNumber=${startPage-pageBlock}">이전</a>
+		<a href="${root }/fileBoard/list.do?pageNumber=${startPage-pageBlock}">이전</a>
 	</c:if>
 	
 	<c:forEach var="i" begin="${startPage }" end="${endPage }">
-		<a href="${root }/board/list.do?pageNumber=${i}">[${i }]</a>
+		<a href="${root }/fileBoard/list.do?pageNumber=${i}">[${i }]</a>
 	</c:forEach>
 	
 	<c:if test="${endPage < pageCount }">
-		<a href="${root }/board/list.do?pageNumber=${startPage+pageBlock}">[다음]</a>
+		<a href="${root }/fileBoard/list.do?pageNumber=${startPage+pageBlock}">[다음]</a>
 	</c:if>
 	</div>
 </body>
