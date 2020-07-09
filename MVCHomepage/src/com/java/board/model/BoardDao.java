@@ -30,7 +30,7 @@ public class BoardDao {
 		writeNumber(boardDto, conn);
 
 		try {
-			sql = "insert into board values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL) values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
@@ -232,6 +232,29 @@ public class BoardDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNumber);
 			pstmt.setString(2, password);
+			value=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		
+		return value;
+	}
+
+	public int update(BoardDto boardDto) {
+		int value=0;
+		
+		try {
+			sql="update board set email=?, subject=?, content=? where board_number=?";
+			conn=ConnectionProvider.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, boardDto.getEmail());
+			pstmt.setString(2, boardDto.getSubject());
+			pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
+			pstmt.setInt(4, boardDto.getBoardNumber());
 			value=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

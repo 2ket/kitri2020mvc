@@ -47,7 +47,7 @@
 	}
 	
 	function updateFunc(root, boardNumber, pageNumber){
-		var url=root+"/board/delete.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		var url=root+"/board/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
 		location.href=url;
 		
 	}
