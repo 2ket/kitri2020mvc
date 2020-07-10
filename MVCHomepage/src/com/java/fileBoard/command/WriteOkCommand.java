@@ -1,5 +1,10 @@
 package com.java.fileBoard.command;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,8 +52,38 @@ public class WriteOkCommand implements Command {
 				dataMap.put(name, value);
 				
 			}else {							// text가 아닌 것들(파일관련) : file
-				String name=fileItem.getFieldName();
-				logger.info(logMsg+ "binary : "+name+", "+fileItem.getName()+", "+fileItem.getSize());
+//				String name=fileItem.getFieldName();
+//				logger.info(logMsg+ "binary : "+name+", "+fileItem.getName()+", "+fileItem.getSize());
+				if(fileItem.getFieldName().equals("file")) {
+					//파일명 fileItem.getName() / 파일사이즈 fileItem.getSize() / getInputStream()
+					if(fileItem.getName()==null || fileItem.getName().equals("")) continue;
+					
+					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds\\";
+					File file=new File(dir, fileItem.getName());
+					
+					BufferedInputStream bis=null;	// 클라이언트의 파일을 읽어서
+					BufferedOutputStream bos=null; 	// 서버에 저장
+					try {
+						bis=new BufferedInputStream(fileItem.getInputStream(), 1024);
+						bos=new BufferedOutputStream(new FileOutputStream(file), 1024);
+						
+						while(true) {
+							int data=bis.read();
+							if(data==-1) break;
+							
+							bos.write(data);
+						}
+						bos.flush();
+					}catch(IOException e) {
+						e.printStackTrace();
+					}finally {
+						if(bis!=null) bis.close();
+						if(bos!=null) bos.close();
+					}
+					
+					
+					
+				}
 			}
 			
 		}
