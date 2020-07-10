@@ -48,6 +48,9 @@
 						[답글]
 					</c:if>
 					<a href="${root }/fileBoard/read.do?boardNumber=${boardDto.boardNumber}&pageNumber=${currentPage}">${boardDto.subject}</a>
+					<c:if test="${boardDto.fileSize!=0 }">
+						💾
+					</c:if>
 				</td>
 				<td width="70">${boardDto.writer}</td>
 				<td width="150">

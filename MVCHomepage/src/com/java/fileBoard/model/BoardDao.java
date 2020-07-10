@@ -189,6 +189,7 @@ public class BoardDao {
 				boardDto.setGroupNumber(rs.getInt("group_number"));
 				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
 				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
+				boardDto.setFileSize(rs.getLong("file_size"));
 				
 				System.out.println(boardDto); //logger관련해서 프론트컨트롤러에서 static으로 안해놔서 그냥 프린트로 찍어봄
 				
@@ -237,6 +238,11 @@ public class BoardDao {
 				boardDto.setGroupNumber(rs.getInt("group_number"));
 				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
 				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
+				
+				boardDto.setFileName(rs.getString("file_name"));
+				boardDto.setPath(rs.getString("path"));
+				boardDto.setFileSize(rs.getLong("file_size"));
+				
 			}
 			//여기까지 오류가 없었다면 Commit한다
 			conn.commit();

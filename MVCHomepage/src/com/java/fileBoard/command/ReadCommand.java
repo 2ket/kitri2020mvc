@@ -19,6 +19,12 @@ public class ReadCommand implements Command {
 		BoardDto boardDto=BoardDao.getInstance().read(boardNumber);
 		logger.info(logMsg+boardDto);
 		
+		if(boardDto.getFileSize()!=0) {
+			int idx=boardDto.getFileName().indexOf('_')+1;
+			boardDto.setFileName(boardDto.getFileName().substring(idx));
+		}
+		
+		
 		request.setAttribute("pageNumber", pageNumber);
 		request.setAttribute("boardDto", boardDto);
 		return "/WEB-INF/views/fileBoard/read.jsp";

@@ -96,11 +96,12 @@
 					<label>내용</label>
 					<span>${boardDto.content }</span>
 				</div>
-				<%-- <div>
-					<label>비밀번호</label>
-					<span>${boardDto.writer }</span>
-				</div> --%>
-				
+			<c:if test="${boardDto.fileSize!=0 }">
+				<div>
+					<label>첨부파일</label>
+					<span><a href="${root}/fileBoard/downLoad.do?boardNumber=${boardDto.boardNumber}">${boardDto.fileName }</a></span>
+				</div>
+			</c:if>
 				
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="button" value="글수정" onclick="updateFunc('${root}', '${boardDto.boardNumber }', '${pageNumber }')"/>
