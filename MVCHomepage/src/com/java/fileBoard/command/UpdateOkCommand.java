@@ -1,5 +1,7 @@
 package com.java.fileBoard.command;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,6 +24,13 @@ public class UpdateOkCommand implements Command {
 		
 		int check=BoardDao.getInstance().update(boardDto);
 		logger.info(logMsg+"수정결과: "+check);
+		//파일삭제
+//		BoardDto readBoard=BoardDao.getInstance().select(boardNumber);
+//		if(check>0 && readBoard.getFileSize()!=0) {
+//			File file=new File(readBoard.getPath());
+//			if(file.exists() && file.isFile()) file.delete();
+//		}
+		
 		
 		request.setAttribute("pageNumber", request.getParameter("pageNumber"));
 		request.setAttribute("boardNumber", request.getParameter("boardNumber"));

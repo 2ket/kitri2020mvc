@@ -14,13 +14,14 @@ public class UpdateCommand implements Command {
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
-		BoardDto boardDto=BoardDao.getInstance().read(boardNumber);
+		BoardDto boardDto=BoardDao.getInstance().select(boardNumber);
+		boardDto.setFileName(boardDto.getFileName().substring(boardDto.getFileName().indexOf('_')+1));
 		
 		request.setAttribute("boardNumber", boardNumber);
 		request.setAttribute("pageNumber", pageNumber);
 		request.setAttribute("boardDto", boardDto);
 		
-		logger.info(logMsg+"수정버튼 누르고 수정입력란에서"+boardDto.getPassword());
+		
 		return "/WEB-INF/views/fileBoard/update.jsp";
 	}
 

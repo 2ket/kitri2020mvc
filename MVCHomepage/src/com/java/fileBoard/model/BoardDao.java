@@ -315,7 +315,19 @@ public class BoardDao {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-			
+				boardDto.setBoardNumber(boardNumber);
+				boardDto.setWriter(rs.getString("writer"));
+				boardDto.setSubject(rs.getString("subject"));
+				boardDto.setEmail(rs.getString("email"));
+				boardDto.setContent(rs.getString("content"));
+				boardDto.setPassword(rs.getString("password"));
+				
+				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
+				boardDto.setReadCount(rs.getInt("read_count"));
+				boardDto.setGroupNumber(rs.getInt("group_number"));
+				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
+				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
+				
 				boardDto.setFileName(rs.getString("file_name"));
 				boardDto.setPath(rs.getString("path"));
 				boardDto.setFileSize(rs.getLong("file_size"));

@@ -15,12 +15,23 @@
 			alert("패스워드가 일치하지 않습니다.");
 			return false;
 		}
+		if(obj.file.value==""){return true;}
+		var str=obj.file.value;
+		var index=str.lastIndexOf("\\")+1;
+		var newfile=str.substring(index);
+		if(document.getElementById('oldFileName').innerHTML!=newfile){
+			obj.fileDelCheck.value=1;
+		}
+	}
+	
+	function delFile(){
+		document.forms["upd"]["fileDelCheck"].value=1;
 	}
 </script>
 </head>
 <body>
 	<div id="board"><!-- 전체 폼 -->
-		<form action="${root }/fileBoard/updateOk.do" method="post" onsubmit="return pwCheckFunc(this)">
+		<form name="upd" action="${root }/fileBoard/updateOk.do" method="post" onsubmit="return pwCheckFunc(this)">
 			<input type="hidden" name="pageNumber" value="${pageNumber }">
 			<input type="hidden" name="boardNumber" value="${boardNumber }">
 			<input type="hidden" name="password" value="${boardDto.password }">
@@ -52,7 +63,9 @@
 				<!-- 파일 업로드 -->
 				<div>
 					<label>파일첨부</label>
-					<input type="file" size="40" name="file">
+					<input type="file" size="40" name="file" >
+					<span id="oldFileName">${boardDto.fileName }</span><a onclick="delFile()">삭제</a>
+					<input type="hidden" name="fileDelCheck" value="0"><%-- 0이면 그냥 두고 1이면 삭제 --%>
 				</div>
 				
 				
