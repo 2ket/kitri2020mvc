@@ -44,7 +44,7 @@
 				</div>
 				<!-- 파일 업로드 -->
 				<div>
-					<label>파일명</label>
+					<label>파일첨부</label>
 					<input type="file" size="40" name="file">
 				</div>
 				

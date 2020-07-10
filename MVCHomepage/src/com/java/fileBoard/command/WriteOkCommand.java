@@ -61,8 +61,20 @@ public class WriteOkCommand implements Command {
 					upload.setFileSizeMax(1024*1024*10); 	// byte*kb*mb*gb
 					String fileName=System.currentTimeMillis()+"_"+fileItem.getName();
 					
-					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds\\";
-					File file=new File(dir, fileName);
+					//절대경로(안씀)
+//					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds\\";
+					
+					//톰캣 실제 서버경로(웹서버에 직접 올리면 부피가 너무 커짐. 따로 ftp서버를 둬야함.
+//					String dir=request.getServletContext().getRealPath("\\pds\\");
+//					logger.info(logMsg+dir);
+					
+					File dir=new File("c:\\pds\\");
+					dir.mkdir();
+					File file=null;
+					if(dir.exists() && dir.isDirectory()) {
+						file=new File(dir, fileName);
+						
+					}
 					
 //					logger.info(logMsg+file.getAbsolutePath());
 					BufferedInputStream bis=null;	// 클라이언트의 파일을 읽어서
@@ -99,6 +111,7 @@ public class WriteOkCommand implements Command {
 		int check=BoardDao.getInstance().insert(boardDto);
 		logger.info(logMsg+check);
 		
+		request.setAttribute("check", check);
 		return "/WEB-INF/views/fileBoard/writeOk.jsp";
 	}
 

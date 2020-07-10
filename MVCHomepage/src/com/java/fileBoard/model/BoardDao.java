@@ -301,4 +301,36 @@ public class BoardDao {
 		
 		return value;
 	}
+	
+	public BoardDto select(int boardNumber) {
+		
+		BoardDto boardDto=new BoardDto();
+		
+		try {
+			conn=ConnectionProvider.getConnection();
+			
+			sql="select * from board where board_number=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNumber);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+			
+				boardDto.setFileName(rs.getString("file_name"));
+				boardDto.setPath(rs.getString("path"));
+				boardDto.setFileSize(rs.getLong("file_size"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		
+		return boardDto;
+	}
+	
 }

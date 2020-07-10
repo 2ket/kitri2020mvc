@@ -49,6 +49,13 @@
 					<label>비밀번호</label>
 					<input type="password" name="pwCheck">
 				</div>
+				<!-- 파일 업로드 -->
+				<div>
+					<label>파일첨부</label>
+					<input type="file" size="40" name="file">
+				</div>
+				
+				
 				<div style="text-align:center;"><!-- 버튼부분 -->
 					<input type="submit" value="수정하기">
 					<input type="reset" value="다시작성">
