@@ -1,6 +1,7 @@
 package com.java.fileBoard.model;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class BoardDto {
 	private int boardNumber;
@@ -19,6 +20,10 @@ public class BoardDto {
 	private String fileName;
 	private String path;
 	private int fileSize;
+	
+	//유지보수위해 다른부분 냅두고 맵추가
+	private HashMap<String, String> dataMap;
+	
 	
 	public BoardDto() {}
 
@@ -152,6 +157,26 @@ public class BoardDto {
 
 	public void setSequenceLevel(int sequenceLevel) {
 		this.sequenceLevel = sequenceLevel;
+	}
+
+	public HashMap<String, String> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataMap(HashMap<String, String> dataMap) {
+		this.dataMap = dataMap;
+		setBoardNumber(Integer.parseInt(dataMap.get("boardNumber")));
+		setGroupNumber(Integer.parseInt(dataMap.get("groupNumber")));
+		setSequenceNumber(Integer.parseInt(dataMap.get("sequenceNumber")));
+		setSequenceLevel(Integer.parseInt(dataMap.get("sequenceLevel")));
+		
+		setWriter(dataMap.get("writer"));
+		setSubject(dataMap.get("subject"));
+		setEmail(dataMap.get("email"));
+		setContent(dataMap.get("content"));
+		setPassword(dataMap.get("password"));
+		//폼 필드로 넘어오는 값만 넣어주면 됨.
+//		System.out.println(toString());//확인
 	}
 
 	@Override
