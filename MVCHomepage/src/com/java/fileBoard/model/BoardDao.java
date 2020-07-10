@@ -30,28 +30,57 @@ public class BoardDao {
 		writeNumber(boardDto, conn);
 
 		try {
-			sql = "insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL) values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			conn = ConnectionProvider.getConnection();
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, boardDto.getWriter());
-			pstmt.setString(2, boardDto.getSubject());
-			pstmt.setString(3, boardDto.getEmail());
-			pstmt.setString(4, boardDto.getContent().replace("\r\n", "<br/>"));
-			pstmt.setString(5, boardDto.getPassword());
+			if(boardDto.getFileSize()==0) {
+				sql = "insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL) values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				conn = ConnectionProvider.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, boardDto.getWriter());
+				pstmt.setString(2, boardDto.getSubject());
+				pstmt.setString(3, boardDto.getEmail());
+				pstmt.setString(4, boardDto.getContent().replace("\r\n", "<br/>"));
+				pstmt.setString(5, boardDto.getPassword());
+				
+				/* Date date=boardDto.getWriteDate();
+				long time=date.getTime();
+				Timestamp ts=new Timestamp(time);
+				pstmt.setTimestamp(6, ts); */
+				
+				pstmt.setTimestamp(6, new Timestamp(boardDto.getWriteDate().getTime()));
+				
+				pstmt.setInt(7, boardDto.getReadCount());
+				pstmt.setInt(8, boardDto.getGroupNumber());
+				pstmt.setInt(9, boardDto.getSequenceNumber());
+				pstmt.setInt(10, boardDto.getSequenceLevel());
+			}else {
+				sql = "insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL, FILE_NAME, PATH, FILE_SIZE) values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				conn = ConnectionProvider.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, boardDto.getWriter());
+				pstmt.setString(2, boardDto.getSubject());
+				pstmt.setString(3, boardDto.getEmail());
+				pstmt.setString(4, boardDto.getContent().replace("\r\n", "<br/>"));
+				pstmt.setString(5, boardDto.getPassword());
+				
+				/* Date date=boardDto.getWriteDate();
+				long time=date.getTime();
+				Timestamp ts=new Timestamp(time);
+				pstmt.setTimestamp(6, ts); */
+				
+				pstmt.setTimestamp(6, new Timestamp(boardDto.getWriteDate().getTime()));
+				
+				pstmt.setInt(7, boardDto.getReadCount());
+				pstmt.setInt(8, boardDto.getGroupNumber());
+				pstmt.setInt(9, boardDto.getSequenceNumber());
+				pstmt.setInt(10, boardDto.getSequenceLevel());
+				pstmt.setString(11, boardDto.getFileName());
+				pstmt.setString(12, boardDto.getPath());
+				pstmt.setLong(13, boardDto.getFileSize());
+			}
 			
-			/* Date date=boardDto.getWriteDate();
-			long time=date.getTime();
-			Timestamp ts=new Timestamp(time);
-			pstmt.setTimestamp(6, ts); */
 			
-			pstmt.setTimestamp(6, new Timestamp(boardDto.getWriteDate().getTime()));
-			
-			pstmt.setInt(7, boardDto.getReadCount());
-			pstmt.setInt(8, boardDto.getGroupNumber());
-			pstmt.setInt(9, boardDto.getSequenceNumber());
-			pstmt.setInt(10, boardDto.getSequenceLevel());
-
 			value=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

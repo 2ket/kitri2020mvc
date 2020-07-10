@@ -58,9 +58,13 @@ public class WriteOkCommand implements Command {
 					//파일명 fileItem.getName() / 파일사이즈 fileItem.getSize() / getInputStream()
 					if(fileItem.getName()==null || fileItem.getName().equals("")) continue;
 					
-					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds\\";
-					File file=new File(dir, fileItem.getName());
+					upload.setFileSizeMax(1024*1024*10); 	// byte*kb*mb*gb
+					String fileName=System.currentTimeMillis()+"_"+fileItem.getName();
 					
+					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds\\";
+					File file=new File(dir, fileName);
+					
+//					logger.info(logMsg+file.getAbsolutePath());
 					BufferedInputStream bis=null;	// 클라이언트의 파일을 읽어서
 					BufferedOutputStream bos=null; 	// 서버에 저장
 					try {
@@ -80,16 +84,21 @@ public class WriteOkCommand implements Command {
 						if(bis!=null) bis.close();
 						if(bos!=null) bos.close();
 					}
-					
-					
-					
+					boardDto.setFileName(fileName);
+					boardDto.setFileSize(fileItem.getSize());
+					boardDto.setPath(file.getAbsolutePath());
 				}
+				
 			}
 			
 		}
 		boardDto.setDataMap(dataMap);
 		boardDto.setWriteDate(new Date());
 		logger.info(logMsg+boardDto.toString());
+		
+		int check=BoardDao.getInstance().insert(boardDto);
+		logger.info(logMsg+check);
+		
 		return "/WEB-INF/views/fileBoard/writeOk.jsp";
 	}
 

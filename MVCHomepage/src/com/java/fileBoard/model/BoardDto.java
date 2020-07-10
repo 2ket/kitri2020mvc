@@ -19,7 +19,7 @@ public class BoardDto {
 	
 	private String fileName;
 	private String path;
-	private int fileSize;
+	private long fileSize;
 	
 	//유지보수위해 다른부분 냅두고 맵추가
 	private HashMap<String, String> dataMap;
@@ -63,11 +63,11 @@ public class BoardDto {
 		this.path = path;
 	}
 
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 
