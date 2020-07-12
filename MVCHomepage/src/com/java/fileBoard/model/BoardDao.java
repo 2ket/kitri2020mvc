@@ -279,18 +279,48 @@ public class BoardDao {
 		return value;
 	}
 
-	public int update(BoardDto boardDto) {
+	public int update(BoardDto boardDto, int delCheck) {
 		int value=0;
 		
 		try {
-			sql="update board set email=?, subject=?, content=? where board_number=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, boardDto.getEmail());
-			pstmt.setString(2, boardDto.getSubject());
-			pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
-			pstmt.setInt(4, boardDto.getBoardNumber());
-			value=pstmt.executeUpdate();
+			
+			if(delCheck==0) {	//파일 삭제 필요 없을경우
+				sql="update board set email=?, subject=?, content=? where board_number=?";
+				conn=ConnectionProvider.getConnection();
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, boardDto.getEmail());
+				pstmt.setString(2, boardDto.getSubject());
+				pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
+				pstmt.setInt(4, boardDto.getBoardNumber());
+				
+				value=pstmt.executeUpdate();
+			}else {				//파일 삭제 필요할경우(파일삭제는 command단에서 먼저 실행됬음)
+				if(boardDto.getFileSize()==0) {		//새로운 파일은 없는경우
+					sql="update board set email=?, subject=?, content=?, file_name='', path='', file_size=0 where board_number=?";
+					conn=ConnectionProvider.getConnection();
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, boardDto.getEmail());
+					pstmt.setString(2, boardDto.getSubject());
+					pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
+					pstmt.setInt(4, boardDto.getBoardNumber());
+					
+					value=pstmt.executeUpdate();
+				}else {								//새 파일 등록해서 수정해야 하는 경우
+					sql="update board set email=?, subject=?, content=?, file_name=?, path=?, file_size=? where board_number=?";
+					conn=ConnectionProvider.getConnection();
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, boardDto.getEmail());
+					pstmt.setString(2, boardDto.getSubject());
+					pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
+					pstmt.setString(4, boardDto.getFileName());
+					pstmt.setString(5, boardDto.getPath());
+					pstmt.setLong(6, boardDto.getFileSize());
+					pstmt.setInt(7, boardDto.getBoardNumber());
+					
+					value=pstmt.executeUpdate();
+				}
+				
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

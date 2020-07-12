@@ -21,19 +21,25 @@
 		var newfile=str.substring(index);
 		if(document.getElementById('oldFileName').innerHTML!=newfile){
 			obj.fileDelCheck.value=1;
+			alert("기존파일 삭제되었습니다.");
 		}
 	}
 	
 	function delFile(){
 		document.forms["upd"]["fileDelCheck"].value=1;
+		alert("파일 삭제되었습니다.");
 	}
 </script>
 </head>
 <body>
 	<div id="board"><!-- 전체 폼 -->
-		<form name="upd" action="${root }/fileBoard/updateOk.do" method="post" onsubmit="return pwCheckFunc(this)">
+		<form name="upd" action="${root }/fileBoard/updateOk.do" method="post" onsubmit="return pwCheckFunc(this)" enctype="multipart/form-data">
 			<input type="hidden" name="pageNumber" value="${pageNumber }">
 			<input type="hidden" name="boardNumber" value="${boardNumber }">
+			<input type="hidden" name="groupNumber" value="${boardDto.groupNumber }">
+			<input type="hidden" name="sequenceNumber" value="${boardDto.sequenceNumber }">
+			<input type="hidden" name="sequenceLevel" value="${boardDto.sequenceLevel }">
+			
 			<input type="hidden" name="password" value="${boardDto.password }">
 			<div style="text-align:right;">
 				<span><a href="${root }/fileBoard/list.do?pageNumber=${pageNumber}">글목록</a></span>
