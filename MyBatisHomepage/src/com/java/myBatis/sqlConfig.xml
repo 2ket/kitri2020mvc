@@ -21,5 +21,6 @@
   	<!-- DB 쿼리 문이 들어가는 부분 -->
   <mappers>
     <mapper resource="com/java/member/model/mapper/MemberMapper.xml"/>
+    <mapper resource="com/java/board/model/mapper/BoardMapper.xml"/>
   </mappers>
 </configuration>
