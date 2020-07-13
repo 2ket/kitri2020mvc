@@ -1,0 +1,33 @@
+package com.java.member.command;
+
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.java.command.Command;
+import com.java.member.model.MemberDao;
+import com.java.member.model.ZipcodeDto;
+
+public class ZipcodeCommand implements Command {
+
+	@Override
+	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		
+		String checkDong=request.getParameter("dong");
+		logger.info(logMsg+"dong : "+checkDong);
+		
+		ArrayList<ZipcodeDto> arrayList=null;
+		if(checkDong!=null) {
+			//DB
+			arrayList=MemberDao.getInstance().zipcodeReader(checkDong);
+			logger.info(logMsg+"arrListZip> "+arrayList.size());
+		}
+		
+		request.setAttribute("zipcodeList", arrayList);
+		return "/WEB-INF/views/member/zipcode.jsp";
+	}
+
+}
