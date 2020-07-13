@@ -53,7 +53,7 @@ public class UpdateOkCommand implements Command {
 					String fileName=System.currentTimeMillis()+"_"+fileItem.getName();
 					
 					//절대경로(안씀)
-					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds";
+					String dir="C:\\Kitri2020\\mvc\\workspace\\MyBatisHomepage\\WebContent\\pds";
 					File file=new File(dir, fileName);
 					
 					BufferedInputStream bis=null;	// 클라이언트의 파일을 읽어서
@@ -92,8 +92,10 @@ public class UpdateOkCommand implements Command {
 		BoardDto readBoard=BoardDao.getInstance().select(boardDto.getBoardNumber());
 		logger.info(logMsg+"getPath : "+readBoard.getPath());
 		if(delCheck==1) {
-			File file=new File(readBoard.getPath());
-			if(file.exists() && file.isFile()) file.delete();
+			if(readBoard.getFileSize()!=0) {
+				File file=new File(readBoard.getPath());
+				if(file.exists() && file.isFile()) file.delete();
+			}
 		}
 		
 		
@@ -108,8 +110,8 @@ public class UpdateOkCommand implements Command {
 	
 		
 		//기존 수정 관련 속성
-		request.setAttribute("pageNumber", request.getParameter("pageNumber"));
-		request.setAttribute("boardNumber", request.getParameter("boardNumber"));
+		request.setAttribute("pageNumber", dataMap.get("pageNumber"));
+		request.setAttribute("boardNumber", boardDto.getBoardNumber());
 		request.setAttribute("check", check);
 		return "/WEB-INF/views/fileBoard/updateOk.jsp";
 	}
