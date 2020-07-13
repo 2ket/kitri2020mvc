@@ -11,7 +11,7 @@ public class UpdateOkCommand implements Command {
 
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		request.setCharacterEncoding("utf-8");
+		
 		
 		BoardDto boardDto=new BoardDto();
 		

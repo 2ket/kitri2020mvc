@@ -25,8 +25,7 @@ public class UpdateOkCommand implements Command {
 
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		request.setCharacterEncoding("utf-8");
-	
+		
 		BoardDto boardDto=new BoardDto();
 
 		DiskFileItemFactory factory=new DiskFileItemFactory();		// 파일 보관 객체
