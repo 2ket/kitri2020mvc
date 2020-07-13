@@ -13,7 +13,7 @@
 			<result column="jumin1" property="jumin1"/>
 			<result column="jumin2" property="jumin2"/>
 			<result column="email" property="email"/>
-			<result column="zipCode" property="zipCode"/>
+			<result column="zipcode" property="zipCode"/>
 			<result column="addr" property="addr"/>
 			<result column="JOB" property="job"/>
 			<result column="MAILING" property="mailing"/>
@@ -43,4 +43,13 @@
 	<select id="member_select" parameterType="String" resultMap="member_dto">
 		select * from member where id=#{id}
 	</select>
+	
+	<update id="member_update" parameterType="com.java.member.model.MemberDto">
+		update member set pw=#{pw}, email=#{email}, zipcode=#{zipCode}, addr=#{addr}, job=#{job}, mailing=#{mailing}, interest=#{interest} where num=#{num}
+	</update>
+	
+	<delete id="member_delete" parameterType="java.util.Map">
+		delete from member where id=#{id} and pw=#{pw}
+	</delete>
+	
 </mapper>

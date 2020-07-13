@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -109,61 +110,45 @@ public class MemberDao {	// Data Access Object
 		try {
 			session=sqlSessionFactory.openSession();
 			memberDto=session.selectOne("member_select", id);
-				
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			session.close();
 		}
-		
 		return memberDto;
 	}
 	
 	public int update(MemberDto memberDto) {
 		int value=0;
-		Connection conn=null;
-		PreparedStatement pstmt=null;
 		
 		try {
-			String sql="update member set pw=?, email=?, zipcode=?, addr=?, job=?, mailing=?, interest=? where num=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, memberDto.getPw());
-			pstmt.setString(2, memberDto.getEmail());
-			pstmt.setString(3, memberDto.getZipCode());
-			pstmt.setString(4, memberDto.getAddr());
-			pstmt.setString(5, memberDto.getJob());
-			pstmt.setString(6, memberDto.getMailing());
-			pstmt.setString(7, memberDto.getInterest());
-			pstmt.setInt(8, memberDto.getNum());
-			value=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			value=session.update("member_update", memberDto);
+			
+			session.commit();
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		return value;
 	}
 	
 	public int delete(String id, String pw) {
 		int value=0;
-		Connection conn=null;
-		PreparedStatement pstmt=null;
+		Map<String, String> hMap=new HashMap<String, String>();
+		//Map은 interface, HashMap은 class이므로 부모격인 interface가 최상위 부모객체로 담아내는게 나중에 코드 다루기 좋다.
 		
 		try {
-			String sql="delete from member where id=? and pw=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-			value=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			hMap.put("id", id);
+			hMap.put("pw", pw);
+			value=session.delete("member_delete", hMap);
+			session.commit();
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		return value;
 	}
