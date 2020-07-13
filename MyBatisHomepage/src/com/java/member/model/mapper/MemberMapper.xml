@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.java.member.model.mapper.MemberMapper">
+<!-- id식별자, 들어오는 값 형태=parameterType(풀패키지명 써야한다. ArrayList면 java.util.ArrayList), 나가는값=resultType(select에만 씀) -->
+	<insert id="member_insert" parameterType="com.java.member.model.MemberDto">
+		insert into member values(member_num_seq.nextval, #{id}, #{ pw}, #{ name}, #{ jumin1}, #{ jumin2}, #{ email}, #{ zipCode}, #{ addr}, #{ job}, #{ mailing}, #{ interest}, #{ memberLevel}, sysdate)
+	</insert>
+	
+		<!-- 자료형의 경우는 String 이렇게만 써도 되긴함 -->
+	<select id="id_check" parameterType="java.lang.String" resultType="String">
+		select id from member where id=#{id}
+	</select>
+</mapper>

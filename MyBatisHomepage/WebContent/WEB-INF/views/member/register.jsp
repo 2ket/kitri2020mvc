@@ -45,7 +45,7 @@
 				</div>
 				<div>
 					<label>우편번호</label>
-					<input type="text" name="zipCode" readonly>
+					<input type="text" name="zipCode" >
 					<input type="button" onclick="zipcodeReader('${root}')" value="우편번호 검색">
 				</div>
 				<div>

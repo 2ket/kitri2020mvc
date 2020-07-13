@@ -7,10 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import com.java.database.ConnectionProvider;
 import com.java.database.JdbcUtil;
+import com.java.myBatis.SqlManager;
 
 public class MemberDao {	// Data Access Object
+	private static SqlSessionFactory sqlSessionFactory=SqlManager.getInstance();//초기화
+	private SqlSession session;	//쿼리문은 계속 바뀌므로 초기화 하지 않는다.
+	
 	// Singleton pattern : 단 한개의 객체만을 가지고 구현(설계)
 	private static MemberDao instance=new MemberDao();
 	public static MemberDao getInstance() {
@@ -18,35 +25,19 @@ public class MemberDao {	// Data Access Object
 	}
 	
 	public int insert(MemberDto memberDto) {
-		Connection conn=null;
-		PreparedStatement pstmt=null;
 
 		int check=0;
 		
 		try {
-			String sql="insert into member values(member_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
+			session=sqlSessionFactory.openSession();
 			
-			pstmt.setString(1, memberDto.getId());
-			pstmt.setString(2, memberDto.getPw());
-			pstmt.setString(3, memberDto.getName());
-			pstmt.setString(4, memberDto.getJumin1());
-			pstmt.setString(5, memberDto.getJumin2());
-			pstmt.setString(6, memberDto.getEmail());
-			pstmt.setString(7, memberDto.getZipCode());
-			pstmt.setString(8, memberDto.getAddr());
-			pstmt.setString(9, memberDto.getJob());
-			pstmt.setString(10, memberDto.getMailing());
-			pstmt.setString(11, memberDto.getInterest());
-			pstmt.setString(12, memberDto.getMemberLevel());
-			
-			check=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			check=session.insert("member_insert", memberDto);
+			session.commit();
+		
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		return check;
 	}
@@ -56,25 +47,17 @@ public class MemberDao {	// Data Access Object
 	
 	//아이디 중복확인
 	public int idCheck(String id) {
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
 		int value=0;
 		
 		try {
-			String sql="select id from member where id=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
-			if(rs.next()) value=1;
-		}catch (SQLException e) {
-			// TODO: handle exception
+			session=sqlSessionFactory.openSession();
+			String checkId=session.selectOne("id_check", id);
+			
+			if(checkId!=null) value=1;
+		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);;
-			JdbcUtil.close(pstmt);;
-			JdbcUtil.close(conn);;
+			session.close();
 		}
 		
 		return value;

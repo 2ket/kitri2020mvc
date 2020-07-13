@@ -37,7 +37,6 @@ public class RegisterOkCommand implements Command {
 		logger.info(logMsg+"check : "+check);
 		
 		request.setAttribute("check", check);
-		
 		return "/WEB-INF/views/member/registerOk.jsp";
 	}
 
