@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -51,7 +52,7 @@ public class MemberDao {	// Data Access Object
 		
 		try {
 			session=sqlSessionFactory.openSession();
-			String checkId=session.selectOne("id_check", id);
+			String checkId=session.selectOne("member_id_check", id);
 			
 			if(checkId!=null) value=1;
 		}catch (Exception e) {
@@ -64,112 +65,56 @@ public class MemberDao {	// Data Access Object
 	}
 	
 	//우편번호 검색
-	public ArrayList<ZipcodeDto> zipcodeReader(String checkDong) {
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		ArrayList<ZipcodeDto> arrayList=null;
+	public List<ZipcodeDto> zipcodeReader(String checkDong) {
+		
+		List<ZipcodeDto> arrayList=null;
 		
 		try {
-			String sql="select * from zipcode where dong=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, checkDong);
-			rs=pstmt.executeQuery();
+			session=sqlSessionFactory.openSession();
+			arrayList=session.selectList("member_zipcode", checkDong);
 			
-			arrayList=new ArrayList<ZipcodeDto>();
-			while(rs.next()) {
-				ZipcodeDto address=new ZipcodeDto();
-				address.setZipcode(rs.getString("zipcode"));
-				address.setSido(rs.getString("sido"));
-				address.setGugun(rs.getString("gugun"));
-				address.setDong(rs.getString("dong"));
-				address.setRi(rs.getString("ri"));
-				address.setBunji(rs.getString("bunji"));
-				arrayList.add(address);
-			}
-		}catch(SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		
 		return arrayList;
 	}
 
 	public String loginCheck(String id, String pw) {
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		
 		String value=null;
 		
 		try {
-			String sql="select member_level from member where id=? and pw=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-			rs=pstmt.executeQuery();
-			if(rs.next()) value=rs.getString("member_level");
-		}catch(SQLException e) {
+			HashMap<String, String> hMap=new HashMap<String, String>();
+			hMap.put("id", id);
+			hMap.put("pw", pw);
+			
+			session=sqlSessionFactory.openSession();
+			value=session.selectOne("member_login", hMap);
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		
 		return value;
 	}
 	public MemberDto updateId(String id) {
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		
 		MemberDto memberDto=null;
 		
 		try {
-			String sql="select * from member where id=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
+			session=sqlSessionFactory.openSession();
+			memberDto=session.selectOne("member_select", id);
+				
 			
-			if(rs.next()) {
-				memberDto=new MemberDto();
-				memberDto.setNum(rs.getInt("num"));
-				memberDto.setId(rs.getString("id"));
-				memberDto.setPw(rs.getString("pw"));
-				memberDto.setName(rs.getString("name"));
-				memberDto.setJumin1(rs.getString("jumin1"));
-				memberDto.setJumin2(rs.getString("jumin2"));
-				memberDto.setEmail(rs.getString("email"));
-				memberDto.setZipCode(rs.getString("zipcode"));
-				memberDto.setAddr(rs.getString("addr"));
-				memberDto.setJob(rs.getString("job"));
-				memberDto.setMailing(rs.getString("mailing"));
-				memberDto.setInterest(rs.getString("interest"));
-				memberDto.setMemberLevel(rs.getString("member_level"));
-				
-				//DB와 자바 사이에서 날짜를 주고 받을 때는 시간형태(숫자형태)로 변환해서 주고 받아야 한다.
-				//시간은 long형태로 변환하면 날짜나 계산하기 위한 캘린더형식으로 변환하기 좋다.
-				/*
-				Timestamp ts=rs.getTimestamp("register_date");
-				long time=ts.getTime();
-				Date date=new Date(time);
-				memberDto.setRegisterDate(date);*/
-				
-				
-				memberDto.setRegisterDate(new Date(rs.getTimestamp("register_date").getTime()));
-				
-			}
-		}catch(SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		
 		return memberDto;
