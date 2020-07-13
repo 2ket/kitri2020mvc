@@ -15,8 +15,10 @@ public class UpdateCommand implements Command {
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
 		BoardDto boardDto=BoardDao.getInstance().select(boardNumber);
-		boardDto.setFileName(boardDto.getFileName().substring(boardDto.getFileName().indexOf('_')+1));
 		
+		if(boardDto.getFileSize()!=0) {
+			boardDto.setFileName(boardDto.getFileName().substring(boardDto.getFileName().indexOf('_')+1));
+		}
 		request.setAttribute("boardNumber", boardNumber);
 		request.setAttribute("pageNumber", pageNumber);
 		request.setAttribute("boardDto", boardDto);

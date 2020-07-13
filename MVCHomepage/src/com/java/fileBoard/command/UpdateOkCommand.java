@@ -54,7 +54,7 @@ public class UpdateOkCommand implements Command {
 					String fileName=System.currentTimeMillis()+"_"+fileItem.getName();
 					
 					//절대경로(안씀)
-					String dir="C:\\Users\\user\\git\\kitri2020mvc\\MVCHomepage\\WebContent\\pds";
+					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds";
 					File file=new File(dir, fileName);
 					
 					BufferedInputStream bis=null;	// 클라이언트의 파일을 읽어서
@@ -112,8 +112,7 @@ public class UpdateOkCommand implements Command {
 		request.setAttribute("pageNumber", request.getParameter("pageNumber"));
 		request.setAttribute("boardNumber", request.getParameter("boardNumber"));
 		request.setAttribute("check", check);
-//		return "/WEB-INF/views/fileBoard/updateOk.jsp";
-		return null;
+		return "/WEB-INF/views/fileBoard/updateOk.jsp";
 	}
 
 }

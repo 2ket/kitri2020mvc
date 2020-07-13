@@ -62,7 +62,8 @@ public class WriteOkCommand implements Command {
 					String fileName=System.currentTimeMillis()+"_"+fileItem.getName();
 					
 					//절대경로(안씀)
-					String dir="C:\\Users\\user\\git\\kitri2020mvc\\MVCHomepage\\WebContent\\pds";
+//					String dir="C:\\Users\\user\\git\\kitri2020mvc\\MVCHomepage\\WebContent\\pds";
+					String dir="C:\\Kitri2020\\mvc\\workspace\\MVCHomepage\\WebContent\\pds";
 					File file=new File(dir, fileName);
 					
 					//톰캣 실제 서버경로(웹서버에 직접 올리면 부피가 너무 커짐. 따로 ftp서버를 둬야함.
