@@ -7,6 +7,9 @@ import java.sql.SQLException;
 //import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -55,7 +58,10 @@ public class BoardDao {
 		int groupNumber = boardDto.getGroupNumber();
 		int sequenceNumber = boardDto.getSequenceNumber();
 		int sequenceLevel = boardDto.getSequenceLevel();
-
+		
+		Map<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("groupNumber", groupNumber);
+		hMap.put("sequenceNumber", sequenceNumber);
 		try {
 			if (boardNumber == 0) { // root.
 				
@@ -67,19 +73,15 @@ public class BoardDao {
 				}
 				
 			} else { // 자식글, 답글 : 글순서, 글레벨
-//				sql="update board set sequence_number=sequence_number+1 where group_number=? and sequence_number > ?";
-//				
-//				conn=ConnectionProvider.getConnection();
-//				pstmt=conn.prepareStatement(sql);
-//				pstmt.setInt(1, groupNumber);
-//				pstmt.setInt(2, sequenceNumber);
-//				pstmt.executeUpdate();
-//				
-//				sequenceNumber+=1;
-//				sequenceLevel+=1;
-//				
-//				boardDto.setSequenceNumber(sequenceNumber);
-//				boardDto.setSequenceLevel(sequenceLevel);
+				session=sqlSessionFactory.openSession();
+				session.update("board_reNumber", hMap);
+				session.commit();
+
+				sequenceNumber+=1;
+				sequenceLevel+=1;
+				
+				boardDto.setSequenceNumber(sequenceNumber);
+				boardDto.setSequenceLevel(sequenceLevel);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,114 +94,51 @@ public class BoardDao {
 		int value=0;
 		
 		try {
-			sql="select count(*) from board";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+			session=sqlSessionFactory.openSession();
+			value=session.selectOne("board_count");
 			
-			if(rs.next()) {
-				value=rs.getInt(1);
-			}
-		}catch(SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		return value;
 	}
 
-	public ArrayList<BoardDto> getBoardList(int startRow, int endRow) {
-		ArrayList<BoardDto> boardList=null;
+	public List<BoardDto> getBoardList(int startRow, int endRow) {
+		HashMap<String, Integer> hMap=new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		List<BoardDto> boardList=null;
 		
 		try {
-			sql="select b.* From "
-					+ "(select rownum rnum, a.* From "
-						+ "(select * from board order by group_number desc, sequence_number asc) a) b "
-				+ "where b.rnum>=? and b.rnum<=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rs=pstmt.executeQuery();
+			sql="select b.* From (select rownum rnum, a.* From (select * from board order by group_number desc, sequence_number asc) a) b where b.rnum>=? and b.rnum<=?";
+			session=sqlSessionFactory.openSession();
 			
-			boardList=new ArrayList<BoardDto>();
-			while(rs.next()) {
-				BoardDto boardDto= new BoardDto();
-				boardDto.setBoardNumber(rs.getInt("board_number"));
-				boardDto.setWriter(rs.getString("writer"));
-				
-				boardDto.setSubject(rs.getString("subject"));
-				
-				boardDto.setEmail(rs.getString("email"));
-				boardDto.setContent(rs.getString("content"));
-				
-				boardDto.setPassword(rs.getString("password"));
-				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
-				//memberDao에서도 날짜->시간 했던 것처럼 하나로 합쳐줌
-				boardDto.setReadCount(rs.getInt("read_Count"));
-				boardDto.setGroupNumber(rs.getInt("group_number"));
-				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
-				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
-				
-				System.out.println(boardDto); //logger관련해서 프론트컨트롤러에서 static으로 안해놔서 그냥 프린트로 찍어봄
-				
-				boardList.add(boardDto);
-			}
-		}catch(SQLException e) {
+			boardList=session.selectList("board_list", hMap);
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		
 		return boardList;
 	}
 
 	public BoardDto read(int boardNumber) {
-		String sqlUpdate=null;
 		BoardDto boardDto=new BoardDto();
 		
 		try {
-			conn=ConnectionProvider.getConnection();
-			//DML query문이 2개이상일 경우 autoCommit 해제해서 둘 중 하나가 실패하면 둘 다 실행 안되게 해야한다.
-			conn.setAutoCommit(false);
-			sqlUpdate="update board set read_count=read_count+1 where board_number=?";
-			pstmt=conn.prepareStatement(sqlUpdate);
-			pstmt.setInt(1, boardNumber);
-			int value=pstmt.executeUpdate();
-			if(value>0) JdbcUtil.close(pstmt);
-			
-			sql="select * from board where board_number=?";
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNumber);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				boardDto.setBoardNumber(boardNumber);
-				boardDto.setWriter(rs.getString("writer"));
-				boardDto.setSubject(rs.getString("subject"));
-				boardDto.setEmail(rs.getString("email"));
-				boardDto.setContent(rs.getString("content"));
-				boardDto.setPassword(rs.getString("password"));
-				
-				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
-				boardDto.setReadCount(rs.getInt("read_count"));
-				boardDto.setGroupNumber(rs.getInt("group_number"));
-				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
-				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
-			}
-			//여기까지 오류가 없었다면 Commit한다
-			conn.commit();
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			session.update("board_view", boardNumber);
+			boardDto=session.selectOne("board_read", boardNumber);
+			session.commit();
+		}catch(Exception e) {
+			session.rollback();
 			e.printStackTrace();
-			JdbcUtil.rollBack(conn);
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		
 		return boardDto;
@@ -207,22 +146,20 @@ public class BoardDao {
 
 	public int delete(int boardNumber, String password) {
 		int value=0;
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("boardNumber", boardNumber);
+		hMap.put("password", password);
+		
 		//root글을 삭제할경우 답글이 붕 떠버리기때문에 이에 대한 해결책이 필요함. 혼자서 고민해볼것
 		try {
-			sql="delete from board where board_number=? and password=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNumber);
-			pstmt.setString(2, password);
-			value=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			value=session.delete("board_delete", hMap);
+			session.commit();
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
-		
-		
 		return value;
 	}
 
@@ -230,22 +167,14 @@ public class BoardDao {
 		int value=0;
 		
 		try {
-			sql="update board set email=?, subject=?, content=? where board_number=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, boardDto.getEmail());
-			pstmt.setString(2, boardDto.getSubject());
-			pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
-			pstmt.setInt(4, boardDto.getBoardNumber());
-			value=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			value=session.update("board_update", boardDto);
+			session.commit();
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
-		
-		
 		return value;
 	}
 }

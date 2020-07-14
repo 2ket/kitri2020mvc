@@ -5,6 +5,23 @@
     
 <mapper namespace="com.java.board.model.mapper.BoardMapper">
 
+	<resultMap type="com.java.board.model.BoardDto" id="board_dto">
+		<result column="BOARD_NUMBER" property="boardNumber"/>
+		<result column="WRITER" property="writer"/>
+		<result column="SUBJECT" property="subject"/>
+		<result column="EMAIL" property="email"/>
+		<result column="CONTENT" property="content"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="WRITE_DATE" property="writeDate"/>
+		<result column="READ_COUNT" property="readCount"/>
+		<result column="GROUP_NUMBER" property="groupNumber"/>
+		<result column="SEQUENCE_NUMBER" property="sequenceNumber"/>
+		<result column="SEQUENCE_LEVEL" property="sequenceLevel"/>
+		<!-- <result column="FILE_NAME" property="fileName"/>
+		<result column="PATH" property="path"/>
+		<result column="FILE_SIZE" property="fileSize"/> -->
+	</resultMap>
+	
 	<select id="board_group_number_max" resultType="int">
 		select nvl(max(group_number), 0) as max_group_num from board
 	</select>
@@ -13,5 +30,39 @@
 		insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL) 
 			values(board_num_seq.nextval, #{writer}, #{subject}, #{email}, #{content}, #{password}, #{writeDate}, #{readCount}, #{groupNumber}, #{sequenceNumber}, #{sequenceLevel})
 	</insert>
+	
+	<select id="board_count" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<select id="board_list" parameterType="java.util.HashMap" resultMap="board_dto">
+		<![CDATA[
+		select b.* From 
+			(select rownum rnum, a.* From 
+				(select * from board order by group_number desc, sequence_number asc) a) b 
+		where b.rnum>=#{startRow} and b.rnum<=#{endRow}
+		]]>
+	</select>
+	<update id="board_view" parameterType="int">
+		<![CDATA[
+		update board set read_count=read_count+1 where board_number=#{boardNumber}
+		]]>
+	</update>
+	
+	<select id="board_read" parameterType="int" resultMap="board_dto">
+		select * from board where board_number=#{boardNumber}
+	</select>
+	
+	<delete id="board_delete" parameterType="java.util.HashMap">
+		delete from board where board_number=#{boardNumber} and password=#{password}
+	</delete>
+	<update id="board_update" parameterType="com.java.board.model.BoardDto">
+		update board set email=#{email}, subject=#{subject}, content=#{content} where board_number=#{boardNumber}
+	</update>
+	<update id="board_reNumber">
+		<![CDATA[
+		update board set sequence_number=sequence_number+1 where group_number=#{groupNumber} and sequence_number > #{sequenceNumber}
+		]]>
+	</update>
 </mapper>
     

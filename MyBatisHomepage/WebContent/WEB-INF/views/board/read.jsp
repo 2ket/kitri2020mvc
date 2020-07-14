@@ -32,7 +32,7 @@
 	}
 	
 	function delFun(root, boardNumber, pageNumber){
-		var url=root+"/board/update.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
+		var url=root+"/board/delete.do?boardNumber="+boardNumber+"&pageNumber="+pageNumber;
 		location.href=url;
 		/* 
 		var value=confirm("정말 삭제하시겠습니까?");
