@@ -14,7 +14,7 @@ public class UpdateCommand implements Command {
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
-		BoardDto boardDto=BoardDao.getInstance().read(boardNumber);
+		BoardDto boardDto=BoardDao.getInstance().select(boardNumber);
 		
 		request.setAttribute("boardNumber", boardNumber);
 		request.setAttribute("pageNumber", pageNumber);

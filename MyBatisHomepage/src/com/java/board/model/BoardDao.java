@@ -25,15 +25,9 @@ public class BoardDao {
 	// 싱글톤. BoardDao 계속 부를때마다 생성하지 않고 한번 인스턴스 생성하여,
 	// getInstance함수로 그 인스턴스를 전달하여 한번의 객체생성으로 사용할수 있게함
 	private static BoardDao instance = new BoardDao();
-
 	public static BoardDao getInstance() {
 		return instance;
 	}
-
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-	private String sql = "";
 
 	public int insert(BoardDto boardDto) {
 		int value = 0;
@@ -112,7 +106,6 @@ public class BoardDao {
 		List<BoardDto> boardList=null;
 		
 		try {
-			sql="select b.* From (select rownum rnum, a.* From (select * from board order by group_number desc, sequence_number asc) a) b where b.rnum>=? and b.rnum<=?";
 			session=sqlSessionFactory.openSession();
 			
 			boardList=session.selectList("board_list", hMap);
@@ -128,10 +121,25 @@ public class BoardDao {
 
 	public BoardDto read(int boardNumber) {
 		BoardDto boardDto=new BoardDto();
-		
 		try {
 			session=sqlSessionFactory.openSession();
 			session.update("board_view", boardNumber);
+			boardDto=session.selectOne("board_read", boardNumber);
+			session.commit();
+		}catch(Exception e) {
+			session.rollback();
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return boardDto;
+	}
+	
+	public BoardDto select(int boardNumber) {
+		BoardDto boardDto=new BoardDto();
+		try {
+			session=sqlSessionFactory.openSession();
 			boardDto=session.selectOne("board_read", boardNumber);
 			session.commit();
 		}catch(Exception e) {
