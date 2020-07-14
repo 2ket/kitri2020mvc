@@ -8,10 +8,16 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import com.java.database.ConnectionProvider;
 import com.java.database.JdbcUtil;
+import com.java.myBatis.SqlManager;
 
 public class BoardDao {
+	private static SqlSessionFactory sqlSessionFactory=SqlManager.getInstance();
+	private SqlSession session;
 	// 싱글톤. BoardDao 계속 부를때마다 생성하지 않고 한번 인스턴스 생성하여,
 	// getInstance함수로 그 인스턴스를 전달하여 한번의 객체생성으로 사용할수 있게함
 	private static BoardDao instance = new BoardDao();
@@ -27,72 +33,39 @@ public class BoardDao {
 
 	public int insert(BoardDto boardDto) {
 		int value = 0;
-		writeNumber(boardDto, conn);
-
+		writeNumber(boardDto);
+		
+		boardDto.setContent(boardDto.getContent().replace("\r\n", "<br/>"));
+		boardDto.setWriteDate(new Timestamp(boardDto.getWriteDate().getTime()));
+		
 		try {
 			
 			if(boardDto.getFileSize()==0) {
-				sql = "insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL) values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				conn = ConnectionProvider.getConnection();
-				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, boardDto.getWriter());
-				pstmt.setString(2, boardDto.getSubject());
-				pstmt.setString(3, boardDto.getEmail());
-				pstmt.setString(4, boardDto.getContent().replace("\r\n", "<br/>"));
-				pstmt.setString(5, boardDto.getPassword());
+				session=sqlSessionFactory.openSession();
+				value=session.insert("fileBoard_insert", boardDto);
 				
 				/* Date date=boardDto.getWriteDate();
 				long time=date.getTime();
 				Timestamp ts=new Timestamp(time);
 				pstmt.setTimestamp(6, ts); */
 				
-				pstmt.setTimestamp(6, new Timestamp(boardDto.getWriteDate().getTime()));
-				
-				pstmt.setInt(7, boardDto.getReadCount());
-				pstmt.setInt(8, boardDto.getGroupNumber());
-				pstmt.setInt(9, boardDto.getSequenceNumber());
-				pstmt.setInt(10, boardDto.getSequenceLevel());
 			}else {
-				sql = "insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL, FILE_NAME, PATH, FILE_SIZE) values(board_num_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				conn = ConnectionProvider.getConnection();
-				pstmt = conn.prepareStatement(sql);
+				session=sqlSessionFactory.openSession();
+				value=session.insert("fileBoard_insert_file", boardDto);
 				
-				pstmt.setString(1, boardDto.getWriter());
-				pstmt.setString(2, boardDto.getSubject());
-				pstmt.setString(3, boardDto.getEmail());
-				pstmt.setString(4, boardDto.getContent().replace("\r\n", "<br/>"));
-				pstmt.setString(5, boardDto.getPassword());
-				
-				/* Date date=boardDto.getWriteDate();
-				long time=date.getTime();
-				Timestamp ts=new Timestamp(time);
-				pstmt.setTimestamp(6, ts); */
-				
-				pstmt.setTimestamp(6, new Timestamp(boardDto.getWriteDate().getTime()));
-				
-				pstmt.setInt(7, boardDto.getReadCount());
-				pstmt.setInt(8, boardDto.getGroupNumber());
-				pstmt.setInt(9, boardDto.getSequenceNumber());
-				pstmt.setInt(10, boardDto.getSequenceLevel());
-				pstmt.setString(11, boardDto.getFileName());
-				pstmt.setString(12, boardDto.getPath());
-				pstmt.setLong(13, boardDto.getFileSize());
 			}
-			
-			
-			value=pstmt.executeUpdate();
-		} catch (SQLException e) {
+			session.commit();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 
 		return value;
 	}
 
-	public void writeNumber(BoardDto boardDto, Connection conn) {
+	public void writeNumber(BoardDto boardDto) {
 		// 그룹번호(ROOT), 글순서(자식), 글 레벨(자식)
 		int boardNumber = boardDto.getBoardNumber();
 		int groupNumber = boardDto.getGroupNumber();
@@ -101,18 +74,17 @@ public class BoardDao {
 
 		try {
 			if (boardNumber == 0) { // root.
-				sql = "select max(group_number) as max_group_num from board";
-				conn = ConnectionProvider.getConnection();
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
+				session=sqlSessionFactory.openSession();
+				int max=session.selectOne("fileBoard_maxGroup");
 				
-				if(rs.next()) {
-					int max=rs.getInt(1);
+				if(max!=0) {
 					boardDto.setGroupNumber(max+1);
 				}
 				
 			} else { // 자식글, 답글 : 글순서, 글레벨
 				sql="update board set sequence_number=sequence_number+1 where group_number=? and sequence_number > ?";
+				
+				session=sqlSessionFactory.openSession();
 				
 				conn=ConnectionProvider.getConnection();
 				pstmt=conn.prepareStatement(sql);

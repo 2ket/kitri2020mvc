@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.java.fileBoard.model.mapper.FileBoardMapper">
+	<resultMap type="com.java.fileBoard.model.BoardDto" id="board_dto">
+		<result column="BOARD_NUMBER" property="boardNumber"/>
+		<result column="WRITER" property="writer"/>
+		<result column="SUBJECT" property="subject"/>
+		<result column="EMAIL" property="email"/>
+		<result column="CONTENT" property="content"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="WRITE_DATE" property="writeDate"/>
+		<result column="READ_COUNT" property="readCount"/>
+		<result column="GROUP_NUMBER" property="groupNumber"/>
+		<result column="SEQUENCE_NUMBER" property="sequenceNumber"/>
+		<result column="SEQUENCE_LEVEL" property="sequenceLevel"/>
+		<result column="FILE_NAME" property="fileName"/>
+		<result column="PATH" property="path"/>
+		<result column="FILE_SIZE" property="fileSize"/>
+	</resultMap>
+	<insert id="fileBoard_insert">
+		insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL) 
+		values(board_num_seq.nextval, #{writer}, #{subject}, #{email}, #{content}, #{password}, #{writeDate}, #{readCount}, #{groupNumber}, #{sequenceNumber}, #{sequenceLevel})
+	</insert>
+	<insert id="fileBoard_insert_file">
+		insert into board (BOARD_NUMBER, WRITER, SUBJECT, EMAIL, CONTENT, PASSWORD, WRITE_DATE, READ_COUNT, GROUP_NUMBER, SEQUENCE_NUMBER, SEQUENCE_LEVEL, FILE_NAME, PATH, FILE_SIZE) 
+		values(board_num_seq.nextval, #{writer}, #{subject}, #{email}, #{content}, #{password}, #{writeDate}, #{readCount}, #{groupNumber}, #{sequenceNumber}, #{sequenceLevel}, #{fileName}, #{path}, #{fileSize})
+	</insert>
+	
+	<select id="fileBoard_maxGroup">
+		select max(group_number) as max_group_num from board
+	</select>
+</mapper>

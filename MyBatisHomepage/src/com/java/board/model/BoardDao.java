@@ -1,9 +1,6 @@
 package com.java.board.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 //import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,8 +11,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.java.database.ConnectionProvider;
-import com.java.database.JdbcUtil;
+
 import com.java.myBatis.SqlManager;
 
 public class BoardDao {
@@ -141,9 +137,7 @@ public class BoardDao {
 		try {
 			session=sqlSessionFactory.openSession();
 			boardDto=session.selectOne("board_read", boardNumber);
-			session.commit();
 		}catch(Exception e) {
-			session.rollback();
 			e.printStackTrace();
 		}finally {
 			session.close();
