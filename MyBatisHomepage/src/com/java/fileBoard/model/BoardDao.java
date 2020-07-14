@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -121,124 +121,66 @@ public class BoardDao {
 		return value;
 	}
 
-	public ArrayList<BoardDto> getBoardList(int startRow, int endRow) {
-		ArrayList<BoardDto> boardList=null;
+	public List<BoardDto> getBoardList(int startRow, int endRow) {
+		List<BoardDto> boardList=null;
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
 		
 		try {
-			sql="select b.* From "
-					+ "(select rownum rnum, a.* From "
-						+ "(select * from board order by group_number desc, sequence_number asc) a) b "
-				+ "where b.rnum>=? and b.rnum<=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rs=pstmt.executeQuery();
+			session=sqlSessionFactory.openSession();
+			boardList=session.selectList("fileBoard_list", map);
 			
-			boardList=new ArrayList<BoardDto>();
-			while(rs.next()) {
-				BoardDto boardDto= new BoardDto();
-				boardDto.setBoardNumber(rs.getInt("board_number"));
-				boardDto.setWriter(rs.getString("writer"));
-				
-				boardDto.setSubject(rs.getString("subject"));
-				
-				boardDto.setEmail(rs.getString("email"));
-				boardDto.setContent(rs.getString("content"));
-				
-				boardDto.setPassword(rs.getString("password"));
-				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
-				//memberDao에서도 날짜->시간 했던 것처럼 하나로 합쳐줌
-				boardDto.setReadCount(rs.getInt("read_Count"));
-				boardDto.setGroupNumber(rs.getInt("group_number"));
-				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
-				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
-				boardDto.setFileSize(rs.getLong("file_size"));
-				
-				System.out.println(boardDto); //logger관련해서 프론트컨트롤러에서 static으로 안해놔서 그냥 프린트로 찍어봄
-				
-				boardList.add(boardDto);
-			}
-		}catch(SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		
 		return boardList;
 	}
 
 	public BoardDto read(int boardNumber) {
-		String sqlUpdate=null;
 		BoardDto boardDto=new BoardDto();
 		
 		try {
-			conn=ConnectionProvider.getConnection();
-			//DML query문이 2개이상일 경우 autoCommit 해제해서 둘 중 하나가 실패하면 둘 다 실행 안되게 해야한다.
-			conn.setAutoCommit(false);
-			sqlUpdate="update board set read_count=read_count+1 where board_number=?";
-			pstmt=conn.prepareStatement(sqlUpdate);
-			pstmt.setInt(1, boardNumber);
-			int value=pstmt.executeUpdate();
-			if(value>0) JdbcUtil.close(pstmt);
+			//조회수 올리기
+			session=sqlSessionFactory.openSession();
+			int value=session.update("fileBoard_view", boardNumber);
 			
-			sql="select * from board where board_number=?";
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNumber);
-			rs=pstmt.executeQuery();
+			if(value>0) session.close();
 			
-			if(rs.next()) {
-				boardDto.setBoardNumber(boardNumber);
-				boardDto.setWriter(rs.getString("writer"));
-				boardDto.setSubject(rs.getString("subject"));
-				boardDto.setEmail(rs.getString("email"));
-				boardDto.setContent(rs.getString("content"));
-				boardDto.setPassword(rs.getString("password"));
-				
-				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
-				boardDto.setReadCount(rs.getInt("read_count"));
-				boardDto.setGroupNumber(rs.getInt("group_number"));
-				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
-				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
-				
-				boardDto.setFileName(rs.getString("file_name"));
-				boardDto.setPath(rs.getString("path"));
-				boardDto.setFileSize(rs.getLong("file_size"));
-				
-			}
-			//여기까지 오류가 없었다면 Commit한다
-			conn.commit();
-		}catch(SQLException e) {
+			//선택한 게시글 상세 가져오기
+			session=sqlSessionFactory.openSession();
+			boardDto=session.selectOne("fileBoard_read", boardNumber);
+			
+			session.commit();
+		}catch(Exception e) {
 			e.printStackTrace();
-			JdbcUtil.rollBack(conn);
+			session.rollback();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
-		
 		return boardDto;
 	}
 
 	public int delete(int boardNumber, String password) {
 		int value=0;
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("boardNumber", boardNumber);
+		map.put("password", password);
 		//root글을 삭제할경우 답글이 붕 떠버리기때문에 이에 대한 해결책이 필요함. 혼자서 고민해볼것
+		
 		try {
-			sql="delete from board where board_number=? and password=?";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNumber);
-			pstmt.setString(2, password);
-			value=pstmt.executeUpdate();
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			value=session.delete("fileBoard_delete", map);
+			session.commit();
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
-		
 		
 		return value;
 	}
@@ -249,15 +191,9 @@ public class BoardDao {
 		try {
 			
 			if(delCheck==0) {	//파일 삭제 필요 없을경우
-				sql="update board set email=?, subject=?, content=? where board_number=?";
-				conn=ConnectionProvider.getConnection();
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setString(1, boardDto.getEmail());
-				pstmt.setString(2, boardDto.getSubject());
-				pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
-				pstmt.setInt(4, boardDto.getBoardNumber());
-				
-				value=pstmt.executeUpdate();
+				session=sqlSessionFactory.openSession();
+				session.update("fileBoard_update", boardDto);
+				session.commit();
 			}else {				//파일 삭제 필요할경우(파일삭제는 command단에서 먼저 실행됬음)
 				if(boardDto.getFileSize()==0) {		//새로운 파일은 없는경우
 					sql="update board set email=?, subject=?, content=?, file_name='', path='', file_size=0 where board_number=?";

@@ -1,6 +1,6 @@
 package com.java.fileBoard.command;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +27,7 @@ public class ListCommand implements Command {
 		//count 사용해서 글이 아예 없는경우 페이징 안보이게
 		int count=BoardDao.getInstance().getCount();
 		logger.info(logMsg+count);
-		ArrayList<BoardDto> boardList=null;
+		List<BoardDto> boardList=null;
 		if(count>0) {
 			//startRow, endRow
 			boardList=BoardDao.getInstance().getBoardList(startRow, endRow);
