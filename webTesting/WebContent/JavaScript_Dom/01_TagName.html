@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function test(){
+		var div=document.getElementsByTagName("div");
+		//alert(div.length);
+		div[0].innerHTML="사과";
+		div[1].innerHTML="바나나";
+		div[2].innerHTML="딸기";
+	}
+	function sub(){
+		var span=document.getElementsByTagName("span");
+		for(var i=0; i<span.length; i++){
+			span[i].innerHTML="apple"+i;
+		}
+	}
+	function func(){
+		var font=document.getElementsByTagName("font");
+		var span=font[0].getElementsByTagName("span");
+		for(var i=0; i<span.length; i++){
+			span[i].innerHTML="banana"+i;
+		}
+	}
+</script>
+</head>
+<body>
+	<div style="font-size: 20px; color:red;"></div>
+	<div></div>
+	<div></div>
+	<input type="button" value="클릭" onclick="test()">
+	<div></div>
+	<br><br>
+	
+	<font>
+		<span></span>
+		<span></span>
+		<input type="button" value="span" onclick="sub()">
+		<input type="button" value="font-span" onclick="func()">
+	</font>
+</body>
+</html>

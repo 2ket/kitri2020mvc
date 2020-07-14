@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function test(){
+		var test1=document.getElementById("test1");
+		test1.innerHTML="사과";
+		
+		var test2=document.getElementById("test2");
+		var span=test2.getElementsByTagName("span");
+		var childSpan=span[2].getElementsByTagName("span");
+		
+		childSpan[0].innerHTML="딸기";
+		
+		var test3=document.getElementById("test3");
+		var tspan=test3.getElementsByTagName("span");
+		tspan[0].innerHTML="수박";
+		tspan[1].innerHTML="메론";
+	}
+</script>
+</head>
+<body onload="test()">
+	<div id="test1"></div>
+	<div id="test2">
+		<span>1</span><br>
+		<span>2</span><br>
+		<span>
+			<span style="color:red;"></span><br>
+			<span>4</span><br>
+		</span><br>
+	</div>
+	<div id="test3" style="color:red;">
+		<span></span><br>
+		<span></span><br>
+		<span></span><br>
+	</div>
+</body>
+</html>
