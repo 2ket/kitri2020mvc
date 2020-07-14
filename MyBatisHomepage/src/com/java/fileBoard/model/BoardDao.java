@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -82,15 +84,13 @@ public class BoardDao {
 				}
 				
 			} else { // 자식글, 답글 : 글순서, 글레벨
-				sql="update board set sequence_number=sequence_number+1 where group_number=? and sequence_number > ?";
+				
+				Map<String, Integer> map=new HashMap<String, Integer>();
+				map.put("groupNumber", groupNumber);
+				map.put("sequenceNumber", sequenceNumber);
 				
 				session=sqlSessionFactory.openSession();
-				
-				conn=ConnectionProvider.getConnection();
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, groupNumber);
-				pstmt.setInt(2, sequenceNumber);
-				pstmt.executeUpdate();
+				session.update("fileBoard_update_number", map);
 				
 				sequenceNumber+=1;
 				sequenceLevel+=1;
@@ -98,12 +98,11 @@ public class BoardDao {
 				boardDto.setSequenceNumber(sequenceNumber);
 				boardDto.setSequenceLevel(sequenceLevel);
 			}
-		} catch (SQLException e) {
+			session.commit();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 	}
 	
@@ -111,20 +110,13 @@ public class BoardDao {
 		int value=0;
 		
 		try {
-			sql="select count(*) from board";
-			conn=ConnectionProvider.getConnection();
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+			session=sqlSessionFactory.openSession();
+			value=session.selectOne("fileBoard_getCount");
 			
-			if(rs.next()) {
-				value=rs.getInt(1);
-			}
-		}catch(SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
 		return value;
 	}
