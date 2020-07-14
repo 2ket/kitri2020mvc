@@ -62,4 +62,12 @@
 	<update id="fileBoard_update" parameterType="com.java.fileBoard.model.BoardDto">
 		update board set email=#{email}, subject=#{subject}, content=#{content} where board_number=#{boardNumber}
 	</update>
+	<update id="fileBoard_update_delFile">
+		<![CDATA[
+		update board set email=#{email}, subject=#{subject}, content=#{content}, file_name='', path='', file_size=0 where board_number=#{boardNumber}
+		]]>
+	</update>
+	<update id="fileBoard_update_file">
+		update board set email=#{email}, subject=#{subject}, content=#{content}, file_name=#{fileName}, path=#{path}, file_size=#{fileSize} where board_number=#{boardNumber}
+	</update>
 </mapper>

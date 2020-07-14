@@ -1,11 +1,6 @@
 package com.java.fileBoard.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.java.database.ConnectionProvider;
-import com.java.database.JdbcUtil;
+
 import com.java.myBatis.SqlManager;
 
 public class BoardDao {
@@ -23,15 +17,9 @@ public class BoardDao {
 	// 싱글톤. BoardDao 계속 부를때마다 생성하지 않고 한번 인스턴스 생성하여,
 	// getInstance함수로 그 인스턴스를 전달하여 한번의 객체생성으로 사용할수 있게함
 	private static BoardDao instance = new BoardDao();
-
 	public static BoardDao getInstance() {
 		return instance;
 	}
-
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-	private String sql = "";
 
 	public int insert(BoardDto boardDto) {
 		int value = 0;
@@ -187,48 +175,25 @@ public class BoardDao {
 
 	public int update(BoardDto boardDto, int delCheck) {
 		int value=0;
+		boardDto.setContent(boardDto.getContent().replace("\r\n", "<br/>"));
 		
 		try {
-			
+			session=sqlSessionFactory.openSession();
 			if(delCheck==0) {	//파일 삭제 필요 없을경우
-				session=sqlSessionFactory.openSession();
-				session.update("fileBoard_update", boardDto);
-				session.commit();
+				value=session.update("fileBoard_update", boardDto);
 			}else {				//파일 삭제 필요할경우(파일삭제는 command단에서 먼저 실행됬음)
 				if(boardDto.getFileSize()==0) {		//새로운 파일은 없는경우
-					sql="update board set email=?, subject=?, content=?, file_name='', path='', file_size=0 where board_number=?";
-					conn=ConnectionProvider.getConnection();
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, boardDto.getEmail());
-					pstmt.setString(2, boardDto.getSubject());
-					pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
-					pstmt.setInt(4, boardDto.getBoardNumber());
-					
-					value=pstmt.executeUpdate();
+					value=session.update("fileBoard_update_delFile", boardDto );
 				}else {								//새 파일 등록해서 수정해야 하는 경우
-					sql="update board set email=?, subject=?, content=?, file_name=?, path=?, file_size=? where board_number=?";
-					conn=ConnectionProvider.getConnection();
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, boardDto.getEmail());
-					pstmt.setString(2, boardDto.getSubject());
-					pstmt.setString(3, boardDto.getContent().replace("\r\n", "<br/>"));
-					pstmt.setString(4, boardDto.getFileName());
-					pstmt.setString(5, boardDto.getPath());
-					pstmt.setLong(6, boardDto.getFileSize());
-					pstmt.setInt(7, boardDto.getBoardNumber());
-					
-					value=pstmt.executeUpdate();
+					value=session.update("fileBoard_update_file", boardDto);
 				}
-				
 			}
-		}catch(SQLException e) {
+			session.commit();
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
-		
-		
 		return value;
 	}
 	
@@ -237,41 +202,13 @@ public class BoardDao {
 		BoardDto boardDto=new BoardDto();
 		
 		try {
-			conn=ConnectionProvider.getConnection();
-			
-			sql="select * from board where board_number=?";
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNumber);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				boardDto.setBoardNumber(boardNumber);
-				boardDto.setWriter(rs.getString("writer"));
-				boardDto.setSubject(rs.getString("subject"));
-				boardDto.setEmail(rs.getString("email"));
-				boardDto.setContent(rs.getString("content"));
-				boardDto.setPassword(rs.getString("password"));
-				
-				boardDto.setWriteDate(new Date(rs.getTimestamp("write_date").getTime()));
-				boardDto.setReadCount(rs.getInt("read_count"));
-				boardDto.setGroupNumber(rs.getInt("group_number"));
-				boardDto.setSequenceNumber(rs.getInt("sequence_number"));
-				boardDto.setSequenceLevel(rs.getInt("sequence_level"));
-				
-				boardDto.setFileName(rs.getString("file_name"));
-				boardDto.setPath(rs.getString("path"));
-				boardDto.setFileSize(rs.getLong("file_size"));
-				
-			}
-			
-		}catch(SQLException e) {
+			session=sqlSessionFactory.openSession();
+			boardDto=session.selectOne("fileBoard_read", boardNumber);
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			session.close();
 		}
-		
 		return boardDto;
 	}
 	
