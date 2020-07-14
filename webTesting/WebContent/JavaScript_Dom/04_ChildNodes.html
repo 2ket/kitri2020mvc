@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function func(){
+		var arr1=new Array();
+		
+		var div=document.getElementsByTagName("div");
+		arr1.push(div[0].nodeName);
+		arr1.push(div[0].nodeValue);
+		arr1.push("\n");
+		arr1.push(div[0].childNodes[0].nodeName);
+		arr1.push(div[0].childNodes[0].nodeValue);
+		//alert(arr);
+		
+		var result=document.getElementById("result");
+		result.innerHTML=div[0].childNodes[0].nodeValue;
+		result.style.color="red";
+		//div[1].innerHTML=div[0].childNodes[0].nodeValue;
+	}
+	function sub(){
+		var arr=new Array();
+		var melon=document.getElementById("melon");
+		arr.push(melon.nodeName+", "+melon.nodeValue);
+		arr.push(melon.childNodes.length);
+		for(var i=0; i<melon.childNodes.length; i++){
+			//arr.push(melon.childNodes[i].nodeName);
+		}
+		
+		var span=melon.getElementsByTagName("span");
+		for(var i=0; i<span.length; i++){
+			arr.push(span[i].childNodes[0].nodeValue);
+		}
+		
+		alert(arr.join("\n"));
+	}
+</script>
+</head>
+<body>
+	<div>나는 사과를 좋아합니다.</div>
+	<div id="result"></div>
+	<input type="button" value="클릭" onclick="func()">
+	<br><br><br>
+	
+	<span id="melon">
+		<span>가</span>
+		<span>나</span>
+		<span>다</span>
+	</span>
+	<input type="button" value="클릭" onclick="sub()">
+</body>
+</html>
