@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sub(){
+		var arr=new Array();
+		var firstSon=document.getElementById("firstSon");
+		var firstSonFather=firstSon.parentNode;
+		arr.push(firstSonFather.nodeType+", "+firstSonFather.nodeName+", "+firstSonFather.nodeValue);
+		
+		var grandfather=firstSon.parentNode.parentNode.parentNode;
+		arr.push(grandfather.nodeType+" "+grandfather.nodeName+" "+grandfather.nodeValue);
+		alert(arr.join("\n"));
+	}
+</script>
+</head>
+<body onload="sub()">
+	<div id="grandfather">
+		<div id="father">
+			<span id="firstSon">첫 째입니다.</span>
+			<span id="dauther">둘 째입니다.</span>
+			<span id="secondSon">셋 째입니다.</span>
+		</div>
+	</div>
+</body>
+</html>
