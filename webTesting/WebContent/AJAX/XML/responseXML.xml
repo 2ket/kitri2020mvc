@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<member xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.example.org/responseXML responseXML.xsd"
+			 xmlns="http://www.example.org/responseXML">
+	<student>
+		<stdNumber>1001</stdNumber>
+		<stdName>홍길동</stdName>
+		<score>95</score>
+	</student>
+
+	<student>
+		<stdNumber>1002</stdNumber>
+		<stdName>김길동</stdName>
+		<score>90</score>
+	</student>
+	
+	<student>
+		<stdNumber>1003</stdNumber>
+		<stdName>박길동</stdName>
+		<score>80</score>
+	</student>
+</member>
