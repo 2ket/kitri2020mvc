@@ -10,18 +10,34 @@
 		//div.align="center";
 		//div.style.color="blue";
 		div.className="abc";
+		//div.setAttribute("class", "abc");
 		div.setAttribute("align", "center");
 		div.setAttribute("style", "color:blue;background-color:yellow; display:block; width:300px; margin:auto;")
 		/* div.style.backgroundColor="yellow";
 		div.style.display="block";
 		div.style.width="300px";
 		div.style.margin="auto"; */
+		
+		//div.setAttribute("onclick", "xyz('apple')");
+		var su=10;
+		//div.setAttribute("onclick", "xyz('"+su+"')");
+		//div.onclick=xyz;	//괄호 넣으면 에러남.
+		var value=20;
+		div.onclick=function (){	
+	//한번 쓰고 버려지는 익명함수. 함수 명이 없고, 위에 setAttribute로 함수호출과 변수 전달이 복잡하여 이렇게 익명함수를 통해 전달해준다.
+			xyz(su, value);
+		}
+		
 		div.innerHTML="점심시간이다.";
 		
 		arr.push(div.align);
 		arr.push(div.getAttribute("align"));
-		alert(arr.join("\n"));
+		
+		//alert(arr.join("\n"));
 		document.body.appendChild(div);
+	}
+	function xyz(a, b){
+		alert(a+b);
 	}
 </script>
 </head>

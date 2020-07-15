@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function func(){
+		var form=document.createElement("form");
+		form.setAttribute("id", "createForm");
+		form.setAttribute("action", "#");
+		form.setAttribute("method", "post");
+		
+		var label=document.createElement("label");
+		label.innerHTML="이름";
+		
+		var input=document.createElement("input");
+		input.setAttribute("type", "text");
+		input.setAttribute("name", "name");
+		input.setAttribute("size", "12");
+		
+		var br1=document.createElement("br");
+		var br2=document.createElement("br");
+		
+		
+		var button=document.createElement("input");
+		button.setAttribute("type", "button");
+		button.setAttribute("value", "전송");
+		button.onclick=sub;
+		/* button.onclick=function (){
+			sub();
+		} */
+		
+		form.appendChild(label);
+		form.appendChild(input);
+		
+		form.appendChild(br1);
+		form.appendChild(br2);
+		form.appendChild(button);
+		document.body.appendChild(form);
+	}
+
+	function sub(){
+		if(document.getElementsByName("name")[0].value.length==0){
+			alert("이름을 입력하세요");
+			document.getElementById("createForm").name.focus();
+		}
+			//alert(document.getElementsByName("name")[0].value);
+		if(document.getElementsByName("name")[0].value.length!=0){	
+			document.getElementById("createForm").submit();
+		}
+	}
+</script>
+</head>
+<body onload="func()">
+
+</body>
+</html>
