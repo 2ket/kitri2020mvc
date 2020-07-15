@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sub(){
+		var arr=new Array();
+		
+		var dauther=document.getElementById("dauther");
+		var olderBrother=dauther.previousSibling.previousSibling;
+		var youngerBrother=dauther.nextSibling.nextSibling;
+		arr.push(olderBrother.nodeType+" "+youngerBrother.nodeType);
+		// 형제노드 뽑아올때 텍스트 노드도 형제로 인식한다(엔터키) 그래서 태그노드만 뽑을려면 함수 하나 만들어서 작업해야함
+		
+		
+		
+		alert(arr.join("\n"));
+	}
+
+</script>
+</head>
+<body onload="sub()">
+	<div id="grandfather">
+		<div id="father">
+			<span id="firstSon">첫 째입니다.</span>
+			<span id="dauther">둘 째입니다.</span>
+			<span id="secondSon">셋 째입니다.</span>
+		</div>
+	</div>
+</body>
+</html>
