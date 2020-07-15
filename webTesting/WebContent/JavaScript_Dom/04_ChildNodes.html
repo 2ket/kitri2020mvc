@@ -36,6 +36,39 @@
 		
 		alert(arr.join("\n"));
 	}
+	
+ 	function method(){
+		var arr=new Array();
+		var apple=document.getElementById("apple");
+		var appleChild=apple.childNodes;
+		for(var i=0; i<appleChild.length; i++){
+			arr.push(appleChild[i].nodeName+", "+appleChild[i].nodeValue+", "+appleChild[i].nodeType);
+		}
+		//nodeType = 1:태그노드, 2:속성노드, 3:텍스트노드
+		var span=apple.getElementsByTagName("span");
+		arr.push(span[0].childNodes[0].nodeValue);
+		
+		var i=apple.getElementsByTagName("i");
+		arr.push(i[0].childNodes[0].nodeValue);
+		
+		var b=apple.getElementsByTagName("b");
+		arr.push(b[0].childNodes[0].nodeValue);
+		
+		alert(arr.join("\n"));
+	}
+	
+	function tagMod(){
+		var arr=new Array();
+		var apple=document.getElementById("apple");
+		var appleChild=apple.childNodes;
+		
+		for(var i=0; i<appleChild.length; i++){
+			if(appleChild[i].nodeType==1){
+				arr.push(appleChild[i].childNodes[0].nodeValue);
+			}
+		}
+		alert(arr.join("\n"));
+	}
 </script>
 </head>
 <body>
@@ -50,5 +83,12 @@
 		<span>다</span>
 	</span>
 	<input type="button" value="클릭" onclick="sub()">
+	
+	<div id="apple">
+		<span>A</span>
+		<i>B</i>
+		<b>C</b>
+	</div>
+	<input type="button" value="클릭" onclick="tagMod()">
 </body>
 </html>
