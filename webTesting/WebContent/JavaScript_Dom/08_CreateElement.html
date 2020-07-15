@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sub(){
+		var divNode=document.createElement("div");
+		divNode.setAttribute("align", "center");
+		
+		var spanNode=document.createElement("span");
+		spanNode.style.color="red";
+		spanNode.innerHTML="안녕하세요";
+		
+		divNode.appendChild(spanNode);
+		var disp=document.getElementById("disp");
+		disp.appendChild(divNode);
+	}
+</script>
+</head>
+<body onload="sub()">
+	<div id="disp">
+	
+	</div>
+	
+</body>
+</html>
