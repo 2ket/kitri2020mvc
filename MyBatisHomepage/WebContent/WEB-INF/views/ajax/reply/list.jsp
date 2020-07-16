@@ -8,13 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${root }/xhr/xhr.js"></script>
+<script type="text/javascript" src="${root }/javaScript/reply/replyWrite.js"></script>
 </head>
 <body>
 	<div>실시간 댓글이 가능합니다.</div>
 	<br><br>
 	<div>
 		<input id="writeReply" type="text" name="write" size="50">
-		<input type="button" value="전송" onclick="">
+		<input type="button" value="전송" onclick="writeToServer('${root}')">
 	</div>
 	
 	<!-- 뿌려주는 공간 -->

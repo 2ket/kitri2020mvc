@@ -11,7 +11,6 @@ function createXHR(){
 }
 
 var xhr=null;
-var arr=new Array();
 
 function sendRequest(method, url, param, callback){	//넘어온 값 : post, xhr.txt, msg, fromServer()
 	var httpMethod=method.toUpperCase();
