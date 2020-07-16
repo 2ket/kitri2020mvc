@@ -12,7 +12,7 @@
       <dataSource type="UNPOOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-        <property name="username" value="mvc"/>
+        <property name="username" value="hr"/>
         <property name="password" value="1234"/>
       </dataSource>
     </environment>
@@ -20,8 +20,12 @@
   
   	<!-- DB 쿼리 문이 들어가는 부분 -->
   <mappers>
-    <mapper resource="com/java/member/model/mapper/MemberMapper.xml"/>
+   <!--  
+   	<mapper resource="com/java/member/model/mapper/MemberMapper.xml"/>
     <mapper resource="com/java/board/model/mapper/BoardMapper.xml"/>
     <mapper resource="com/java/fileBoard/model/mapper/FileBoardMapper.xml"/>
+    -->
+    <mapper resource="com/java/sawon/model/mapper/SawonMapper.xml"/>
+    <mapper resource="com/java/reply/model/mapper/ReplyMapper.xml"/>
   </mappers>
 </configuration>
