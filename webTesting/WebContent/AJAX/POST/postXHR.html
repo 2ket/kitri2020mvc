@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="postXHR.js"></script>
+</head>
+<body>
+	<form id="createForm">	<!-- action이나 method 설정 안해줘도 됨(xhr.open("GET", "json02.txt", true)같은 형식으로 설정해줄거기때문에 -->
+		<input type="text" name="msg">
+		<input type="button" value="입력" onclick="toServer()">
+		
+	</form>
+	<br><br>
+	
+	<div id="disp"></div>
+</body>
+</html>

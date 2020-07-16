@@ -26,11 +26,38 @@ function resultProcess(){
 	
 	
 	if(xhr.readyState==4 && xhr.status==200){
-	var obj=JSON.parse(xhr.responseText);
-	//var obj=xhr.responseText;
-	
-	arr.push(obj.name+", "+obj.age+", "+obj.cars.length+", "+obj.cars[0].name+", "+obj.cars.length);
-	alert(arr.join("\n"));
+		var obj=JSON.parse(xhr.responseText);
+		//var obj=xhr.responseText;
+		
+		//arr.push(obj.name+", "+obj.age+", "+obj.cars.length+", "+obj.cars[0].name+", "+obj.cars.length);
+		var disp=document.getElementById("disp");
+		var divName=document.createElement("div");
+		divName.innerHTML=obj.name;
+		var divAge=document.createElement("div");
+		divAge.innerHTML=obj.age;
+		
+		disp.appendChild(divName);
+		disp.appendChild(divAge);
+		for(var i=0; i<obj.cars.length; i++){
+			var ul=document.createElement("ul");
+			var li=document.createElement("li");
+			li.innerHTML=obj.cars[i].name;
+			ul.appendChild(li);
+			
+			for(var j=0; j<obj.cars[i].model.length; j++){
+				var liList=document.createElement("li");
+				liList.innerHTML=obj.cars[i].model[j];
+				ul.appendChild(liList);
+			}
+			
+			disp.appendChild(ul);
+		}
+		
+		//alert(arr.join("\n"));
+		
+		//동적 - DB
+		//정적(AJAX) - XML, JSON -> JSON이 8~90%로 많음
+		//프록시작업도 배울것
 	}
 }
 
