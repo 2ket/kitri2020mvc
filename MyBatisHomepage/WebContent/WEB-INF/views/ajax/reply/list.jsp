@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${root }/xhr/xhr.js"></script>
 <script type="text/javascript" src="${root }/javaScript/reply/replyWrite.js"></script>
+<link type="text/css" rel="stylesheet" href="${root }/CSS/reply/reply.css">
 </head>
 <body>
 	<div>실시간 댓글이 가능합니다.</div>
@@ -20,7 +21,7 @@
 	</div>
 	
 	<!-- 뿌려주는 공간 -->
-	<div>
+	<div id="disp">
 		<!-- 실시간 댓글(새로운 글) -->
 		
 		

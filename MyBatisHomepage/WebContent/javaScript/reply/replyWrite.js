@@ -12,8 +12,27 @@ function writeToServer(root){
 	var param="writeReply="+writeReply;
 	sendRequest("POST", url, param, writeFromServer);
 	
-	alert(arr.join("\n"));
 }
 function writeFromServer(){
-	
+	if(xhr.readyState==4 && xhr.status==200){
+		arr.push("마지막출력 : "+xhr.responseText);
+		
+		var str=xhr.responseText;
+		var split=str.split(",");
+		
+		var bunho=split[0];
+		var msg=split[1];
+		
+		var disp=document.getElementById("disp");
+		var spanBunho=document.createElement("span");
+		spanBunho.innerHTML=bunho;
+		var spanMsg=document.createElement("span");
+		spanMsg.innerHTML=msg;
+		var br=document.createElement("br");
+		
+		disp.appendChild(spanBunho);
+		disp.appendChild(spanMsg);
+		disp.appendChild(br);
+		alert(arr.join("\n"));
+	}
 }
