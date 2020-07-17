@@ -14,11 +14,12 @@ public class ReplyWriteCommand implements Command {
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String writeReply=request.getParameter("writeReply");
-		
-		logger.info(logMsg+writeReply);
+		String user_ip=request.getRemoteAddr();
+		logger.info(logMsg+user_ip+writeReply);
 		
 		ReplyDto replyDto=new ReplyDto();
 		replyDto.setLine_reply(writeReply);
+		replyDto.setUser_ip(user_ip);
 		
 		int check=ReplyDao.getInstance().insert(replyDto);
 		logger.info(logMsg+check);
@@ -34,15 +35,19 @@ public class ReplyWriteCommand implements Command {
 			//행도 여러개 열도 여러개를 보내야하면 -> JSONarray
 			//우리는 열이 두개뿐이라 두개를 합쳐서 responseText하나로 보내고 js에서 split()을 이용하여 배열에 저장할것
 			//보내는 방식은 response.setContetType("text");
-			String str=bunho+","+writeReply;	//JSON - SPRING
+			
+			String str=bunho+","+writeReply+","+user_ip;	//JSON - SPRING
 			response.setContentType("application/text;charset=utf-8");	//json이 넘어가면 application/json, 필터 안해주기 때문에 charset해줘야함
 			PrintWriter pw=response.getWriter();
+			
 			pw.print(str);//소켓스트림 통해서 java에서 js단으로 넘어가는것
 		}
 		/*
 		 * System.out.println("요청 프로토콜: "+request.getProtocol());
 		 * System.out.println("클라이언트IP 주소: "+request.getRemoteAddr());
 		 * System.out.println("클라이언트가 접속한 포트: "+request.getRemotePort());
+		 * 
+		 * 나중에 db에 컬럼추가로 ip나 작성시간 같은거도 해보고싶음
 		 */
 		return null;
 	}

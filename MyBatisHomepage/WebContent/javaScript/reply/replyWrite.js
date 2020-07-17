@@ -3,10 +3,11 @@
  */
 
 var arr=new Array();
-function writeToServer(root){
+var root=null;
+function writeToServer(requestRoot){
 	var writeReply=document.getElementById("writeReply").value;
-	
-	arr.push(root+", "+writeReply);
+	root=requestRoot;
+	//arr.push(root+", "+writeReply);
 	
 	var url=root+"/reply/replyWrite.do";
 	var param="writeReply="+writeReply;
@@ -15,24 +16,57 @@ function writeToServer(root){
 }
 function writeFromServer(){
 	if(xhr.readyState==4 && xhr.status==200){
-		arr.push("마지막출력 : "+xhr.responseText);
+		//arr.push("마지막출력 : "+xhr.responseText);
 		
-		var str=xhr.responseText;
-		var split=str.split(",");
+		var result=xhr.responseText.split(",");
 		
-		var bunho=split[0];
-		var msg=split[1];
+		var bunho=result[0].trim();	//혹시 모를 양옆 공백제거
+		var reply=result[1].trim();
+		var userIp=result[2];
+		document.getElementById("writeReply").value="";
 		
-		var disp=document.getElementById("disp");
+		var listAllDiv=document.getElementById("listAllDiv");
+		var div=document.createElement("div");
+		
+		div.className="replyDiv";
+		div.id=bunho;
+		
+		
 		var spanBunho=document.createElement("span");
-		spanBunho.innerHTML=bunho;
-		var spanMsg=document.createElement("span");
-		spanMsg.innerHTML=msg;
-		var br=document.createElement("br");
+		spanBunho.innerText=bunho;
+		spanBunho.className="cssBunho";
+		var spanReply=document.createElement("span");
+		spanReply.innerText=reply;
+		spanReply.className="cssReply";
+		var spanIp=document.createElement("span");
+		spanIp.innerText=userIp;
+		spanIp.className="cssIp";
 		
-		disp.appendChild(spanBunho);
-		disp.appendChild(spanMsg);
-		disp.appendChild(br);
-		alert(arr.join("\n"));
+		var spanUpDel=document.createElement("span");
+		spanUpDel.className="cssUpDel";
+		
+		var aDelete=document.createElement("a");
+		//aDelete.href="javascript:deleteToServer('"+bunho+"', '"+root+"')";
+		aDelete.style="color:blue;cursor:pointer;";
+		aDelete.onclick=function(){
+			deleteToServer(bunho,root);
+		};
+		
+		aDelete.innerHTML="삭제 &nbsp;";
+		
+		var aUpdate=document.createElement("a");
+		aUpdate.href='';
+		aUpdate.innerHTML="수정";
+		
+		spanUpDel.appendChild(aDelete);
+		spanUpDel.appendChild(aUpdate);
+		
+		div.appendChild(spanBunho);
+		div.appendChild(spanReply);
+		div.appendChild(spanIp);
+		div.appendChild(spanUpDel);
+		listAllDiv.appendChild(div);
+		listAllDiv.insertBefore(div, listAllDiv.firstChild);
+		//alert(arr.join("\n"));
 	}
 }
