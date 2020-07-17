@@ -20,7 +20,7 @@ function sendRequest(method, url, param, callback){	//넘어온 값 : post, xhr.
 		httpUrl +="?"+httpParam;
 	}
 	
-	arr.push(httpMethod+", "+httpUrl+", "+httpParam);
+	//alert(httpMethod+", "+httpUrl+", "+httpParam);
 	xhr=createXHR();
 	xhr.open(httpMethod, httpUrl, true);
 	//xhr.setRequestHeader~는 POST일때만 적용되고 GET이면 점프한다

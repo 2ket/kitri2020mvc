@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${root }/xhr/xhr.js"></script>
 <script type="text/javascript" src="${root }/javaScript/reply/replyWrite.js"></script>
 <script type="text/javascript" src="${root }/javaScript/reply/replyDelete.js"></script>
+<script type="text/javascript" src="${root }/javaScript/reply/replyUpdate.js"></script>
 <link type="text/css" rel="stylesheet" href="${root }/CSS/reply/reply.css">
 </head>
 <body>
@@ -36,7 +37,7 @@
 				<span class="cssReply">${replyDto.line_reply }</span>
 				<span class="cssUpDel">
 					<a href="javascript:deleteToServer('${replyDto.bunho }', '${root }')">삭제 &nbsp;</a>
-					<a href="">수정</a>
+					<a href="javascript:selectToServer('${replyDto.bunho }', '${root }')">수정</a>
 				</span>
 			</div>
 		

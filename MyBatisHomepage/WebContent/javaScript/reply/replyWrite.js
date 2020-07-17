@@ -47,17 +47,20 @@ function writeFromServer(){
 		
 		var aDelete=document.createElement("a");
 		//aDelete.href="javascript:deleteToServer('"+bunho+"', '"+root+"')";
-		aDelete.style="color:blue;cursor:pointer;";
+		//aDelete.style="color:blue;cursor:pointer;";
+		aDelete.href='#';
+		aDelete.innerHTML="삭제 &nbsp;";
 		aDelete.onclick=function(){
 			deleteToServer(bunho,root);
 		};
 		
-		aDelete.innerHTML="삭제 &nbsp;";
 		
 		var aUpdate=document.createElement("a");
-		aUpdate.href='';
+		aUpdate.href='#';
 		aUpdate.innerHTML="수정";
-		
+		aUpdate.onclick=function(){
+			selectToServer(bunho,root);
+		};
 		spanUpDel.appendChild(aDelete);
 		spanUpDel.appendChild(aUpdate);
 		
