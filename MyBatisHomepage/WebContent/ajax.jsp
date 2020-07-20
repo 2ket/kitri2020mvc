@@ -21,5 +21,17 @@
 	
 	<h3>오늘의 날씨</h3>
 	<a href="${root }/parsing.do">오늘의 날씨</a>
+	
+	<br><br>
+	
+	<h3>Kakao Map</h3>
+	<a href="${root }/map.do">Kakao Map</a>
+	
+	<br><br>
+	
+	<h3>Addr Map</h3>
+	<a href="${root }/addr.do">Address Map</a>
+	
+	
 </body>
 </html>

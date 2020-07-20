@@ -1,5 +1,7 @@
 package com.java.command.parsing;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,6 +32,9 @@ public class ProxyCommand implements Command {
 		if(statusCode==HttpStatus.SC_OK) {
 			String result=method.getResponseBodyAsString();
 			//logger.info(logMsg+"result"+result);
+			response.setContentType("application/xml;charset=utf-8");	//application/txt, application/json
+			PrintWriter out=response.getWriter();
+			out.print(result);
 		}
 		return null;
 	}
