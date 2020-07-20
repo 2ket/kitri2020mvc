@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jQuery - 계층 선택자</title>
+<style type="text/css">
+	label{
+		font-size:20px;
+		background-color:#EEEEEE;
+		padding:10px;
+	}	
+</style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function (){
+		$("p label").css("backgroundColor", "red");				//자손
+		$("p > label").css("backgroundColor", "yellow");		//자식
+	});
+</script>
+</head>
+<body>
+	<p>
+		<label>ONE</label>
+		<label>TWO</label>
+		<span>
+			<label>THREE</label>
+		</span>
+	</p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jQuery - 기본 선택자</title>
+<style type="text/css">
+	.redtext{
+		color:#ff0000;
+	}
+	.boldtext{
+		font-weight:bold;
+	}
+	.spotlight{
+		background-color:#ffff00;
+	}
+</style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	//jquery : 선택자 - id, class,자식, 자손, 형제
+	//			함수 : addClass(), ready, text()
+	
+	$(document).ready(function(){
+		$(".first").addClass("redtext");	
+		$(".first").addClass("boldtext");
+		$("div.first").addClass("retext boldtext");
+	});
+	
+</script>
+</head>
+<body>	
+	<div class="first">사과</div>
+	<div>바나나</div>
+	<div>딸기</div>
+	<div>메론</div>
+	<br/><br/>
+	
+	<span class="first" >우유</span>
+	<span>쥬스</span>
+	<span>콜라</span>
+	<br/><br/>
+	
+	<label class="first">양파</label>
+	<label>당근</label>
+	<label>오이</label>
+</body>
+</html>

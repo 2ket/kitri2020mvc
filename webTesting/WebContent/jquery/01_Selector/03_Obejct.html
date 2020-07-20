@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jQuery - 기본 선택자</title>
+<style type="text/css">
+	span, div{ 
+		font-size:30px; 
+	}
+	.redtext{ 
+		color:#FF0000; 
+	}
+	.italictext{ 
+		font-style:italic; 
+	}
+	.boldtext{
+		font-weight:bold;
+	}
+	.backgroundtext{
+		background:blue;
+	}
+</style>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript">
+	/* var obj=new jQuery(document);
+	obj.ready(disp);
+	
+	function disp(){
+		var a=new jQuery("*");
+		a.addClass("redtext");
+		
+		var b=new jQuery("span");
+		b.addClass("italictext");
+		
+		var c=new jQuery("div");
+		c.addClass("boldtext");
+		
+		var d=new jQuery("span, div");
+		d.addClass("backgroundtext");
+	} */
+	
+	$(document).ready(function(){
+		$("*").addClass("redtext");
+		$("span").addClass("italictext");
+		$("div").addClass("boldtext");
+		$("span, div").addClass("backgroundtext");
+	});
+
+</script>
+</head>
+<body>
+	<span>simple 문서 앨러먼트입니다.</span>
+	<br/><br/>
+	
+	<div>simple 문서 앨러먼트입니다.</div>
+	<br/><br/>
+	
+	<b>simple 문서 앨러먼트입니다.</b>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
