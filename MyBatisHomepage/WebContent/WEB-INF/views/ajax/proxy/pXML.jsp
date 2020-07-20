@@ -10,16 +10,17 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${root }/xhr/xhr.js"></script>
 <script type="text/javascript">
-	function toServer(){
-		var url="http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109";
+	function toServer(root){
+		var url=root+"/pXML.do";
+		//http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109
 		sendRequest("GET", url, null, fromServer);
 	}
 	function fromServer(){
-		alert(xhr.readyState+","+xhr.status);
+		alert(xhr.readyState+","+xhr.status);	//4, 200 넘어와야 쓸수 있음
 	}
 </script>
 </head>
 <body>
-	<input type="button" value="오늘의 날씨" onclick="toServer()">
+	<input type="button" value="오늘의 날씨" onclick="toServer('${root}')">
 </body>
 </html>
