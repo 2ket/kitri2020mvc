@@ -81,7 +81,7 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd=request.getServletPath();
 		logger.info(logMsg+cmd);
-		
+		RequestDispatcher rd=null;
 		String viewPage=null;
 		try {
 			Command comm=(Command)commandMap.get(cmd);
@@ -90,8 +90,21 @@ public class FrontController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//원래 그냥 하던 페이지
+//		if(viewPage!=null) {
+//			RequestDispatcher rd=request.getRequestDispatcher(viewPage);
+//			rd.forward(request, response);
+//		}
+		
+		//template 적용
 		if(viewPage!=null) {
-			RequestDispatcher rd=request.getRequestDispatcher(viewPage);
+			if(viewPage.equals("/WEB-INF/views/member/zipcode.jsp")||viewPage.equals("/WEB-INF/views/member/idCheck.jsp")) {
+				rd=request.getRequestDispatcher(viewPage);
+			}else {
+			request.setAttribute("viewPage", viewPage);
+			rd=request.getRequestDispatcher("/template/templateIndex.jsp");
+			}
 			rd.forward(request, response);
 		}
 	}
