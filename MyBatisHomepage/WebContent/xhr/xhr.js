@@ -24,7 +24,9 @@ function sendRequest(method, url, param, callback){	//넘어온 값 : post, xhr.
 	xhr=createXHR();
 	xhr.open(httpMethod, httpUrl, true);
 	//xhr.setRequestHeader~는 POST일때만 적용되고 GET이면 점프한다
+	//xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
 	xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+	xhr.setRequestHeader("Authorization", "KakaoAK 18514d37ace0e69349e647543ecf89f8");
 	xhr.send(httpMethod=="POST" ? httpParam : null);
 	xhr.onreadystatechange=callback;
 	
