@@ -3,6 +3,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - 속성 선택자</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function(){
+			if($("#id").val()==""){
+				alert("아이디를 입력하세요");
+				$("#id").focus();
+				return;
+			}
+			if($("#name").val()==""){
+				alert("이름을 입력하세요");
+				$("#name").focus();
+				return;
+			}
+			
+			var str=$("input[name='gender']:checked").val();
+			if(str==null){
+				alert("성별을 체크하세요.");
+				return;
+			}
+			var value="";
+			$("input[name='hobby']:checked").each(function(index, element){
+				value+=$(this).val()+",";
+			});
+			if(value==""){
+				alert("취미를 한 개 이상 체크하세요.");
+				return;
+			}else{
+				$("input[name='hobbyResult']").val(value);
+			}
+			$("form").submit();
+		});
+	});
+</script>
+
 </head>
 <body>
 	<form action="#" method="post">
