@@ -3,6 +3,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - 기본 필터 선택자</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("p:even").css("color", "red");	//짝수선택(0번지부터 시작)
+		$("p:first").css("color", "blue");	//나중에 선언된걸로 오버라이딩
+		$("p:last").css("color", "pink");
+		$("p:eq(2)").css("color", "yellow");	// (번지값) 0부터 시작
+		
+		$(".first > li:even").css("color", "blue");
+		$(".first > li:odd").css("color", "red");	//odd : 홀수선택자
+		
+		$(".second > li:first").css("color", "blue");
+		$(".second > li:last").css("color", "red");
+		$(".second > li:eq(2)").css("color", "yellow");
+		
+		$(".third > li:lt(2)").css("color", "blue");
+		$(".third > li:gt(2)").css("color", "red");
+		$(".third > li:not(:eq(2))").css("fontWeight", "bold");
+	});
+</script>
 </head>
 <body>
 	<p>1월</p>
