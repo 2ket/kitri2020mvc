@@ -3,12 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 함수</title>
+<style type="text/css">
+	img{
+		width:200px; height:200px; margin: 5px;
+	}
+</style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("img").click(function(){
+			$(".img_may").prepend($("img:last"));
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="img_may">
-		<img src="../img/Chrysanthemum.jpg"/>
-		<img src="../img/Desert.jpg"/>
-		<img src="../img/Hydrangeas.jpg"/>
+		<img src="../img/cat1.jpg"/>
+		<img src="../img/cat2.jpg"/>
+		<img src="../img/cat3.jpg"/>
 	</div>
 </body>
 </html>

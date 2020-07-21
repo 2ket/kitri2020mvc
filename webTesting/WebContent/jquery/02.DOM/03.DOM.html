@@ -3,6 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery -  DOM 함수</title>
+<style type = "text/css">
+   img{
+      width: 250px;
+      height: 200px;
+      margin: 5px;
+   }
+</style>
+
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function(){
+			var n= Math.ceil(Math.random() * 3);
+
+			$(".img_may").append("<img src='../img/cat"+n+".jpg'/>");
+		});
+	});
+</script>
+
 </head>
 <body>	
 	<a href="#" id="btn">클릭</a>

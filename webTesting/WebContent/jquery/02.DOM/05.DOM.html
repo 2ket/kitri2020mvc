@@ -3,6 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 함수</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#content a:first").click(function(){
+			$("h2").replaceWith("<p style='color:red'>봄여름 축제안내</p>");
+			$(".theme_4 > li").remove();
+			
+			$("<p style='color:blue;'>인천송도</p>").replaceAll($(".theme b:eq(1)"));
+		});
+	});
+</script>
 </head>
 <body>
 	<div>
