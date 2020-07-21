@@ -3,8 +3,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - 속성 선택자</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input[type='text']").val("값을 입력하세요.");
+		$("input[type='text']").click(function(){
+			$(this).val("");
+		});
+		
+		
+		$("input[id='btn']").click(function(){
+			var arr=new Array();
+			var name=$("input[name='name']").val();	//값 뽑아오기
+			var id=$("input[name='id']").val();
+			
+			var idType=$("input[name='id']").attr("type");	//id를 갖는 요소의 타입을 뽑아오기
+			$("input[name='id']").attr("style", "color:red");	//클릭함수 안에 있으므로 버튼 눌러야 색바뀜
+			
+			arr.push(name);
+			arr.push(id);
+			arr.push(idType);
+			alert(arr);
+		});
+		
+		var div=$("div:eq(0)").text();
+		alert(div);
+		$("div:eq(1)").text("안녕하세요");
+	});
+</script>
 </head>
 <body>
+	<div>hi</div>
+	<div></div>
+	<div></div>
+	<br><br>
 	<form action="#" method="post">
 		<label>이름</label>
 		<input type="text" id="name" name="name"/>
@@ -13,7 +45,7 @@
 		<fieldset>
 			<legend>필수입력사항</legend>
 			<label>아이디</label>
-			<input type="text" id="id" name="id"  />
+			<input type="text" id="id" name="id"/>
 			<label>비밀번호</label>
 			<input type="password" id="password" name="password"/>
 		</fieldset>
