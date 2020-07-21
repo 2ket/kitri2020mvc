@@ -26,6 +26,19 @@
 		border:3px solid #f00;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("span[id]").addClass("spotlight");
+		$("span[id  ='simpletext1']").addClass("redtext");
+		$("span[id !='simpletext1']").addClass("bluetext");
+		
+		$("span[id ^='complex']").addClass("largetext");		//시작부분
+		$("span[id $='text1']").addClass("italctext");		//끝나는부분
+		$("span[id *='text1']").addClass("box");		//포함부분
+		
+	});
+</script>
 </head>
 <body>
 	<span id="simpletext1">SIMPLETEXT1</span>
