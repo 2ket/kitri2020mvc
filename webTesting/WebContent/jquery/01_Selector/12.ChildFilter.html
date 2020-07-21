@@ -8,6 +8,17 @@
 		font-size:12px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".first>li:first-child").css("color", "red");	//오직 자식만 필터링
+		$(".first>li:last-child").css("color", "blue");
+		
+		$("li:nth-child(2)").css("color", "pink");		// nth-child(event), nth-child(odd), nth-child(2n+1) 등 사용가능
+		$("div > b:only-child").css("color", "yellow");	// div 내부 자식중에 b태그 오직 하나일때
+		
+	});
+</script>
 </head>
 <body>
 	<div>
