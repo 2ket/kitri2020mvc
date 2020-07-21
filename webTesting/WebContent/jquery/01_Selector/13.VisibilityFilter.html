@@ -16,6 +16,18 @@
 	    display: none;
 	  }
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	// 보이지 않을 때 display : none, type(hidden), width/height(0)
+	$(document).ready(function(){
+		$("#btn").click(function(){
+			$("div:hidden").show(600);
+		});
+		$("div:visible").click(function(){
+			$(this).css("background", "yellow");
+		});
+	});
+</script>
 </head>
 <body>
 	<input type="button" id="btn" value="버튼클릭"/>
