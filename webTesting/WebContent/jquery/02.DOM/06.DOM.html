@@ -3,6 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 탐색 메소드</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){	//.chlidren : 무조건 자식. 자손은 안됨
+		var arr=new Array();
+		$("#first").children().each(function (i,e){
+			//arr.push(i+": "+e.tagName+" "+$(e).text());
+		});
+		
+		$("#first").children("span");
+		
+		$("#first").children("span").each(function (i,e){	//바나나, 딸기
+			//arr.push(i+": "+e.tagName+" "+$(e).text());
+		});
+		
+		$("#first > div").children("span").each(function (i,e){	//수박, 메론
+			arr.push(i+": "+e.tagName+" "+$(e).text());
+		});
+		$("#first > div").children("b").each(function (i,e){	//아메리카노, 커피
+			//arr.push(i+": "+e.tagName+" "+$(e).text());	
+		});
+		
+		
+		alert(arr.join("\n"));
+	});
+</script>
 </head>
 <body>
 	<div>사과</div>
