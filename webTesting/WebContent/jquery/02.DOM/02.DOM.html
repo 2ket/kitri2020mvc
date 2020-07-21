@@ -3,6 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 함수</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	//DOM : 생성, 삭제, 삽입, 수정
+	$(function(){
+		$("#first > p").append("일등품질 일등서비스 복제");
+		$("#first > p").append("<h3>일등품질 일등서비스 복제</h3>");
+		
+		$("#first>ul").append("<li style='color:red'>잡채만두</li>");	//맨뒤 자식
+		$("#first>ul").prepend("<li style='color:blue'>찐만두</li>");	//맨 위 자식
+		
+		$("#first>ul").after("<h2>순대</h2>");	//동생
+		$("#first>ul").before("<h3>떡볶이</h3>");	//형
+	});
+</script>
 </head>
 <body>
 	<div id="first">

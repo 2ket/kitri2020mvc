@@ -3,6 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 함수</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var arr=new Array();
+		
+		var strHTML=$("#first").html();
+		var strText=$("#first > p").text();
+		
+		arr.push(strHTML);
+		arr.push(strText);
+		
+		alert(arr.join("\n"));
+		
+		var str="<h2>안녕하세요.</h2>";
+		$("#second").text(str);
+		$("#third").html(str);
+		
+	});
+</script>
 <body>
 	<div id="first">
 		안녕하세요. <br/>
