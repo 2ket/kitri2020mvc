@@ -10,6 +10,24 @@
 		color:#404040
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#content a:first").click(function(){
+			$(".theme ul>li").removeClass("theme_hot");
+			
+			$(".theme_1 > li:eq(2)").addClass("theme_hot");
+			$(".theme_2 > li:eq(0)").addClass("theme_hot");
+			$(".theme_3 > li:eq(1)").addClass("theme_hot");
+		});
+		$("#content a:eq(1)").click(function(){
+			$(".theme ul>li").removeClass("theme_hot");
+			
+			$(".theme_1 > li:eq(1)").addClass("theme_hot");
+		});
+		
+	});
+</script>
 </head>
 <body>
 	<div>
