@@ -8,6 +8,23 @@
 		font-size:12px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("li:contains('ap')").css({		//contains() 괄호 안 해당 문자가 존재하는 경우
+			"backgroundColor":"#9AB92E",
+			"border":"1px solid #05184D"
+		});	
+		
+		$("#sub:has(li)").css({				//요소 내부에 찾고싶은 태그를 후손 요소까지 찾아준다.
+			backgroundColor:"#9AB92E",
+			border:"1px solid #05184D"
+		});
+		
+		$("li:empty").text("Hello");		// .text() 괄호안 내용을 집어넣어줌
+		$("li:parent").css("color", "red");	// 잘 안쓰긴 함
+	});
+</script>
 </head>
 <body>
 	<div>
