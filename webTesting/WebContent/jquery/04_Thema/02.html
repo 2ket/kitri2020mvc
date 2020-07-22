@@ -3,6 +3,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery UI</title>
+<link rel="stylesheet" href="Start/jquery-ui.css"/>
+<link rel="stylesheet" href="Start/jquery-ui.structure.css"/>
+<link rel="stylesheet" href="Start/jquery-ui.theme.css"/>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript" src="./Start/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#date1").datepicker({
+			dateFormat: "yy-mm-dd",
+			monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+			showOn:"button"
+		});	//날짜선택기
+		
+		$("#date2, #date3").datepicker({
+			dateFormat: "yy-mm-dd",
+			monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+			showOn:"button",
+			buttonText: "📆"
+		});	
+		
+		$("#btn").click(function(){
+			$("#resultDate").text($("#date1").val());
+		});
+	});
+</script>
 </head>
 <body>
 	<div>
