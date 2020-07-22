@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JQuery UI</title>
+</head>
+<body>
+	<div id="tabs">   <!-- ctr+shit+f 줄 정리 -->
+		<ul>
+			<li><a href="#tabs-1">기본정보</a></li>
+			<li><a href="#tabs-2">부가정보</a></li>
+		</ul>
+		
+		<div id="tabs-1">
+		 	<form>
+				<label>이&nbsp;&nbsp;름</label><input type="text" name="irum" /><p>
+				<label>연락처</label><input type="text" name="phone" /><p>
+		        <label>이메일</label><input type="text" name="email" />
+			</form>
+		</div>
+	
+		<div id="tabs-2">
+			<form>
+				<label>거주지선택</label>
+				<select>
+				    <option> 서울</option>
+		            <option> 부산</option>
+					<option> 대구</option>
+					<option> 광주</option>
+		        </select><p>
+		        
+				<label>성별선택</label>
+				<input type="radio" id="g1" value="남"/>남자
+		        <input type="radio" id="g2" value="여"/>여자
+			</form>		
+		</div>
+	</div>
+	<br/><br/>
+	
+	<div>
+		<input type="button" id="btn" value="클릭"/><br/>
+		
+		<!--  아이콘 네임 : http://api.jqueryui.com/theming/icons/ -->
+		<input type="button" class="ui-icon ui-icon-arrowthick-1-n" /><br/>   <!-- 중앙으로 안나옴 span 사용 -->
+		<span class="ui-icon ui-icon-arrowthick-1-n"></span> <br/>
+		<button>
+			<span class="ui-icon ui-icon-arrowthick-1-n"></span>
+		</button>
+	</div>
+	
+	<div id="two">
+		<button>로그인</button>
+		<button>인사말</button>
+		<button>고객센터</button>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
