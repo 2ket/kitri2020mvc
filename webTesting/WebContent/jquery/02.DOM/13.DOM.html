@@ -3,6 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 함수</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("a:first").click(function(){
+			//복사
+			$("h2").append($("span:eq(0)").clone());
+		});
+		
+		$("a:last").click(function(){
+			//이동
+			$("h1").append($("span:eq(1)"));
+		});
+	});
+
+</script>
 </head>
 <body>   
    <a href="#" >복사</a>

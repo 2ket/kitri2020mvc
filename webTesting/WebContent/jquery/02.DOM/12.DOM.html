@@ -3,6 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 함수</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("a").click(function(){
+			//$("p").empty();	//태그는 남아있고 내용만 지워짐
+			//$("p").text("hahaha");
+			
+			$("p").remove();		//태그까지 다 지워짐.
+		});
+	});
+
+</script>
 </head>
 <body>
 	<a href="#">앨리먼트 비우기</a>
