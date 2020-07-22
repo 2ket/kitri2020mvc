@@ -13,11 +13,20 @@
 		hieght:300px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("a").click(function(){
+			$("img").attr("src", $(this).attr("href"));
+			return false;	//a href의 기능 죽임. false는 기본적으로 태그의 동작을 멈추게 한다.
+		});
+	});
+</script>
 </head>
 <body>
 	<ul>
-		<li><a href="../img/Chrysanthemum.jpg">Chrysanthemum</a></li>
-		<li><a href="../img/Desert.jpg">Desert</a></li>
+		<li><a href="../img/cat1.jpg">고양이1</a></li>
+		<li><a href="../img/cat2.jpg">고양이2</a></li>
 	</ul>	
 	
 	<img />

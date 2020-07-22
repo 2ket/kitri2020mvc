@@ -11,12 +11,27 @@
 		width:600px;height:600px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#big").click(function(){
+			$("img").removeClass("smallimg");
+			$("img").addClass("bigimg");
+		});
+		
+		$("#small").click(function(){
+			$("img").removeClass("bigimg");
+			$("img").addClass("smallimg");
+		});
+	});
+</script>
+
 </head>
 <body>
 	<a href="#" id="big">확대</a>&nbsp;&nbsp;
 	<a href="#" id="small">원본</a>
 	<br /><br/>
 	
-	<img src="../Img/Chrysanthemum.jpg" width="300" height="300"/>
+	<img src="../img/cat1.jpg" width="300" height="300"/>
 </body>
 </html>

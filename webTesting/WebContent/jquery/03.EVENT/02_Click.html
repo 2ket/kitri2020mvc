@@ -14,21 +14,29 @@
 		width:250px;heigth:200px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".img_may").click(function(){
+			$(this).append($(".june").css("display", "block"));
+		});
+	});
+</script>
 </head>
 <body>
 	<h1>풍경이 있는 자리</h1>
 	<div class="img_may">
-		<img src="../img/Chrysanthemum.jpg"/>
+		<img src="../img/cat1.jpg"/>
 		<h4>튤립</h4>
 	</div>
 		
 	<div class="img_may">
-		<img src="../img/Desert.jpg"/>
+		<img src="../img/cat2.jpg"/>
 		<h4>사막</h4>
 	</div>
 	
 	<div class="img_may">
-		<img src="../img/Hydrangeas.jpg"/>
+		<img src="../img/cat3.jpg"/>
 		<h4>수국</h4>
 	</div>
 	
