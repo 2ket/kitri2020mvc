@@ -3,6 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 탐색 메소드</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	//동생, 형, 모든 동생, 모든 형, 모든 형제 뽑아낼 수 있다.
+	$(function(){
+		$("#coffee").next().css("color", "pink");	//동생. 카페라떼
+		$("#coffee").prev().css("color", "pink");	//형. 아메리카노
+		
+		$("#strawberry").nextAll().css("color", "red");	//모든 동생. 수박, 메론
+		$("#strawberry").prevAll().css("color", "blue");//모든 형. 사과, 바나나
+		
+		$("#citrus").siblings().css("color", "yellow");
+		$("#citrus").siblings("#tomato").css("fontSize", "20px");
+	});
+</script>
 </head>
 <body>	
 	<h3>마키아또</h3>
