@@ -3,6 +3,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 필터 메소드</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//$("#main p:first") 혹은  $(".middle > p:first")
+		$("#main p").first().css("color", "pink");	//사과
+		$("#main").children("div").first().css("color", "blue");//DIV
+		$("#main p").last().css("color", "red");	//자손들까지 포함. 아메리카노
+		
+		$("#main p").eq(2).css("color", "yellow");	//딸기
+		$("#main").find("p").eq(3).css("color", "green");	//메론(0번지부터니까)
+	});
+
+</script>
 </head>
 <body>
 	<div id="main">

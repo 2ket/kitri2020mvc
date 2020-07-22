@@ -3,6 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jQuery - DOM 탐색 메소드</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	//부모만 뽑기
+	var arr =new Array();
+	$(function(){
+		$(function(){			//e.tagName과 $(e).text()차이 : 뒤 $(e)는 객체화(jquery 사용 위해), e.tagName은 js
+			$("#melon").parent().each(function (i, e){	//부모
+				arr.push(i+" "+e.tagName);//+" "+$(e).text()
+			});
+			$("#melon").parents().each(function (i, e){	//조상
+				arr.push(i+" "+e.tagName);//+" "+$(e).text()
+			}); 
+			
+			alert(arr.join("\n"));
+		});
+	});
+</script>
 </head>
 <body>	
 	<div id="first">
