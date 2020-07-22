@@ -8,6 +8,28 @@
 		font-size:12px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("img:eq(0)").mouseover(function(){
+			$("img:eq(0)").attr("src", "../img/btn2.gif");
+		});
+		$("img:eq(0)").mouseout(function(){
+			$("img:eq(0)").attr("src", "../img/btn1.gif");
+		});
+		
+		$("img:eq(0)").click(function(){
+			alert("버튼을 눌렀습니다.");
+		});
+		
+		//다수의 이벤트를 한번에 설정
+		$("img:eq(1)").bind({
+			mouseover:function(){$("img:eq(1)").attr("src", "../img/btn2.gif");},
+			mouseout:function(){$("img:eq(1)").attr("src", "../img/btn1.gif");},
+			click:function(){alert("버튼을 눌렀습니다.");}
+		});
+	});
+</script>
 </head>
 <body>
 	<img src="../img/btn1.gif"/>
