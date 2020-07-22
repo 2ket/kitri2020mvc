@@ -9,6 +9,29 @@
 		cursor:pointer;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input:eq(0)").val("아이디를 반드시 입력하세요.").css("color", "red");
+		$("input:eq(1)").val("이름을 반드시 입력하세요.").css("color", "red");
+		
+		$("input[type='text']").focus(function(){
+			$(this).val("").css("color", "#000");
+		});
+		
+		$("input:eq(0)").blur(function(){
+			if($("input:eq(0)").val()==""){
+				$("input:eq(0)").val("아이디를 반드시 입력하세요.").css("color", "red");
+			}
+		});
+		
+		$("input:eq(1)").blur(function(){
+			if($("input:eq(1)").val()==""){
+				$("input:eq(1)").val("이름 반드시 입력하세요.").css("color", "red");
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<form>

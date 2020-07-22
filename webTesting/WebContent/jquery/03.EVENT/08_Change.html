@@ -10,6 +10,14 @@
 		margin-left:50px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#sel").change(function(){
+			$("#img").attr("src", $(this).val());
+		});
+	});
+</script>
 </head>
 <body>
 	<form action="#" method="post">

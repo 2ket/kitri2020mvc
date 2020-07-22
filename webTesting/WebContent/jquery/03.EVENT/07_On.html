@@ -12,6 +12,18 @@
 	 .menu1{width:300px;border:thin dashed #ee99aa}
 	 .menulist{font-family:tahoma;color:#99eeaa}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#one").one("click", function(){
+			$(".menu").append("<li style='color:red;'>여름 - 콩국수</li>");
+			$(".menu").append("<li style='color:red;'>겨울 - 육개장</li>");
+		});
+		$(".menu").click(function(){	//on동적으로 이벤트 할당(추가된 태그들에 대해 이벤트가 안 먹힐경우에는 .on()함수로 적용시켜줄 수 있다.)
+			alert("국내산 식재료 사용하였습니다.");
+		});
+	});
+</script>
 </head>
 <body>
 	<button id="one">계절메뉴보기</button>
