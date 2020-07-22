@@ -15,6 +15,10 @@
 			$(".theme_3").append("<li style='color:red;'>천리포 수목원 걷기 축제</li>");
 			$("#menu1").unbind("click");	//클릭이벤트를 한번으로 한정지음. 이게 없으면 계속li가 추가된다
 		});
+		
+		$("#menu2").one("click", function(){
+			$(".theme_1").append("<li style='color:blue;'>펭수축제</li>");
+		});
 	});
 </script>
 </head>
