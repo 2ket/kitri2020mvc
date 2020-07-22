@@ -8,6 +8,27 @@
 		font-size:13px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button:eq(0)").click(function(){
+			$("img:eq(0)").hide();
+			$("button:eq(0)").css("display", "none");	//hide();
+		});
+		$("button:eq(1)").click(function(){
+			$("img:eq(0)").show();
+			$("button:eq(0)").css("display", "inline");	//show();
+		});
+		$("button:eq(2)").click(function(){
+			$("img:eq(1)").hide("slow", function(){/*alert("ok");*/});
+			$("button:eq(2)").hide(1000);	//
+		});
+		$("button:eq(3)").click(function(){
+			$("img:eq(1)").show("fast");
+			$("button:eq(2)").show(5000);	//
+		});
+	});
+</script>
 </head>
 <body>
 	<img src="../img/Chrysanthemum.jpg" width="300" height="300"/><br/>
