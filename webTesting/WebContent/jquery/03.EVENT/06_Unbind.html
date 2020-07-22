@@ -8,6 +8,15 @@
 		font-size:12px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#menu1").click(function(){
+			$(".theme_3").append("<li style='color:red;'>천리포 수목원 걷기 축제</li>");
+			$("#menu1").unbind("click");	//클릭이벤트를 한번으로 한정지음. 이게 없으면 계속li가 추가된다
+		});
+	});
+</script>
 </head>
 <body>
 	<div id="content">

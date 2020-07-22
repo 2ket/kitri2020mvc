@@ -13,6 +13,21 @@
 	.menu{width:300px;border:thin dashed #ee99aa}	
 	.menulist{font-family:tahoma;color:#99eeaa}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("li").hover(
+			function(){
+				$(this).css("color", "#ad0");
+				$(".three").css("color", "#ad0");
+			}, 
+			function(){
+				$(this).css("color", "#000");
+				$(".three").css("color", "#000");
+			}
+		);
+	});
+</script>
 </head>
 <body>	
 	<div>
