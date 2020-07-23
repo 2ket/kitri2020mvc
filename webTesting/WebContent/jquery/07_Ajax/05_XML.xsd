@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			targetNamespace="http://www.example.org/05_XML"
+			 xmlns="http://www.example.org/05_XML" 
+			 elementFormDefault="qualified">
+	<xsd:element name="member" type="member"/>
+	
+	<xsd:complexType name="member">
+		<xsd:sequence>
+			<xsd:element name="student" minOccurs="1" maxOccurs="unbounded" type="student"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="student">
+		<xsd:sequence>
+			<xsd:element name="stdNumber" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+			<xsd:element name="stdName" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+			<xsd:element name="score" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
+				
