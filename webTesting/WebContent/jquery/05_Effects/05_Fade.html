@@ -21,6 +21,14 @@
 		background:#00F;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#start").click(function(){
+			$("div:hidden").first().fadeIn("slow");
+		});
+	});
+</script>
 </head>
 <body>
 	<span id="start">클릭</span><br/>

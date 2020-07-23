@@ -20,8 +20,26 @@
 		background:#00F;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button").click(function(){
+			$("img").fadeTo("slow", $(this).attr("title"));	//fadeTo(속도, 투명도); 투명도는 0~1 사이
+		});
+		
+		$("#red").click(function(){
+			$(this).fadeTo("slow", 0.3);
+		});
+		$("#blue").click(function(){
+			$(this).fadeTo("slow", 0.7);
+		});
+		$("#green").click(function(){
+			$(this).fadeTo("slow", 0.5);
+		});
+	});
+</script>
 <body>
-	<img src="../img/sample3.jpg" width="300" height="307" /><br/>
+	<img src="../img/cat3.jpg" width="300" height="307" /><br/>
 	<button title="0">0</button>
 	<button title="0.3">0.3</button>
 	<button title="0.6">0.6</button>
