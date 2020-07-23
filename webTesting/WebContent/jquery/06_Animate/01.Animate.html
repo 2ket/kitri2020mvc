@@ -8,9 +8,33 @@
 	#controller { padding: 10px;}
 	#box { width:150px; height:150px; background-color:red; position:absolute; left:200px; }
 </style>
-<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
 <script type="text/javascript">
-	
+/*
+ 	animate(properties, duration, easing, complete); (css같은 외형, 시간, 선명도?부드럽게?, 함수)
+ 
+ */
+	$(function(){
+		$(".big").click(function(){
+			$("#box").animate(
+				{width:"400px", height: "400px", opacity: 0.5}, 
+				duration:500,
+				esing:"liner",	//기본값 swing
+				complete: function(){alert("OK");}
+			);
+		});
+		$(".small").click(function(){
+			$("#box").animate(
+				{width:"50px", height: "50px"}, 5000, "swing"
+			);
+		});
+		$(".left").click(function(){
+			$("#box").animate({left:"0px"}, 5000);
+		});
+		$(".right").click(function(){
+			$("#box").animate({left:"800px"}, 5000);
+		});
+	});
 </script>
 </head>
 <body>
