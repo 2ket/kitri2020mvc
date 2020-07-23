@@ -3,6 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JQuery AJAX</title>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#menu1").click(function(){
+			$.ajax({
+				url:"01_menu.html",
+				type:"get",
+				dataType:"html",
+				success:function(data){
+					$("#message1").html(data);
+				}
+			});
+		});
+		$("#menu2").click(function(){
+			$.ajax({
+				url:"01_menu.html",
+				type:"get",
+				dataType:"html",
+				success:function(data){
+					$("#message2").html($(data).children("ul>li"));
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 	<div>
