@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%-- 18514d37ace0e69349e647543ecf89f8 REST KEY--%>
+<%-- REST KEY--%>
 <title>Insert title here</title>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510fab40683050bcc2d7e6a16f243d1e"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=appkey"></script>
 	<script type="text/javascript">
 		 
 	</script>
