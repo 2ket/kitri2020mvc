@@ -8,6 +8,14 @@
 		font-size:13px;
 	}
 </style>
+<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button").click(function (){
+			$("img:eq(0)").toggle(5000, function(){alert("OK");});
+		});
+	});
+</script>
 <body>
 	<img src="../img/Chrysanthemum.jpg" width="300" height="300"/><br/>
 	<button>TOOGLE</button>
